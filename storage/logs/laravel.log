@@ -1,0 +1,559 @@
+[2024-12-29 09:47:38] local.ERROR: Command "migration" is not defined.
+
+Did you mean one of these?
+    make:migration
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"migration\" is not defined.
+
+Did you mean one of these?
+    make:migration
+    migrate
+    migrate:fresh
+    migrate:install
+    migrate:refresh
+    migrate:reset
+    migrate:rollback
+    migrate:status at C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php:726)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(284): Symfony\\Component\\Console\\Application->find()
+#1 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#4 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#5 {main}
+"} 
+[2024-12-29 10:57:20] local.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1072 Key column 'kategori_id' doesn't exist in table (Connection: mysql, SQL: alter table `bukus` add constraint `bukus_kategori_id_foreign` foreign key (`kategori_id`) references `kategoris` (`nama_kategori`)) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1072 Key column 'kategori_id' doesn't exist in table (Connection: mysql, SQL: alter table `bukus` add constraint `bukus_kategori_id_foreign` foreign key (`kategori_id`) references `kategoris` (`nama_kategori`)) at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:825)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(560): Illuminate\\Database\\Connection->run()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Blueprint.php(118): Illuminate\\Database\\Connection->statement()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(564): Illuminate\\Database\\Schema\\Blueprint->build()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): Illuminate\\Database\\Schema\\Builder->build()
+#5 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#6 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#8 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#25 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#26 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#27 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#29 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#30 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#31 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#32 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#33 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#34 {main}
+
+[previous exception] [object] (PDOException(code: 42000): SQLSTATE[42000]: Syntax error or access violation: 1072 Key column 'kategori_id' doesn't exist in table at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:571)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(571): PDOStatement->execute()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(812): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(560): Illuminate\\Database\\Connection->run()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Blueprint.php(118): Illuminate\\Database\\Connection->statement()
+#5 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(564): Illuminate\\Database\\Schema\\Blueprint->build()
+#6 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): Illuminate\\Database\\Schema\\Builder->build()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#8 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#25 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#26 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#27 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#29 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#30 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#31 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#32 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#33 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#34 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#35 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#36 {main}
+"} 
+[2024-12-29 11:12:53] local.ERROR: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'bukus' already exists (Connection: mysql, SQL: create table `bukus` (`id` bigint unsigned not null auto_increment primary key, `judul` varchar(255) null, `penulis` varchar(255) null, `penerbit` varchar(255) null, `tahun_terbit` year not null, `kategori_id` bigint unsigned not null, `isbn` varchar(255) null, `jumlah_eksemplar` int not null, `jumlah_tersedia` int not null, `deskripsi` text null, `foto` varchar(191) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci') {"exception":"[object] (Illuminate\\Database\\QueryException(code: 42S01): SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'bukus' already exists (Connection: mysql, SQL: create table `bukus` (`id` bigint unsigned not null auto_increment primary key, `judul` varchar(255) null, `penulis` varchar(255) null, `penerbit` varchar(255) null, `tahun_terbit` year not null, `kategori_id` bigint unsigned not null, `isbn` varchar(255) null, `jumlah_eksemplar` int not null, `jumlah_tersedia` int not null, `deskripsi` text null, `foto` varchar(191) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci') at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:825)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(560): Illuminate\\Database\\Connection->run()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Blueprint.php(118): Illuminate\\Database\\Connection->statement()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(564): Illuminate\\Database\\Schema\\Blueprint->build()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): Illuminate\\Database\\Schema\\Builder->build()
+#5 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#6 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#8 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#25 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#26 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#27 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#29 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#30 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#31 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#32 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#33 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#34 {main}
+
+[previous exception] [object] (PDOException(code: 42S01): SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'bukus' already exists at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:571)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(571): PDOStatement->execute()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(812): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(560): Illuminate\\Database\\Connection->run()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Blueprint.php(118): Illuminate\\Database\\Connection->statement()
+#5 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(564): Illuminate\\Database\\Schema\\Blueprint->build()
+#6 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): Illuminate\\Database\\Schema\\Builder->build()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#8 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#25 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#26 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#27 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#29 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#30 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#31 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#32 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#33 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#34 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#35 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#36 {main}
+"} 
+[2024-12-29 11:15:31] local.ERROR: SQLSTATE[HY000]: General error: 3780 Referencing column 'kategori_id' and referenced column 'nama_kategori' in foreign key constraint 'bukus_kategori_id_foreign' are incompatible. (Connection: mysql, SQL: alter table `bukus` add constraint `bukus_kategori_id_foreign` foreign key (`kategori_id`) references `kategoris` (`nama_kategori`)) {"exception":"[object] (Illuminate\\Database\\QueryException(code: HY000): SQLSTATE[HY000]: General error: 3780 Referencing column 'kategori_id' and referenced column 'nama_kategori' in foreign key constraint 'bukus_kategori_id_foreign' are incompatible. (Connection: mysql, SQL: alter table `bukus` add constraint `bukus_kategori_id_foreign` foreign key (`kategori_id`) references `kategoris` (`nama_kategori`)) at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:825)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(560): Illuminate\\Database\\Connection->run()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Blueprint.php(118): Illuminate\\Database\\Connection->statement()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(564): Illuminate\\Database\\Schema\\Blueprint->build()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): Illuminate\\Database\\Schema\\Builder->build()
+#5 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#6 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#8 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#25 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#26 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#27 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#29 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#30 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#31 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#32 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#33 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#34 {main}
+
+[previous exception] [object] (PDOException(code: HY000): SQLSTATE[HY000]: General error: 3780 Referencing column 'kategori_id' and referenced column 'nama_kategori' in foreign key constraint 'bukus_kategori_id_foreign' are incompatible. at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:571)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(571): PDOStatement->execute()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(812): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(779): Illuminate\\Database\\Connection->runQueryCallback()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(560): Illuminate\\Database\\Connection->run()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Blueprint.php(118): Illuminate\\Database\\Connection->statement()
+#5 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(564): Illuminate\\Database\\Schema\\Blueprint->build()
+#6 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): Illuminate\\Database\\Schema\\Builder->build()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#8 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#25 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#26 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#27 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#29 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#30 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#31 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#32 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#33 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#34 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#35 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#36 {main}
+"} 
+[2024-12-29 11:16:58] local.ERROR: Method Illuminate\Database\Schema\Blueprint::unsignedBigString does not exist. {"exception":"[object] (BadMethodCallException(code: 0): Method Illuminate\\Database\\Schema\\Blueprint::unsignedBigString does not exist. at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:115)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(20): Illuminate\\Database\\Schema\\Blueprint->__call()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(421): Illuminate\\Database\\Migrations\\Migration@anonymous->{closure}()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php(399): Illuminate\\Database\\Schema\\Builder->Illuminate\\Database\\Schema\\{closure}()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): tap()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#5 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#6 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#8 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#25 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#26 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#27 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#29 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#30 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#31 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#32 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#33 {main}
+"} 
+[2024-12-29 11:18:23] local.ERROR: Method Illuminate\Database\Schema\Blueprint::unsignedBigString does not exist. {"exception":"[object] (BadMethodCallException(code: 0): Method Illuminate\\Database\\Schema\\Blueprint::unsignedBigString does not exist. at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:115)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(20): Illuminate\\Database\\Schema\\Blueprint->__call()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(421): Illuminate\\Database\\Migrations\\Migration@anonymous->{closure}()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php(399): Illuminate\\Database\\Schema\\Builder->Illuminate\\Database\\Schema\\{closure}()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): tap()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#5 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#6 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#8 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#25 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#26 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#27 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#28 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#29 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#30 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#31 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#32 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#33 {main}
+"} 
+[2024-12-29 12:24:30] local.ERROR: Command "make:routes" is not defined.
+
+Did you mean one of these?
+    make:cache-table
+    make:cast
+    make:channel
+    make:class
+    make:command
+    make:component
+    make:controller
+    make:enum
+    make:event
+    make:exception
+    make:factory
+    make:interface
+    make:job
+    make:job-middleware
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:notifications-table
+    make:observer
+    make:policy
+    make:provider
+    make:queue-batches-table
+    make:queue-failed-table
+    make:queue-table
+    make:request
+    make:resource
+    make:rule
+    make:scope
+    make:seeder
+    make:session-table
+    make:test
+    make:trait
+    make:view {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"make:routes\" is not defined.
+
+Did you mean one of these?
+    make:cache-table
+    make:cast
+    make:channel
+    make:class
+    make:command
+    make:component
+    make:controller
+    make:enum
+    make:event
+    make:exception
+    make:factory
+    make:interface
+    make:job
+    make:job-middleware
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:notifications-table
+    make:observer
+    make:policy
+    make:provider
+    make:queue-batches-table
+    make:queue-failed-table
+    make:queue-table
+    make:request
+    make:resource
+    make:rule
+    make:scope
+    make:seeder
+    make:session-table
+    make:test
+    make:trait
+    make:view at C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php:726)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(284): Symfony\\Component\\Console\\Application->find()
+#1 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#4 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#5 {main}
+"} 
+[2024-12-29 12:33:07] local.ERROR: Command "make:route" is not defined.
+
+Did you mean one of these?
+    make:cache-table
+    make:cast
+    make:channel
+    make:class
+    make:command
+    make:component
+    make:controller
+    make:enum
+    make:event
+    make:exception
+    make:factory
+    make:interface
+    make:job
+    make:job-middleware
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:notifications-table
+    make:observer
+    make:policy
+    make:provider
+    make:queue-batches-table
+    make:queue-failed-table
+    make:queue-table
+    make:request
+    make:resource
+    make:rule
+    make:scope
+    make:seeder
+    make:session-table
+    make:test
+    make:trait
+    make:view {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"make:route\" is not defined.
+
+Did you mean one of these?
+    make:cache-table
+    make:cast
+    make:channel
+    make:class
+    make:command
+    make:component
+    make:controller
+    make:enum
+    make:event
+    make:exception
+    make:factory
+    make:interface
+    make:job
+    make:job-middleware
+    make:listener
+    make:mail
+    make:middleware
+    make:migration
+    make:model
+    make:notification
+    make:notifications-table
+    make:observer
+    make:policy
+    make:provider
+    make:queue-batches-table
+    make:queue-failed-table
+    make:queue-table
+    make:request
+    make:resource
+    make:rule
+    make:scope
+    make:seeder
+    make:session-table
+    make:test
+    make:trait
+    make:view at C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php:726)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(284): Symfony\\Component\\Console\\Application->find()
+#1 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#4 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#5 {main}
+"} 
+[2024-12-29 12:44:06] local.ERROR: Method Illuminate\Database\Schema\Blueprint::unsignedBigString does not exist. {"exception":"[object] (BadMethodCallException(code: 0): Method Illuminate\\Database\\Schema\\Blueprint::unsignedBigString does not exist. at C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:115)
+[stacktrace]
+#0 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(20): Illuminate\\Database\\Schema\\Blueprint->__call()
+#1 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(421): Illuminate\\Database\\Migrations\\Migration@anonymous->{closure}()
+#2 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\helpers.php(399): Illuminate\\Database\\Schema\\Builder->Illuminate\\Database\\Schema\\{closure}()
+#3 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Schema\\Builder.php(418): tap()
+#4 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(361): Illuminate\\Database\\Schema\\Builder->create()
+#5 C:\\laragon\\www\\perpusda\\database\\migrations\\2024_12_29_101758_create_bukus_table.php(14): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#6 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(476): Illuminate\\Database\\Migrations\\Migration@anonymous->up()
+#7 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(401): Illuminate\\Database\\Migrations\\Migrator->runMethod()
+#8 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(410): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#9 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->runMigration()
+#10 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\View\\Components\\Task.php(40): Illuminate\\Database\\Migrations\\Migrator->Illuminate\\Database\\Migrations\\{closure}()
+#11 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(737): Illuminate\\Console\\View\\Components\\Task->render()
+#12 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(213): Illuminate\\Database\\Migrations\\Migrator->write()
+#13 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(180): Illuminate\\Database\\Migrations\\Migrator->runUp()
+#14 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(123): Illuminate\\Database\\Migrations\\Migrator->runPending()
+#15 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(116): Illuminate\\Database\\Migrations\\Migrator->run()
+#16 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Migrations\\Migrator.php(616): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->Illuminate\\Database\\Console\\Migrations\\{closure}()
+#17 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(109): Illuminate\\Database\\Migrations\\Migrator->usingConnection()
+#18 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\MigrateCommand.php(88): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->runMigrations()
+#19 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\MigrateCommand->handle()
+#20 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#21 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#22 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#23 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#24 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#25 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#26 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#27 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(68): Illuminate\\Console\\Command->run()
+#28 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(29): Illuminate\\Console\\Command->runCommand()
+#29 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ApiInstallCommand.php(80): Illuminate\\Console\\Command->call()
+#30 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Console\\ApiInstallCommand->handle()
+#31 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#32 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure()
+#33 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#34 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(694): Illuminate\\Container\\BoundMethod::call()
+#35 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call()
+#36 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#37 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run()
+#38 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(1094): Illuminate\\Console\\Command->run()
+#39 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(342): Symfony\\Component\\Console\\Application->doRunCommand()
+#40 C:\\laragon\\www\\perpusda\\vendor\\symfony\\console\\Application.php(193): Symfony\\Component\\Console\\Application->doRun()
+#41 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run()
+#42 C:\\laragon\\www\\perpusda\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1205): Illuminate\\Foundation\\Console\\Kernel->handle()
+#43 C:\\laragon\\www\\perpusda\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#44 {main}
+"} 
+[2024-12-29 13:11:25] local.ERROR: Cannot declare class App\Http\Controllers\API\kategoriController, because the name is already in use {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Cannot declare class App\\Http\\Controllers\\API\\kategoriController, because the name is already in use at C:\\laragon\\www\\perpusda\\app\\Http\\Controllers\\API\\PerpusdaController.php:15)
+[stacktrace]
+#0 {main}
+"} 
