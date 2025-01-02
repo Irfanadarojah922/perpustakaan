@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Categories\StoreRequest;
-use App\Http\Requests\Categories\UpdateRequest;
+use App\Http\Requests\Books\StoreRequest;
+use App\Http\Requests\Books\UpdateRequest;
 use App\Models\Buku;
 use App\Models\Kategoris;
-use GrahamCampbell\ResultType\Success;
 
 class BookController extends Controller
 {
