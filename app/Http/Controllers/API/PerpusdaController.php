@@ -8,11 +8,9 @@ use App\Models\Anggota;
 use App\Models\Buku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Resources\kategoriResource;
 
 
-class kategoriController extends Controller
+class PerpusdaCOntroller extends Controller
 {
    
     /**
@@ -46,7 +44,7 @@ class kategoriController extends Controller
         ]);
 
         // Cari kategori berdasarkan kode
-        $kategori = Kategori::where('nama_kategori', $validatedData['kategori_nama_kategori'])->first();
+        $kategori = Kategoris::where('nama_kategori', $validatedData['kategori_nama_kategori'])->first();
 
         if (!$kategori) {
             return response()->json(['error' => 'Kategori tidak ditemukan'], 404);
@@ -72,7 +70,7 @@ class kategoriController extends Controller
             ]);
     
             // 2. Simpan data ke tabel kategori
-            $kategori = Kategori::create([
+            $kategori = Kategoris::create([
                 'nama_kategori' => $validatedData['kategori_nama_kategori'],
             ]);
     

@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response (['user'=> $user, 'access_Token' => $accessToken], 201);
+        return response(['user' => $user, 'access_Token' => $accessToken], 201);
     }
 
     public function login(Request $request)
@@ -34,12 +34,12 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        if(!auth()->attempt($loginData)) {
+        if (!auth()->attempt($loginData)) {
             return response(['message' => 'User ini tidak terdaftar, silahkan cek kembali !!'], 400);
         }
 
-        $accessToken = auth() -> user() -> createToken('authToken') -> accessToken;
+        $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
-        return response (['user' => auth()->user(), 'access_token' => $accessToken]);
+        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
     }
 }
