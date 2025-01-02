@@ -12,19 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bukus', function (Blueprint $table) {
-            $table->id();
+            $table->id()->primary();
+            $table->unsignedBigInteger('kategori_id');
             $table->string('judul', 255)->nullable();
             $table->string('penulis', 255)->nullable();
             $table->string('penerbit', 255)->nullable();
             $table->year('tahun_terbit');
-            $table->unsignedBigString('nama_kategori');
-            $table->foreign('kategori_id')->references('nama_kategori')->on('kategoris');           
             $table->string('isbn', 255)->nullable();
             $table->integer('jumlah_eksemplar');
             $table->integer('jumlah_tersedia');
-            $table->text('deskripsi', 255)->nullable();
+            $table->longText('deskripsi')->nullable();
             $table->string('foto')->nullable();
             $table->timestamps();
+
+            $table->foreign('kategori_id')->references('id')->on('kategoris');           
         });
     }
 
