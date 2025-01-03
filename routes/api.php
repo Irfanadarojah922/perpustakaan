@@ -22,7 +22,4 @@ Route::apiResource('category', CategoryController::class)->middleware('auth:api'
 Route::get('search', [CategoryController::class, 'search']);
 
 Route::apiResource('buku', BookController::class)->middleware('auth:api');
-Route::get('buku', [BookController::class, 'index']);
-
-
-
+// Route::get('buku', [BookController::class, 'index']);
