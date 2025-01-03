@@ -13,7 +13,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //isi sesuai dengan tabel buku pakai nullable semua
+            "judul" => "nullable|string|max:255|unique:bukus,judul",
+            "penulis" => "nullable|string|max:255|bukus,penulis",
+            "penerbit" => "nullable|string|max:255|bukus,penerbit",
+            "tahun_terbit" => "nullable|year|bukus,tahun_terbit",
+            "kategori_id" => "nullable|string|max:255|bukus,kategori_id",
+            "isbn" => "nullable|string|max:255|bukus,isbn",
+            "jumlah_eksemplar" => "nullable|integer|max:255|bukus,jumlah_eksemplar",
+            "jumlah_tersedia" => "nullable|integer|max:255|bukus,jumlah_tersedia",
+            "deskripsi" => "nullable|longtext|bukus,deskripsi",
+            "foto" => "nullable|string|bukus,foto",
         ];
     }
 

@@ -13,7 +13,7 @@ class StoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // isi sesuai dengan tabel buku
+            "judul" => "required|string|max:255|unique:bukus,judul",
+            "penulis" => "required|string|max:255|bukus,penulis",
+            "penerbit" => "required|string|max:255|bukus,penerbit",
+            "tahun_terbit" => "required|year|bukus,tahun_terbit",
+            "kategori_id" => "required|string|max:255|bukus,kategori_id",
+            "isbn" => "required|string|max:255|bukus,isbn",
+            "jumlah_eksemplar" => "required|integer|max:255|bukus,jumlah_eksemplar",
+            "jumlah_tersedia" => "required|integer|max:255|bukus,jumlah_tersedia",
+            "deskripsi" => "required|longtext|max:255|bukus,deskripsi",
+            "foto" => "required|string|bukus,foto",
         ];
     }
 
