@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Books;
+namespace App\Http\Requests\Pinjams;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
@@ -24,16 +24,13 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "judul" => "required|string|max:255",
-            "penulis" => "required|string|max:255",
-            "penerbit" => "required|string|max:255",
-            "tahun_terbit" => "required|integer",
+            "tanggal_pinjam" => "required|string|max:255",
+            "tanggal_kembali" => "required|string|max:255",
+            "status_pengembalian" => "required|string|max:255",
+            "anggota_id" => "required|string|max:255",
+            "buku_id" => "required|string|max:255",
             "kategori_id" => "required|string|max:255",
-            "isbn" => "required|string|max:255",
-            "jumlah_eksemplar" => "required|integer|max:255",
-            "jumlah_tersedia" => "required|integer|max:255",
-            "deskripsi" => "required|string",
-            "foto" => "required|string",
+
         ];
     }
 
@@ -48,3 +45,4 @@ class StoreRequest extends FormRequest
         ));
     }
 }
+

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password', 255);
             $table->string('no_telepon', 255);
-            $table->text('alamat', 255)->nullable();
+            $table->string('alamat', 255);
             $table->date('tanggal_daftar');
             $table->enum('status', ['pelajar', 'mahasiswa', 'umum']);
             $table->string('foto')->nullable();

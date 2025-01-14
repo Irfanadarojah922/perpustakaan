@@ -24,4 +24,9 @@ class Anggota extends Model
     {
         return $this->belongsTo(Kategoris::class);
     }
+
+    public function pinjams()
+    {
+        return $this->hasMany(Pinjam::class);
+    }
 }

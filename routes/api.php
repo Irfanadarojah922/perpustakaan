@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\API\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\PerpusdaController;
 use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\AnggotaController;
+use App\Http\Controllers\API\PinjamController;
+
 use App\Http\Resources\PerpusdaResource;
 
 Route::get('/user', function (Request $request) {
@@ -22,4 +25,8 @@ Route::apiResource('category', CategoryController::class)->middleware('auth:api'
 Route::get('search', [CategoryController::class, 'search']);
 
 Route::apiResource('buku', BookController::class)->middleware('auth:api');
-// Route::get('buku', [BookController::class, 'index']);
+
+Route::apiResource('anggota', AnggotaController::class)->middleware('auth:api');
+
+Route::apiResource('pinjam', PinjamController::class)->middleware('auth:api');
+

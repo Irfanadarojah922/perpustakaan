@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "judul" => "nullable|string|max:255|unique:bukus,judul",
+            "judul" => "nullable|string|max:255|bukus,judul",
             "penulis" => "nullable|string|max:255|bukus,penulis",
             "penerbit" => "nullable|string|max:255|bukus,penerbit",
             "tahun_terbit" => "nullable|year|bukus,tahun_terbit",

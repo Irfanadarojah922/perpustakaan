@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Books;
+namespace App\Http\Requests\Pinjams;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,13 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "judul" => "required|string|max:255",
-            "penulis" => "required|string|max:255",
-            "penerbit" => "required|string|max:255",
-            "tahun_terbit" => "required|integer",
-            "kategori_id" => "required|string|max:255",
-            "isbn" => "required|string|max:255",
-            "jumlah_eksemplar" => "required|integer|max:255",
-            "jumlah_tersedia" => "required|integer|max:255",
-            "deskripsi" => "required|string",
-            "foto" => "required|string",
+            "tanggal_pinjam" => "nullable|string|max:255|tanggal_pinjam",
+            "tanggal_kembali" => "nullable|string|max:255|pinjams,tanggal_kembali",
+            "status_pengembalian" => "nullable|string|max:255|pinjams,status_pengembalian",
+            "anggota_id" => "nullable|string|max:255|pinjams,anggota_id",
+            "buku_id" => "nullable|string|max:255|pinjams,buku_id",
+            "kategori_id" => "nullable|string|max:255|pinjams,kategori_id",
+
         ];
     }
 
