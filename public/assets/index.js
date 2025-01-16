@@ -65,10 +65,9 @@ toggleButtons.forEach((button) => {
         const submenu = button.nextElementSibling;
 
         button.classList.toggle('show');
-
+        
         if (submenu && submenu.classList.contains('side-sub-menu')) {
             submenu.classList.toggle('show');
         }
     });
 });
-

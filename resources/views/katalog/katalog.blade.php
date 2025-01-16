@@ -6,7 +6,7 @@
 @push ("css-libs")
     <style>
     </style>
-@endpush
+@endpush    
 @section("content")
 
 <div class="header">
@@ -24,7 +24,7 @@
         <i class='bx bx-cloud-download'></i>
         <span>Download CSV</span>
     </a>
-</div>
+</div>  
 
 <div class="row">
     <div class="col-md-4 mb-3">
@@ -32,114 +32,111 @@
             <div class="card-header">
                 <h5>Judul Buku</h5>
             </div>
+ 
             <div class="card-body">
-                <div class="card-body">
-                    <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt="" width="270px"
-                        height="350px">
-                </div>
-            </div>
-
-            <div class="card-footer text-end">
-                <button class="btn btn-primary btn-sm" type="button">Take Now</button>
-                <button class="btn btn-success btn-sm" type="button">Details</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-header">
-                <h5>Judul Buku</h5>
-            </div>
-            <div class="card-body">
-                <div class="card-body">
-                    <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt="" width="270px"
-                        height="350px">
-                </div>
-            </div>
-
-            <div class="card-footer text-end">
-                <button class="btn btn-primary btn-sm" type="button">Take Now</button>
-                <button class="btn btn-success btn-sm" type="button">Details</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-header">
-                <h5>Judul Buku</h5>
-            </div>
-            <div class="card-body">
-                <div class="card-body">
-                    <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt="" width="270px"
-                        height="350px">
-                </div>
-            </div>
-
-            <div class="card-footer text-end">
-                <button class="btn btn-primary btn-sm" type="button">Take Now</button>
-                <button class="btn btn-success btn-sm" type="button">Details</button>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-3">
-        <div class="card">
-            <div class="card-header">
-                <h5>Judul Buku</h5>
-            </div>
-            <div class="card-body">
-                <div class="card-body">
-                    <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt="" width="270px"
-                        height="350px">
-                </div>
-            </div>
-
-            <div class="card-footer text-end">
-                <button class="btn btn-primary btn-sm" type="button">Take Now</button>
-                <button class="btn btn-success btn-sm" type="button">Details</button>
-            </div>
+                <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt=""
+                width="270px" height="350px">
+            </div> 
+        </div> 
+        
+        <div class="card-footer text-end">
+            <button class="btn-primary" style="margin-right: 10px">Take Now</button>
+            <button class="btn-success">Details</button>
         </div>
     </div>
 </div>
 
+<div class="col-md-4 mb-3">
+    <div class="card">
+        <div class="card-header">
+            <h5>Judul Buku</h5>
+        </div>
 
+            <div class="card-body">
+                <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt=""
+                width="270px" height="350px">
+            </div> 
+        </div> 
+        
+        <div class="card-footer text-end">
+            <button class="btn-primary" style="margin-right: 10px">Take Now</button>
+            <button class="btn-success">Details</button>
+        </div>
+    </div>
+</div>
 
-{{-- <!-- Insights -->
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>Judul Buku</h5>
+            </div>
+            <div class="card-body">
+                <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt="" width="270px"
+                    height="350px">
+            </div>
+        </div>
+
+        <div class="card-footer text-end">
+            <button class="btn btn-primary btn-sm" type="button">Take Now</button>
+            <button class="btn btn-success btn-sm" type="button">Details</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 mb-3">
+    <div class="card">
+        <div class="card-header">
+            <h5>Judul Buku</h5>
+        </div>
+        <div class="card-body">
+            <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt="" width="270px"
+                height="350px">
+        </div>
+    </div>
+
+    <div class="card-footer text-end">
+        <button class="btn btn-primary btn-sm" type="button">Take Now</button>
+        <button class="btn btn-success btn-sm" type="button">Details</button>
+    </div>
+</div>
+</div>
+  
 <ul class="insights">
-    <li>
-        <i class='bx bx-calendar-check'></i>
-        <span class="info">
-            <h3>
-                1,074
-            </h3>
-            <p>Paid Order</p>
-        </span>
-    </li>
-    <li><i class='bx bx-show-alt'></i>
-        <span class="info">
-            <h3>
-                3,944
-            </h3>
-            <p>Site Visit</p>
-        </span>
-    </li>
-    <li><i class='bx bx-line-chart'></i>
-        <span class="info">
-            <h3>
-                14,721
-            </h3>
-            <p>Searches</p>
-        </span>
-    </li>
-    <li><i class='bx bx-dollar-circle'></i>
-        <span class="info">
-            <h3>
-                $6,742
-            </h3>
-            <p>Total Sales</p>
-        </span>
-    </li>
+<li>
+    <i class='bx bx-calendar-check'></i>
+    <span class="info">
+        <h3>
+            1,074
+        </h3>
+        <p>Paid Order</p>
+    </span>
+</li>
+<li><i class='bx bx-show-alt'></i>
+    <span class="info">
+        <h3>
+            3,944
+        </h3>
+        <p>Site Visit</p>
+    </span>
+</li>
+<li><i class='bx bx-line-chart'></i>
+    <span class="info">
+        <h3>
+            14,721
+        </h3>
+        <p>Searches</p>
+    </span>
+</li>
+<li><i class='bx bx-dollar-circle'></i>
+    <span class="info">
+        <h3>
+            $6,742
+        </h3>
+        <p>Total Sales</p>
+    </span>
+</li>
 </ul>
-<!-- End of Insights --> --}}
+<!-- End of Insights --> 
 
 {{-- <div class="bottom-data">
     <div class="orders">
@@ -186,15 +183,15 @@
         </table>
     </div> --}}
 
-    {{-- <!-- Reminders -->
+        {{-- <!-- Reminders -->
     <div class="reminders">
         <div class="header">
             <i class='bx bx-note'></i>
             <h3>Remiders</h3>
             <i class='bx bx-filter'></i>
             <i class='bx bx-plus'></i>
-        </div>
-        <ul class="task-list">
+              </div>
+                      <ul class="task-list">
             <li class="completed">
                 <div class="task-title">
                     <i class='bx bx-check-circle'></i>
@@ -219,6 +216,6 @@
         </ul>
     </div>
     <!-- End of Reminders--> --}}
-
 </div>
+
 @endsection
