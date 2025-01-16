@@ -26,6 +26,8 @@ class AnggotaController extends Controller
             "status" => "required|string|max:255",
             "foto" => "nullable|string|max:255",
         ]));
-        return $data ? redirect("/keanggotaan")->with("success", "Anggota Created Successfully!") : back()->with("error", "Something Error!");
+        
+        return $data ? redirect("/keanggotaan")->with("success", "Anggota 
+        Created Successfully!") : back()->with("error", "Something Error!");
     }
 }
