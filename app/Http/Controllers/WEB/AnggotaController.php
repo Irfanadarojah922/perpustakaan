@@ -3,16 +3,22 @@
 namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Anggotas\StoreRequest;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class AnggotaController extends Controller
 {
     public function index()
     {
         $anggota = Anggota::all();
-        return view("keanggotaan.keanggotaan", compact('anggota'));
+        if (\request()->ajax()) {
+
+            $anggota = Anggota::all();
+            return DataTables::of($anggota)->make(true);
+        }
+
+        return view("keanggotaan.index", compact('anggota'));
     }
     public function store(Request $request)
     {
@@ -26,7 +32,7 @@ class AnggotaController extends Controller
             "status" => "required|string|max:255",
             "foto" => "nullable|string|max:255",
         ]));
-        
+
         return $data ? redirect("/keanggotaan")->with("success", "Anggota 
         Created Successfully!") : back()->with("error", "Something Error!");
     }

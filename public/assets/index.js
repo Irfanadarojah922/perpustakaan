@@ -46,6 +46,7 @@ window.addEventListener('resize', () => {
 });
 
 const toggler = document.getElementById('theme-toggle');
+const tables = document.querySelectorAll('table');
 
 toggler.addEventListener('change', function () {
     if (this.checked) {
@@ -53,6 +54,15 @@ toggler.addEventListener('change', function () {
     } else {
         document.body.classList.remove('dark');
     }
+    tables.forEach(table => {
+        if (this.checked) {
+            table.classList.remove('table-light');
+            table.classList.add('table-dark');
+        } else {
+            table.classList.remove('table-dark');
+            table.classList.add('table-light');
+        }
+    })
 });
 
 const toggleButtons = document.querySelectorAll('.side-toggle');
@@ -65,7 +75,7 @@ toggleButtons.forEach((button) => {
         const submenu = button.nextElementSibling;
 
         button.classList.toggle('show');
-        
+
         if (submenu && submenu.classList.contains('side-sub-menu')) {
             submenu.classList.toggle('show');
         }
