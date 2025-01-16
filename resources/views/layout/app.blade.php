@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('assets/style.css')}}">
     <title> @yield ("title") </title>
     @stack("css-libs")
@@ -13,46 +14,43 @@
 
 <body>
 
-        <!-- Sidebar -->
+    <!-- Sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
             <i class='bx bx-code-alt'></i>
             <div class="logo-name"><span>Pustaka</span>Pintar</div>
         </a>
-        
+
         <ul class="side-menu">
             <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                <a href="/dashboard"><i class='bx bxs-dashboard'></i>Dashboard</a>
+                <a class="side-toggle" href="/dashboard"><i class='bx bxs-dashboard'></i>Dashboard</a>
             </li>
 
             <li class="{{ Request::is('katalog') ? 'active' : '' }}">
-                <a href="/katalog"><i class='bx bx-store-alt'></i>Katalog</a>
+                <a class="side-toggle" href="/katalog"><i class='bx bx-store-alt'></i>Katalog</a>
             </li>
 
             <li class="{{ Request::is('sirkulasi') ? 'active' : '' }}">
-                <a href="/sirkulasi"><i class='bx bx-analyse'></i>Sirkulasi</a>
-                <ul>
-
-                    <div class="dropdown show">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Dropdown link
-                        </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-
-                    </li>
+                <button class="side-toggle">
+                    <span><i class='bx bx-analyse'></i></span> Sirkulasi
+                    <span class="rotate"><i class="bx bx-chevron-right"></i></span>
+                </button>
+                <ul class="side-sub-menu">
+                    <div>
+                        <li class="">
+                            <a href="#" class="">Sirkulasi A</a>
+                        </li>
+                        <li class="">
+                            <a href="#" class="">Sirkulasi B</a>
+                        </li>
+                    </div>
                 </ul>
             </li>
-
             <li class="{{ Request::is('keanggotaan') ? 'active' : '' }}">
-                <a href="/keanggotaan"><i class='bx bx-group'></i>Keanggotaan</a>
+                <a class="side-toggle" href="/keanggotaan"><i class='bx bx-group'></i>Keanggotaan</a>
             </li>
         </ul>
+
 
         <ul class="side-menu">
             <li>
@@ -89,17 +87,17 @@
         </nav>
         <!-- End of Navbar -->
 
-        <main>           
+        <main>
             @yield ("content")
         </main>
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="{{asset('assets/index.js')}}"></script>
 
 </body>
+
 </html>

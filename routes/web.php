@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\WEB\AnggotaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');  
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -16,10 +17,7 @@ Route::get('/katalog', function () {
     ]);
 });
 
-Route::get('/keanggotaan', function () {
-    return view('keanggotaan.keanggotaan', [
-    ]);
-});
+Route::resource('/keanggotaan', AnggotaController::class);
 
 Route::get('/sirkulasi', function () {
     return view('sirkulasi.sirkulasi', [

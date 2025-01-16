@@ -54,3 +54,21 @@ toggler.addEventListener('change', function () {
         document.body.classList.remove('dark');
     }
 });
+
+const toggleButtons = document.querySelectorAll('.side-toggle');
+
+toggleButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        sideLinks.forEach(item => {
+            item.parentElement.classList.remove('active');
+        })
+        const submenu = button.nextElementSibling;
+
+        button.classList.toggle('show');
+
+        if (submenu && submenu.classList.contains('side-sub-menu')) {
+            submenu.classList.toggle('show');
+        }
+    });
+});
+

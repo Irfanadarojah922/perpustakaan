@@ -6,7 +6,7 @@
 @push ("css-libs")
     <style>
     </style>
-@endpush    
+@endpush
 @section("content")
 
 <div class="header">
@@ -23,57 +23,59 @@
         <i class='bx bx-cloud-download'></i>
         <span>Download CSV</span>
     </a>
-</div>  
+</div>
 
-{{-- <div class="mx-auto">
+<div class="mx-auto">
     <!-- untuk memasukkan data -->
     <div class="card">
         <div class="card-header">
             Create / Edit Data
         </div>
         <div class="card-body">
-    
-            <form action="" method="POST">
-                <div class="mb-3 row">
+
+            <form action="" method="POST" action="{{route('keanggotaan.store')}}">
+                @csrf
+                @method('post')
+                <!-- <div class="mb-3 row">
                     <label for="nim" class="col-sm-2 col-form-label">Id</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="id" name="id" value="<?php echo $id ?>">
+                        <input type="text" class="form-control" id="id" name="id" value="">
                     </div>
-                </div>
+                </div> -->
                 <div class="mb-3 row">
                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama ?>">
+                        <input type="text" class="form-control" id="nama" name="nama" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Email</label>
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="email" name="email" value="<?php echo $email ?>">
+                        <input type="email" class="form-control" id="email" name="email" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Password</label>
+                    <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="password" name="password" value="<?php echo $password ?>">
+                        <input type="password" class="form-control" id="password" name="password" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="alamat" class="col-sm-2 col-form-label">No. Telepon</label>
+                    <label for="no_telepon" class="col-sm-2 col-form-label">No. Telepon</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_telepon" name="no_telepon" value="<?php echo $no_telepon ?>">
+                        <input type="telp" class="form-control" id="no_telepon" name="no_telepon" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat ?>">
+                        <textarea type="text" class="form-control" id="alamat" name="alamat" value=""></textarea>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="alamat" class="col-sm-2 col-form-label">Tanggal Daftar</label>
+                    <label for="tanggal_daftar" class="col-sm-2 col-form-label">Tanggal Daftar</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="tanggal_daftar" name="tanggal_daftar" value="<?php echo $tanggal_daftar ?>">
+                        <input type="date" class="form-control" id="tanggal_daftar" name="tanggal_daftar" value="">
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -81,16 +83,16 @@
                     <div class="col-sm-10">
                         <select class="form-control" name="status" id="status">
                             <option value="">- Pilih Status -</option>
-                            <option value="pelajar" <?php if ($status == "pelajar") echo "selected" ?>>pelajar</option>
-                            <option value="mahasiswa" <?php if ($status == "mahasiswa") echo "selected" ?>>mahasiswa</option>
-                            <option value="umum" <?php if ($status == "umum") echo "selected" ?>>umum</option>
+                            <option value="pelajar">pelajar</option>
+                            <option value="mahasiswa">mahasiswa
+                            </option>
+                            <option value="umum">umum</option>
 
                         </select>
                     </div>
                 </div>
-
                 <div class="col-12">
-                    <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary" />
+                    <button class="btn btn-primary" type="submit">Simpan Data</button>
                 </div>
             </form>
         </div>
@@ -109,15 +111,28 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Password</th>
+                        <!-- <th scope="col">Password</th> -->
                         <th scope="col">No. Telepon</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Tanggal Daftar</th>
                         <th scope="col">Status</th>
                     </tr>
-                </thead>               
+                    @foreach ($anggota as $key => $item)
+                        <tr>
+                            <td>{{$key + 1}}</td>
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->nama}}</td>
+                            <td>{{$item->email}}</td>
+                            <!-- <td>{{$item->password}}</td> -->
+                            <td>{{$item->no_telepon}}</td>
+                            <td>{{$item->alamat}}</td>
+                            <td>{{$item->tanggal_daftar}}</td>
+                            <td>{{$item->status}}</td>
+                        </tr>
+                    @endforeach
+                </thead>
             </table>
         </div>
     </div>
-</div> --}}
+</div>
 @endsection

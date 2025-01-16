@@ -15,11 +15,11 @@ class KembaliSeeder extends Seeder
 
         DB::table('kembali')->insert([
 
-        'pinjam_id' => '3',
-        'buku_id' => '2',
-        'tanggal_kembali' => '2024-12-15',
-        'denda' => 'mengganti dengan buku yang sama',
-        'keterangan' => 'Buku rusak/hilang',
+            'pinjam_id' => '1',
+            'buku_id' => '1',
+            'tanggal_kembali' => '2024-12-15',
+            'denda' => 'mengganti dengan buku yang sama',
+            'keterangan' => 'Buku rusak/hilang',
 
         ]);
     }
