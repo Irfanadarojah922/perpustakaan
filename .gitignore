@@ -4,8 +4,8 @@
 /public/hot
 /public/storage
 /storage/*.key
-/storage/framework/views/*.php
-/storage/logs/laravel.log
+storage/framework/views/*.php
+storage/logs/laravel.log
 /storage/pail
 /vendor
 .env
