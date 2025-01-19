@@ -38,10 +38,10 @@
                 <ul class="side-sub-menu">
                     <div>
                         <li class="">
-                            <a href="#" class="">Sirkulasi A</a>
+                            <a href="#" class="">Peminjaman</a>
                         </li>
                         <li class="">
-                            <a href="#" class="">Sirkulasi B</a>
+                            <a href="#" class="">Pengeluaran</a>
                         </li>
                     </div>
                 </ul>
