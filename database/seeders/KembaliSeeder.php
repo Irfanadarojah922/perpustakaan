@@ -12,15 +12,16 @@ class KembaliSeeder extends Seeder
      */
     public function run(): void
     {
+        $pinjam = DB::table('pinjams')->first();
+        $buku = DB::table('bukus')->first();
 
-        DB::table('kembali')->insert([
+        DB::table('kembalis')->insert([
 
-            'pinjam_id' => '1',
-            'buku_id' => '1',
+            'pinjam_id' => $pinjam->id,
+            'buku_id' => $buku->id,
             'tanggal_kembali' => '2024-12-15',
             'denda' => 'mengganti dengan buku yang sama',
             'keterangan' => 'Buku rusak/hilang',
-
         ]);
     }
 }

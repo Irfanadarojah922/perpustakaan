@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kembali extends Model
 {
+    use HasFactory;
     protected $fillable = [
-        
+
         'pinjam_id',
         'buku_id',
         'tanggal_kembali',
