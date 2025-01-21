@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\WEB\AnggotaController;
+use App\Http\Controllers\WEB\PeminjamanController;
+use App\Http\Controllers\WEB\PengembalianController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,8 +21,8 @@ Route::get('/katalog', function () {
 
 Route::resource('/keanggotaan', AnggotaController::class);
 
-Route::get('/sirkulasi', function () {
-    return view('sirkulasi.sirkulasi', [
-    ]);
-});
+Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
+
+Route::resource('/sirkulasi/pengembalian', PengembalianController::class);
+
 
