@@ -14,7 +14,8 @@ class PeminjamanController extends Controller
         $pinjam = Pinjam::all();
         if (\request()->ajax()) {
 
-            $pinjam = Pinjam::all();
+            $pinjam = Pinjam::with(['bukus', 'anggotas', 'kategoris'])->get();
+            // dd($pinjam);
             return DataTables::of($pinjam)->make(true);
         }
 
@@ -29,10 +30,14 @@ class PeminjamanController extends Controller
             "anggota_id" => "required|string|max:255",
             "buku_id" => "required|string|max:255",
             "kategori_id" => "required|string|max:255",
-            
+
         ]));
 
         return $data ? redirect("/sirkulasi.peminjaman")->with("success", "Peminjaman 
         Created Successfully!") : back()->with("error", "Something Error!");
+    }
+
+    public function getByName()
+    {
     }
 }

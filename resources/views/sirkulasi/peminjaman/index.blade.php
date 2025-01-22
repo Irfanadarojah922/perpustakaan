@@ -85,9 +85,9 @@
                     { data: 'tanggal_pinjam', name: 'tanggal_pinjam' },
                     { data: 'tanggal_kembali', name: 'tanggal_kembali' },
                     { data: 'status_pengembalian', name: 'status_pengembalian' },
-                    { data: 'anggota_id', name: 'anggota_id' },
-                    { data: 'buku_id', name: 'buku_id' },
-                    { data: 'kategori_id', name: 'kategori_id' },
+                    { data: 'anggotas.nama', name: 'anggota_id' },
+                    { data: 'bukus.judul', name: 'buku_id' },
+                    { data: 'kategoris.nama_kategori', name: 'kategori_id' },
                 ]
             })
         })

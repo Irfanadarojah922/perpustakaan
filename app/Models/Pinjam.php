@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pinjam extends Model
 {
     protected $fillable = [
-        
+
         'tanggal_pinjam',
         'tanggal_kembali',
         'status_pengembalian',
@@ -24,11 +24,11 @@ class Pinjam extends Model
 
     public function bukus()
     {
-        return $this->belongsToMany(Buku::class, 'bukus');
+        return $this->belongsTo(Buku::class, 'buku_id');
     }
 
     public function kategoris()
     {
-        return $this->belongsTo(Kategoris::class, 'kategoris');
+        return $this->belongsTo(Kategoris::class, 'kategori_id');
     }
 }

@@ -29,6 +29,6 @@ class Buku extends Model
 
     public function pinjam()
     {
-        return $this->belongsToMany(Pinjam::class, 'pinjams');
+        return $this->hasMany(Pinjam::class, 'buku_id');
     }
 }
