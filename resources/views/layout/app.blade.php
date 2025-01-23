@@ -38,10 +38,10 @@
                 <ul class="side-sub-menu">
                     <div>
                         <li class="">
-                            <a href="#" class="">Peminjaman</a>
+                            <a href="/sirkulasi/peminjaman" class="">Peminjaman</a>
                         </li>
                         <li class="">
-                            <a href="#" class="">Pengeluaran</a>
+                            <a href="/sirkulasi/pengembalian" class="">Pengembalian</a>
                         </li>
                     </div>
                 </ul>
