@@ -18,7 +18,6 @@ class PeminjamanController extends Controller
             // dd($pinjam);
             return DataTables::of($pinjam)->make(true);
         }
-
         return view("sirkulasi.peminjaman.index", compact('pinjam'));
     }
     public function store(Request $request)
@@ -37,7 +36,33 @@ class PeminjamanController extends Controller
         Created Successfully!") : back()->with("error", "Something Error!");
     }
 
-    public function getByName()
+    public function edit(Pinjam $pinjam)
     {
+        return view("sirkulasi.peminjaman.index", compact('pinjam'));
     }
-}
+
+    public function update(Request $request, Pinjam $pinjam)
+    {
+        $request->validate([
+            "tanggal_pinjam" => "required|string|max:255",
+            "tanggal_kembali" => "required|string|max:255",
+            "status_pengembalian" => "required|string|max:255",
+            "anggota_id" => "required|string|max:255",
+            "buku_id" => "required|string|max:255",
+            "kategori_id" => "required|string|max:255",
+        ]);
+
+        $pinjam->update($request->all());
+        return redirect()->route('sirkulasi.peminjaman.index')
+                         ->with("error", "Something Error!");
+    }
+
+    public function destroy(Pinjam $pinjam)
+    {
+        $pinjam->delete();
+        return redirect()->route('sirkulasi.peminjaman.index')
+                        ->with('success','Peminjaman deleted successfully');
+
+    }
+    }
+    
