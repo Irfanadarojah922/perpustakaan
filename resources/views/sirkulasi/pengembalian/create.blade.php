@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="tanggal_kembali" class="form-label">Tanggl Kembali</label>
+                        <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
                         <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" value="">
                     </div>
 

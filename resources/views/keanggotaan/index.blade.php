@@ -52,6 +52,8 @@
                         <th scope="col">Alamat</th>
                         <th scope="col">Tanggal Daftar</th>
                         <th scope="col">Status</th>
+                        
+                    </tr>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,7 +92,6 @@
                     { data: 'status', name: 'status' },
                 ]
             })
-
         })
     </script>
 @endpush
