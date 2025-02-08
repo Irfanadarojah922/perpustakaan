@@ -53,31 +53,9 @@
                         <th scope="col">Anggota ID</th>
                         <th scope="col">Buku ID</th>
                         <th scope="col">Kategori ID</th>
-                        <th scope="col">Aksi</th>
                     </tr>
-
-                    @foreach ($pinjams as $pinjam)
-                    <tr>
-                        <td>{{ $pinjam->tanggal_pinjam }}</td>
-                        <td>{{ $pinjam->tanggal_kembali }}</td>
-                        <td>{{ $pinjam->status_peminjaman }}</td>
-                        <td>{{ $pinjam->anggota_id }}</td>
-                        <td>{{ $pinjam->buku_id }}</td>
-                        <td>{{ $pinjam->kategori_id }}</td>
-
-                        <td>
-                            <form action="{{ route('peminjaman.store',$pinjam->id) }}" method="POST">
-                                <a class="btn btn-info" href="{{ route('peminjaman.show',$product->id) }}">Show</a>
-                                <a class="btn btn-primary" href="{{ route('peminjaman.edit',$product->id) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')                  
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
                 </thead>
-                
+
                 <tbody>
                     <tr>
                         <th colspan="7" class="text-center">No Data Display</th>
