@@ -215,7 +215,7 @@ button.side-toggle.show {
     justify-content: center;
 }
 
-.sidebar .side-menu li a.logout {
+.sidebar .side-menu li button.logout {
     color: var(--danger);
 }
 
@@ -563,7 +563,7 @@ button.side-toggle.show {
     background: var(--warning);
 }
 
-.content main .bottom-data .reminders  {
+.content main .bottom-data .reminders {
     flex-grow: 1;
     flex-basis: 500px;
 }
@@ -681,4 +681,3 @@ button.side-toggle.show {
     color: var(--dark);
     border-radius: 8px;
 }
-

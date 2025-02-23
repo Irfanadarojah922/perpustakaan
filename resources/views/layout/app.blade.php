@@ -54,10 +54,13 @@
 
         <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
-                    <i class='bx bx-log-out-circle'></i>
-                    Logout
-                </a>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button href="#" class="logout btn" type="submit">
+                        <i class='bx bx-log-out-circle'></i>
+                        Logout
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
