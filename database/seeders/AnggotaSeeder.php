@@ -14,18 +14,20 @@ class AnggotaSeeder extends Seeder
      */
     public function run(): void
     {
-
-        
-        DB::table('anggotas')->insert([
-
-            'nama' => 'Darojah',
-            'email' => 'darojah@gmail.com',
-            'password'=> Hash::make('darojah'),
-            'no_telepon'  => '081234567892',
-            'alamat' => 'Tegal',
-            'tanggal_daftar' => '2024-01-01',
-            'status' => 'mahasiswa',
-            'foto' => 'foto',
-        ]);
+        $faker = \Faker\Factory::create('id_ID');
+        for ($i = 0; $i < 100; $i++) {
+            DB::table('anggotas')->insert([
+                'anggota_id' => $faker->nik(),
+                'nama' => $faker->name(),
+                'tempat_lahir' => $faker->city(),
+                'tanggal_lahir' => $faker->date(),
+                'jenis_kelamin' => $faker->randomElement(['L', 'P']),
+                'pendidikan' => $faker->randomElement(['SMA', 'S1', 'S2', 'S3']),
+                'alamat' => $faker->address(),
+                'no_telepon' => $faker->phoneNumber(),
+                'status' => $faker->randomElement(['pelajar', 'mahasiswa', 'umum']),
+                'foto' => $faker->imageUrl(),
+            ]);
+        }
     }
 }

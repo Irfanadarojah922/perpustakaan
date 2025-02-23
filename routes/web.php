@@ -7,20 +7,29 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});//->middleware(RedirectIfAuthenticated::redirectUsing('dashboard'));
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', function (Request $request) {
+        // dd(Auth::guard()->user());
+        return view('pages.dashboard');
+    });
+
+    Route::get('/katalog', function () {
+        return view('katalog.index', [
+        ]);
+    });
+
+
+    Route::resource('/keanggotaan', AnggotaController::class);
+
+    Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
+
+    Route::resource('/sirkulasi/pengembalian', PengembalianController::class);
 });
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard', [
-    ]);
-});
 
-Route::get('/katalog', function () {
-    return view('katalog.index', [
-    ]);
-});
+// Route::get('/getByname', [PeminjamanController::class, 'getByName'])->name('getByName');
 
-Route::resource('/keanggotaan', AnggotaController::class);
+// Route::get('/sirkulasi', [PeminjamanController::class, 'PeminjamanByAnggotaId'])->name('peminjaman.byanggota');
 
-Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
-
-Route::resource('/sirkulasi/pengembalian', PengembalianController::class);

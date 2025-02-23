@@ -5,5 +5,4 @@ return [
     App\Providers\AuthServiceProvider::class,
     App\Providers\FortifyServiceProvider::class,
     Yajra\DataTables\DataTablesServiceProvider::class,
-    App\Providers\FortifyServiceProvider::class
 ];

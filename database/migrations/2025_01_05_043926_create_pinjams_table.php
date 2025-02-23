@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,7 +12,7 @@ return new class extends Migration
     {
         Schema::create('pinjams', function (Blueprint $table) {
             $table->id()->primary();
-            
+
             $table->unsignedBigInteger('anggota_id');
             $table->unsignedBigInteger('buku_id');
             $table->unsignedBigInteger('kategori_id');
@@ -23,11 +22,11 @@ return new class extends Migration
             $table->enum('status_pengembalian', ['Dipinjam', 'Dikembalikan']);
             $table->timestamps();
 
-            $table->foreign('anggota_id')->references('id')->on('anggotas');     
-            $table->foreign('buku_id')->references('id')->on('bukus');  
-            $table->foreign('kategori_id')->references('id')->on('kategoris');           
-               
-      
+            $table->foreign('anggota_id')->references('id')->on('anggotas');
+            $table->foreign('buku_id')->references('id')->on('bukus');
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
+
+
         });
     }
 

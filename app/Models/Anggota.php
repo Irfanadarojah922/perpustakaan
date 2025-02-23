@@ -10,12 +10,14 @@ class Anggota extends Model
     use HasFactory;
 
     protected $fillable = [
+        'anggota_id',
         'nama',
-        'email',
-        'password',
-        'no_telepon',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'pendidikan',
         'alamat',
-        'tanggal_daftar',
+        'no_telepon',
         'status',
         'foto',
     ];

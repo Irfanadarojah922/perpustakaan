@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,12 +12,14 @@ return new class extends Migration
     {
         Schema::create('anggotas', function (Blueprint $table) {
             $table->id();
+            $table->char('anggota_id', 20)->unique();
             $table->string('nama', 255);
-            $table->string('email')->unique();
-            $table->string('password', 255);
-            $table->string('no_telepon', 255);
-            $table->string('alamat', 255);
-            $table->date('tanggal_daftar');
+            $table->string('tempat_lahir', 255);
+            $table->date('tanggal_lahir');
+            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->string('pendidikan', 255);
+            $table->string('alamat');
+            $table->char('no_telepon', 20);
             $table->enum('status', ['pelajar', 'mahasiswa', 'umum']);
             $table->string('foto')->nullable();
             $table->timestamps();
