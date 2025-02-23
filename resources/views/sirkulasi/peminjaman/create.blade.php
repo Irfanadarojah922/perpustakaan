@@ -19,7 +19,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="kategori_id" class="form-label">Kategori ID</label>
-                        <input type="date" class="form-control" id="kategori_id" name="kategori_id" value="">
+                        <input type="string" class="form-control" id="kategori_id" name="kategori_id" value="">
                     </div>
                     <div class="mb-3">
                         <label for="tanggal_pinjam" class="form-label">Tanggal Pinjam</label>

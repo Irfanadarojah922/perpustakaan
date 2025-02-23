@@ -197,6 +197,7 @@ button.side-toggle.show {
     white-space: nowrap;
     overflow-x: hidden;
     transition: all 0.3s ease;
+
 }
 
 .sidebar .side-menu li.active a {

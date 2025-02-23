@@ -7,8 +7,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('assets/style.css')}}">
-    <title> @yield ("title") </title>
+        <link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+         <title> @yield ("title") </title>
     @stack("css-libs")
 </head>
 
@@ -82,7 +82,7 @@
                 <span class="count">12</span>
             </a>
             <a href="#" class="profile">
-                <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
+                <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
             </a>
         </nav>
         <!-- End of Navbar -->

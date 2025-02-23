@@ -39,6 +39,11 @@
                     <i class="bx bx-plus" style="font-size:1rem;"></i>
                     Add
                 </a>
+                <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+                <i class="bx bx-edit" style="font-size:1rem;"></i>
+                Edit
+            </a>
             </div>
         </div>
         
@@ -50,9 +55,9 @@
                         <th scope="col">Tanggal Pinjam</th>
                         <th scope="col">Tanggal Kembali</th>
                         <th scope="col">Status Pengembalian</th>
-                        <th scope="col">Anggota ID</th>
-                        <th scope="col">Buku ID</th>
-                        <th scope="col">Kategori ID</th>
+                        <th scope="col">Nama Anggota</th>
+                        <th scope="col">Judul Buku</th>
+                        <th scope="col">Kategori Buku</th>
                     </tr>
                 </thead>
 
