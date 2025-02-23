@@ -82,7 +82,7 @@
                 <span class="count">12</span>
             </a>
             <a href="#" class="profile">
-                <img src="images/logo.png">
+                <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
             </a>
         </nav>
         <!-- End of Navbar -->

@@ -24,5 +24,3 @@ Route::resource('/keanggotaan', AnggotaController::class);
 Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
 
 Route::resource('/sirkulasi/pengembalian', PengembalianController::class);
-
-

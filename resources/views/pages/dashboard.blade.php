@@ -97,36 +97,39 @@
 <!-- Insights -->
     <ul class="insights">
         <li>
-            <i class='bx bx-calendar-check'></i>
+            <i class='bx bx-book'></i>
             <span class="info">
                 <h3>
                     1,074
                 </h3>
-                <p>Paid Order</p>
+                <p>Katalog</p>
             </span>
         </li>
-        <li><i class='bx bx-show-alt'></i>
+        <li>
+            <i class='bx bx-group'></i>
             <span class="info">
                 <h3>
                     3,944
                 </h3>
-                <p>Site Visit</p>
+                <p>Anggota</p>
             </span>
         </li>
-        <li><i class='bx bx-line-chart'></i>
+        <li>
+            <i class='bx bx-book-bookmark'></i>
             <span class="info">
                 <h3>
                     14,721
                 </h3>
-                <p>Searches</p>
+                <p>Peminjaman</p>
             </span>
         </li>
-        <li><i class='bx bx-dollar-circle'></i>
+        <li>
+            <i class='bx bx-book-reader'></i>
             <span class="info">
                 <h3>
-                    $6,742
+                    6,742
                 </h3>
-                <p>Total Sales</p>
+                <p>Pengembalian</p>
             </span>
         </li>
     </ul>
@@ -136,42 +139,42 @@
         <div class="orders">
             <div class="header">
                 <i class='bx bx-receipt'></i>
-                <h3>Recent Orders</h3>
+                <h3>Transaksi Terakhir</h3>
                 <i class='bx bx-filter'></i>
                 <i class='bx bx-search'></i>
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>User</th>
-                        <th>Order Date</th>
+                        <th>Nama Anggota</th>
+                        <th>Tanggal Pinjam</th>
                         <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>
-                            <img src="images/profile-1.jpg">
+                            <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
-                        <td>14-08-2023</td>
-                        <td><span class="status completed">Completed</span></td>
+                        <td>24-01-2025</td>
+                        <td><span class="status completed">Peminjaman</span></td>
                     </tr>
                     <tr>
                         <td>
-                            <img src="images/profile-1.jpg">
+                            <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
-                        <td>14-08-2023</td>
-                        <td><span class="status pending">Pending</span></td>
+                        <td>24-01-2025</td>
+                        <td><span class="status pending">Pengembalian</span></td>
                     </tr>
                     <tr>
                         <td>
-                            <img src="images/profile-1.jpg">
+                            <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
-                        <td>14-08-2023</td>
-                        <td><span class="status process">Processing</span></td>
+                        <td>24-01-2025</td>
+                        <td><span class="status pending">Pengembalian</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -181,34 +184,49 @@
         <div class="reminders">
             <div class="header">
                 <i class='bx bx-note'></i>
-                <h3>Remiders</h3>
+                <h3>Pengingat</h3>
                 <i class='bx bx-filter'></i>
-                <i class='bx bx-plus'></i>
+                <i class='bx bx-search'></i>            
             </div>
-            <ul class="task-list">
-                <li class="completed">
-                    <div class="task-title">
-                        <i class='bx bx-check-circle'></i>
-                        <p>Start Our Meeting</p>
-                    </div>
-                    <i class='bx bx-dots-vertical-rounded'></i>
-                </li>
-                <li class="completed">
-                    <div class="task-title">
-                        <i class='bx bx-check-circle'></i>
-                        <p>Analyse Our Site</p>
-                    </div>
-                    <i class='bx bx-dots-vertical-rounded'></i>
-                </li>
-                <li class="not-completed">
-                    <div class="task-title">
-                        <i class='bx bx-x-circle'></i>
-                        <p>Play Footbal</p>
-                    </div>
-                    <i class='bx bx-dots-vertical-rounded'></i>
-                </li>
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Tgl Pinjam</th>
+                        <th>Jatuh Tempo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
+                            <p>John Doe</p>
+                        </td>
+                        <td>24-01-2025</td>
+                        <td>04-02-2025</td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
+                            <p>John Doe</p>
+                        </td>
+                        <td>24-01-2025</td>
+                        <td>04-02-2025</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src="{{ asset('assets/images/images.jpg') }}" alt="Gambar" width="200">
+                            <p>John Doe</p>
+                        </td>
+                        <td>24-01-2025</td>
+                        <td>04-02-2025</td>
+                    </tr>
+                    <tr>
+                    </tbody>
+            </table>
         </div>
+
         <!-- End of Reminders-->
 
     </div> 
