@@ -10,32 +10,43 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="">
+                        <input type="string" class="form-control" id="nama" name="nama" value="">
                     </div>
 
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="">
+                        <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+                        <input type="string" class="form-control" id="date" name="date" value="">
                     </div>
 
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" value="">
+                        <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" value="">
                     </div>
 
                     <div class="mb-3">
-                        <label for="no_telepon" class="form-label">No. Telepon</label>
-                        <input type="telp" class="form-control" id="no_telepon" name="no_telepon" value="">
+                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                            <option value="">- Pilih Jenis Kelamin -</option>
+                            <option value="l">L</option>
+                            <option value="p">P
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pendidikan" class="form-label">Pendidikan</label>
+                        <textarea type="string" class="form-control" id="pendidikan" name="pendidikan" value=""></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <textarea type="text" class="form-control" id="alamat" name="alamat" value=""></textarea>
+                        <textarea type="string" class="form-control" id="alamat" name="alamat" value=""></textarea>
                     </div>
 
+
                     <div class="mb-3">
-                        <label for="tanggal_daftar" class="form-label">Tanggal Daftar</label>
-                        <input type="date" class="form-control" id="tanggal_daftar" name="tanggal_daftar" value="">
+                        <label for="no_telepon" class="form-label">No. Telepon</label>
+                        <input type="char" class="form-control" id="no_telepon" name="no_telepon" value="">
                     </div>
 
                     <div class="mb-3">
@@ -48,6 +59,7 @@
                             <option value="umum">umum</option>
                         </select>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary btn-sm">Save changes</button>

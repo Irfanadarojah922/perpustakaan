@@ -32,9 +32,9 @@
                     <div class="mb-3">
                         <label for="status_pengembalian" class="form-label">Status Pengembalian</label>
                         <select class="form-control" name="status_pengembalian" id="status_pengembalian">
-                            <option value="">- Pilih Status Pengembalian-</option>
-                            <option value="pelajar">Di Pinjam</option>
-                            <option value="mahasiswa">Di Kembalikan</option>
+                            <option value="">- Pilih Status Pengembalian -</option>
+                            <option value="dipinjam">Di Pinjam</option>
+                            <option value="dikembalikan">Di Kembalikan</option>
                         </select>
                     </div>
 
@@ -42,7 +42,6 @@
                         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
                     </div>
-
                 </div>
             </form>
         </div>

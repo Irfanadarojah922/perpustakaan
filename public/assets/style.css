@@ -217,6 +217,9 @@ button.side-toggle.show {
 }
 
 .sidebar .side-menu li button.logout {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
     color: var(--danger);
 }
 
@@ -502,7 +505,6 @@ button.side-toggle.show {
 .content main .bottom-data .header .bx {
     cursor: pointer;
 }
-
 
 .content main .bottom-data .orders {
     flex-grow: 1;

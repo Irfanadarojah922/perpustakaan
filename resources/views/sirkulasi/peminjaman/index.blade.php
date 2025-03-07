@@ -39,11 +39,6 @@
                     <i class="bx bx-plus" style="font-size:1rem;"></i>
                     Add
                 </a>
-                <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                data-bs-target="#exampleModal">
-                <i class="bx bx-edit" style="font-size:1rem;"></i>
-                Edit
-            </a>
             </div>
         </div>
         

@@ -47,10 +47,12 @@
                     <tr class="text-center">
                         <th scope="col">ID</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">No. Telepon</th>
+                        <th scope="col">Tempat Lahir</th>
+                        <th scope="col">Tanggal Lahir</th>
+                        <th scope="col">Jenis Kelamin</th>
+                        <th scope="col">Pendidikan</th>
                         <th scope="col">Alamat</th>
-                        <th scope="col">Tanggal Daftar</th>
+                        <th scope="col">No Telepon</th>
                         <th scope="col">Status</th>
                         
                     </tr>
@@ -85,11 +87,14 @@
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'nama', name: 'nama' },
-                    { data: 'email', name: 'email' },
-                    { data: 'no_telepon', name: 'no_telepon' },
+                    { data: 'tempat_lahir', name: 'tempat_lahir' },
+                    { data: 'tanggal_lahir', name: 'tanggal_lahir' },
+                    { data: 'jenis_kelamin', name: 'jenis_kelamin' },
+                    { data: 'pendidikan', name: 'pendidikan' },
                     { data: 'alamat', name: 'alamat' },
-                    { data: 'tanggal_daftar', name: 'tanggal_daftar' },
+                    { data: 'no_telepon', name: 'no_telepon' },
                     { data: 'status', name: 'status' },
+
                 ]
             })
         })
