@@ -23,15 +23,14 @@ class PengembalianController extends Controller
     public function store(Request $request)
     {
         $data = Kembali::create($request->validate([
-            "tanggal_pinjam" => "required|string|max:255",
-            "tanggal_kembali" => "required|string|max:255",
-            "status_pengembalian" => "required|string|max:255",
-            "anggota_id" => "required|string|max:255",
+            "pinjam_id" => "required|string|max:255",
             "buku_id" => "required|string|max:255",
-            "kategori_id" => "required|string|max:255",
+            "tanggal_kembali" => "required|string|max:255",
+            "denda" => "required|string|max:255",
+            "keterangan" => "required|string|max:255",
         ]));
 
-        return $data ? redirect("/sirkulasi.pengembalian")->with("success", "Pengembalian
+        return $data ? redirect("/sirkulasi/pengembalian")->with("success", "Pengembalian
         Created Successfully!") : back()->with("error", "Something Error!");
     }
 }

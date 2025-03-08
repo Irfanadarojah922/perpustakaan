@@ -32,7 +32,7 @@ class PeminjamanController extends Controller
 
         ]));
 
-        return $data ? redirect("/sirkulasi.peminjaman")->with("success", "Peminjaman 
+        return $data ? redirect("/sirkulasi/peminjaman")->with("success", "Peminjaman 
         Created Successfully!") : back()->with("error", "Something Error!");
     }
     }
