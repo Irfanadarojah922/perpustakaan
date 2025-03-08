@@ -82,7 +82,7 @@
                 columns: [
                     { data: 'id', name: 'id' },
                     { data: 'pinjam_id', name: 'pinjam_id' },
-                    { data: 'buku_id', name: 'buku_id' },
+                    { data: 'bukus.judul', name: 'buku_id' },
                     { data: 'tanggal_kembali', name: 'tanggal_kembali' },
                     { data: 'denda', name: 'denda' },
                     { data: 'keterangan', name: 'keterangan' },

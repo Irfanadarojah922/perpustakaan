@@ -31,4 +31,9 @@ class Pinjam extends Model
     {
         return $this->belongsTo(Kategoris::class, 'kategori_id');
     }
+
+    public function kembalis()
+    {
+        return $this->belongsTo(Kembali::class, 'kembali_id');
+    }
 }
