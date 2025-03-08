@@ -15,18 +15,21 @@ class BukuSeeder extends Seeder
     public function run(): void
     {
 
-        DB::table('bukus')->insert([
+        $kategori = DB::table('kategoris')->first();
 
-            'judul' => 'Atomic Habits',
-            'penulis' => 'James Clear',
-            'penerbit' => 'Gramedia',
-            'tahun_terbit' => '2024',
-            'kategori_id' => '1',
-            'isbn' => '978-602-06-3317-6',
-            'jumlah_eksemplar' => '10',
-            'jumlah_tersedia' => '8',
-            'deskripsi' => 'Atomic Habits adalah buku pengembangan diri karya James Clear yang berfokus pada bagaimana kebiasaan kecil dapat menghasilkan perubahan besar dalam hidup seseorang. Buku ini menawarkan strategi praktis untuk membentuk kebiasaan baik, menghilangkan kebiasaan buruk, dan memahami cara kerja kebiasaan dalam kehidupan sehari-hari.',
-            'foto' => 'foto buku',
-        ]);
+            $faker = \Faker\Factory::create('id_ID');
+            for ($i = 0; $i < 20; $i++) {
+
+                DB::table('bukus')->insert([
+                    'judul' => $faker->sentence(3),
+                    'penulis' => $faker->name,
+                    'tahun_terbit' => $faker->year,
+                    'kategori_id' => $faker->numberBetween(1, 10),
+                    'jumlah_eksemplar' => $faker->numberBetween(1, 20),
+                    'jumlah_tersedia' => $faker->numberBetween(1, 20),
+                    'deskripsi' => $faker->text(),
+                    'foto' => $faker->imageUrl(),                
+                ]);
+            }
     }
 }

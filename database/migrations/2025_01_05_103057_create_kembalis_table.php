@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('buku_id');
 
             $table->date('tanggal_kembali');
-            $table->string('denda');
+            $table->enum('denda', ['Ganti Buku', 'Perbaikan', 'Tepat Waktu']);
             $table->longtext('keterangan');
             $table->timestamps();
 

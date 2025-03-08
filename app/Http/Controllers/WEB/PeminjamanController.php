@@ -36,5 +36,3 @@ class PeminjamanController extends Controller
         Created Successfully!") : back()->with("error", "Something Error!");
     }
     }
-    
-    

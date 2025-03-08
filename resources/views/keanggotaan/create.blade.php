@@ -35,7 +35,13 @@
 
                     <div class="mb-3">
                         <label for="pendidikan" class="form-label">Pendidikan</label>
-                        <textarea type="string" class="form-control" id="pendidikan" name="pendidikan" value=""></textarea>
+                        <select class="form-control" name="pendidikan" id="pendidikan">
+                            <option value="">- Pilih Pendidikan -</option>
+                            <option value="sd">SD</option>
+                            <option value="smp">SMP</option>
+                            <option value="sma">SMA</option>
+                            <option value="sarjana">Sarjana</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -54,8 +60,7 @@
                         <select class="form-control" name="status" id="status">
                             <option value="">- Pilih Status -</option>
                             <option value="pelajar">pelajar</option>
-                            <option value="mahasiswa">mahasiswa
-                            </option>
+                            <option value="mahasiswa">mahasiswa</option>
                             <option value="umum">umum</option>
                         </select>
                     </div>

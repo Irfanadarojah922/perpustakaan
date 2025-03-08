@@ -16,13 +16,14 @@ class AnggotaSeeder extends Seeder
     {
         $faker = \Faker\Factory::create('id_ID');
         for ($i = 0; $i < 100; $i++) {
+            
             DB::table('anggotas')->insert([
                 'anggota_id' => $faker->nik(),
                 'nama' => $faker->name(),
                 'tempat_lahir' => $faker->city(),
                 'tanggal_lahir' => $faker->date(),
                 'jenis_kelamin' => $faker->randomElement(['L', 'P']),
-                'pendidikan' => $faker->randomElement(['SMA', 'S1', 'S2', 'S3']),
+                'pendidikan' => $faker->randomElement(['SD', 'SMP', 'SMA', 'SARJANA']),
                 'alamat' => $faker->address(),
                 'no_telepon' => $faker->phoneNumber(),
                 'status' => $faker->randomElement(['pelajar', 'mahasiswa', 'umum']),

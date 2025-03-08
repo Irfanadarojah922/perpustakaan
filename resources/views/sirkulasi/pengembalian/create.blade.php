@@ -30,8 +30,13 @@
 
                     <div class="mb-3">
                         <label for="denda" class="form-label">Denda</label>
-                        <textarea type="text" class="form-control" id="denda" name="denda" value=""></textarea>
+                        <select class="form-control" name="denda" id="denda">
+                            <option value="">- Pilih -</option>
+                            <option value="Mengganti Dengan Buku Yang Sama"> Mengganti Dengan Buku Yang Sama </option>
+                            <option value="Perbaikan Buku"> Perbaikan Buku </option>
+                        </select>
                     </div>
+
 
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">Keterangan</label>

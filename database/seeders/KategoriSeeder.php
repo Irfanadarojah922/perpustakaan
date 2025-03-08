@@ -15,10 +15,14 @@ class KategoriSeeder extends Seeder
     public function run(): void
     {
 
-        DB::table('kategoris')->insert([
+        $faker = \Faker\Factory::create('id_ID');
+        for ($i = 0; $i < 20; $i++) {
+        
+            DB::table('kategoris')->insert([
 
-            'nama_kategori' => 'Fiksi',
-            
-        ]);
+                 'nama_kategori' => $faker->name(),
+
+                ]);
+            }
     }
 }

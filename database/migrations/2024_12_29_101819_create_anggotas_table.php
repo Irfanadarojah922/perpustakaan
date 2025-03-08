@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('tempat_lahir', 255);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['L', 'P']);
-            $table->string('pendidikan', 255);
+            $table->enum('pendidikan', ['SD', 'SMP', 'SMA', 'Sarjana']);
             $table->string('alamat');
             $table->char('no_telepon', 20);
             $table->enum('status', ['pelajar', 'mahasiswa', 'umum']);

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 class KembaliSeeder extends Seeder
@@ -15,13 +16,17 @@ class KembaliSeeder extends Seeder
         $pinjam = DB::table('pinjams')->first();
         $buku = DB::table('bukus')->first();
 
+        $faker = \Faker\Factory::create('id_ID');
+        for ($i = 0; $i < 20; $i++) {
+
         DB::table('kembalis')->insert([
 
-            'pinjam_id' => $pinjam->id,
-            'buku_id' => $buku->id,
-            'tanggal_kembali' => '2024-12-15',
-            'denda' => 'mengganti dengan buku yang sama',
-            'keterangan' => 'Buku rusak/hilang',
+            'pinjam_id' => $faker->numberBetween(1, 10),
+            'buku_id' => $faker->numberBetween(1, 10),
+            'tanggal_kembali' => $faker->date(),
+            'denda' => $faker->randomElement(['Ganti Buku', 'Perbaikan','Tepat Waktu']),
+            'keterangan' => $faker->sentence(),
         ]);
+        }
     }
 }
