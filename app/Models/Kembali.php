@@ -23,6 +23,6 @@ class Kembali extends Model
 
     public function bukus()
     {
-        return $this->belongsToMany(Buku::class, 'bukus');
+        return $this->belongsTo(Buku::class, 'buku_id');
     }
 }

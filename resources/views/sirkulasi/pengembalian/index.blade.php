@@ -11,58 +11,58 @@
 
 @section("content")
 
-<div class="header">
-    <div class="left">
-        <h1> @yield ("header") </h1>
-        <ul class="breadcrumb">
-            <li><a href="#">
-                    Dashboard
-                </a></li>
-            /
-        </ul>
+    <div class="header">
+        <div class="left">
+            <h1> @yield ("header") </h1>
+            <ul class="breadcrumb">
+                <li><a href="#">
+                        Dashboard
+                    </a></li>
+                /
+            </ul>
+        </div>
+        <a href="#" class="report">
+            <i class='bx bx-cloud-download'></i>
+            <span>Download CSV</span>
+        </a>
     </div>
-    <a href="#" class="report">
-        <i class='bx bx-cloud-download'></i>
-        <span>Download CSV</span>
-    </a>
-</div>
 
-<div class="mx-auto">
-    <!-- untuk memasukkan data -->
-    <!-- untuk mengeluarkan data -->
-    <div class="card">
-        <div class="card-header align-items-center d-flex mb-2">
-            <h4 class="card-title  mb-0 flex-grow-1">Tabel Pengembalian</h4>
-            <div class="flex-shrink-0 mx-2">
-                <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <i class="bx bx-plus" style="font-size:1rem;"></i>
-                    Add
-                </a>
+    <div class="mx-auto">
+        <!-- untuk memasukkan data -->
+        <!-- untuk mengeluarkan data -->
+        <div class="card">
+            <div class="card-header align-items-center d-flex mb-2">
+                <h4 class="card-title  mb-0 flex-grow-1">Tabel Pengembalian</h4>
+                <div class="flex-shrink-0 mx-2">
+                    <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <i class="bx bx-plus" style="font-size:1rem;"></i>
+                        Add
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="table_pengembalian" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">ID</th>
+                            <th scope="col">Pinjam ID</th>
+                            <th scope="col">Buku ID</th>
+                            <th scope="col">Tanggal Kembali</th>
+                            <th scope="col">Denda</th>
+                            <th scope="col">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th colspan="7" class="text-center">No Data Display</th>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="card-body">
-            <table id="table_pengembalian" class="table table-bordered table-striped" style="width:100%">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Pinjam ID</th>
-                        <th scope="col">Buku ID</th>
-                        <th scope="col">Tanggal Kembali</th>
-                        <th scope="col">Denda</th>
-                        <th scope="col">Keterangan</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th colspan="7" class="text-center">No Data Display</th>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
-</div>
-@include('sirkulasi.pengembalian.create')
+    @include('sirkulasi.pengembalian.create')
 @endsection
 
 @push('script-libs')
