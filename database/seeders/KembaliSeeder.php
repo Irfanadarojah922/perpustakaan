@@ -13,19 +13,19 @@ class KembaliSeeder extends Seeder
      */
     public function run(): void
     {
-        $pinjam = DB::table('pinjams')->first();
-        $buku = DB::table('bukus')->first();
+        $pinjam = DB::table('pinjams')->pluck('id')->toArray();
+        $buku = DB::table('bukus')->pluck('id')->toArray();
 
         $faker = \Faker\Factory::create('id_ID');
-        for ($i = 0; $i < 20; $i++) {
-
+        for ($i = 0; $i < 10; $i++) {
+            
         DB::table('kembalis')->insert([
 
-            'pinjam_id' => $faker->numberBetween(1, 10),
-            'buku_id' => $faker->numberBetween(1, 10),
-            'tanggal_kembali' => $faker->date(),
-            'denda' => $faker->randomElement(['Ganti Buku', 'Perbaikan','Tepat Waktu']),
-            'keterangan' => $faker->sentence(),
+            'pinjam_id' => $faker->randomElement($pinjam),
+            'buku_id' => $faker->randomElement($buku ),
+            'tanggal_kembali' => '2024-12-15',
+            'denda' => 'Ganti Buku',
+            'keterangan' => 'buku rusak/hilang',
         ]);
         }
     }

@@ -4,7 +4,7 @@
             <form action="" method="POST" action="{{route('pengembalian.store')}}">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Sirkulasi Pengembalian</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Input Pengembalian</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -32,8 +32,9 @@
                         <label for="denda" class="form-label">Denda</label>
                         <select class="form-control" name="denda" id="denda">
                             <option value="">- Pilih -</option>
-                            <option value="Mengganti Dengan Buku Yang Sama"> Mengganti Dengan Buku Yang Sama </option>
-                            <option value="Perbaikan Buku"> Perbaikan Buku </option>
+                            <option value="ganti buku"> Ganti Buku </option>
+                            <option value="perbaikan Buku"> Perbaikan Buku </option>
+                            <option value="tepat waktu"> Tepat Waktu </option>
                         </select>
                     </div>
 

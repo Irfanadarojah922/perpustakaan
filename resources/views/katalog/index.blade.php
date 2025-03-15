@@ -26,8 +26,8 @@
     </a>
 </div>
 
-<div class="row">
-    <div class="col-md-4 mb-3">
+        <div class="row">
+    <div class="col-md-3 mb-3">
         <div class="card">
             <div class="card-header">
                 <h5>Agama</h5>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
         <div class="card">
             <div class="card-header">
                 <h5>Fiksi</h5>
@@ -57,7 +57,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
         <div class="card">
             <div class="card-header">
                 <h5>Psikologi</h5>
@@ -72,7 +72,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 mb-3">
+    <div class="col-md-3 mb-3">
         <div class="card">
             <div class="card-header">
                 <h5>Teknik</h5>
@@ -85,6 +85,129 @@
                 <button class="btn btn-primary btn-sm" style="margin-right: 10px">Take Now</button>
                 <button class="btn btn-success btn-sm">Details</button>
             </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>Agama</h5>
+            </div>
+
+            <div class="d-flex card-body justify-content-center">
+                <img src="https://cdn.gramedia.com/uploads/items/9786027926295_Tuhan-Maha-As.jpg" alt="" width="270px" height="350px">
+            </div>
+            <div class="card-footer mb-3 text-end">
+                <button class="btn btn-primary btn-sm" style="margin-right: 10px">Take Now</button>
+                <button class="btn btn-success btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>Agama</h5>
+            </div>
+            <div class="d-flex card-body justify-content-center">
+                <img src="https://henbuk.com/assets/buku/img/202708064.jpg" alt="" width="270px" height="350px">
+            </div>
+            <div class="card-footer mb-3 text-end">
+                <button class="btn btn-primary btn-sm" style="margin-right: 10px">Take Now</button>
+                <button class="btn btn-success btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>Kepemimpinan</h5>
+            </div>
+            <div class="d-flex card-body justify-content-center">
+                <img src="https://www.gramedia.com/blog/content/images/2022/07/The-Book-of-Sukses-Memimpin.jpg" alt="" width="270px" height="350px">
+            </div>
+            <div class="card-footer mb-3 text-end">
+                <button class="btn btn-primary btn-sm" style="margin-right: 10px">Take Now</button>
+                <button class="btn btn-success btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card">
+            <div class="card-header">
+                <h5>Kesehatan</h5>
+            </div>
+            <div class="d-flex card-body justify-content-center">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s" alt="" width="270px" height="350px">
+            </div>
+            <div class="card-footer mb-3 text-end">
+                <button class="btn btn-primary btn-sm" style="margin-right: 10px">Take Now</button>
+                <button class="btn btn-success btn-sm">Details</button>
+            </div>
+        </div>
+    </div>
+
+    {{--  <div class="container-fluid py-5">
+    <div class="container">
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s" alt="" width="270px" height="350px">
+                    <div class="card-body">
+                    <h5 class="card-title"> Fiksi </h5>
+                    <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Veritatis exercitationem unde non animi in fugit itaque sequi, 
+                    ducimus iusto illo?
+                    </p>
+                    <button class="btn btn-primary">Selengkapnya</button>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s" alt="" width="270px" height="350px">
+                    <div class="card-body">
+                    <h5 class="card-title"> Fiksi </h5>
+                    <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Veritatis exercitationem unde non animi in fugit itaque sequi, 
+                    ducimus iusto illo?
+                    </p>
+                    <button class="btn btn-primary">Selengkapnya</button>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s" alt="" width="270px" height="350px">
+                    <div class="card-body">
+                    <h5 class="card-title"> Fiksi </h5>
+                    <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Veritatis exercitationem unde non animi in fugit itaque sequi, 
+                    ducimus iusto illo?
+                    </p>
+                    <button class="btn btn-primary">Selengkapnya</button>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s" alt="" width="270px" height="350px">
+                    <div class="card-body">
+                    <h5 class="card-title"> Fiksi </h5>
+                    <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Veritatis exercitationem unde non animi in fugit itaque sequi, 
+                    ducimus iusto illo?
+                    </p>
+                    <button class="btn btn-primary">Selengkapnya</button>
+                </div>
+                </div>
+            </div> --}}
+
         </div>
     </div>
 </div>

@@ -32,7 +32,7 @@
     <!-- untuk mengeluarkan data -->
     <div class="card">
         <div class="card-header align-items-center d-flex mb-2">
-            <h4 class="card-title  mb-0 flex-grow-1">Page Items</h4>
+            <h4 class="card-title  mb-0 flex-grow-1">Tabel Keanggotaan</h4>
             <div class="flex-shrink-0 mx-2">
                 <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">

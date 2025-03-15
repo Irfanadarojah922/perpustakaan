@@ -47,7 +47,7 @@
                         <tr class="text-center">
                             <th scope="col">ID</th>
                             <th scope="col">Pinjam ID</th>
-                            <th scope="col">Buku ID</th>
+                            <th scope="col">Judul Buku</th>
                             <th scope="col">Tanggal Kembali</th>
                             <th scope="col">Denda</th>
                             <th scope="col">Keterangan</th>

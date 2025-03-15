@@ -4,7 +4,7 @@
             <form action="" method="POST" action="{{route('keanggotaan.store')}}">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Input Anggota</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -28,8 +28,7 @@
                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                             <option value="">- Pilih Jenis Kelamin -</option>
                             <option value="l">L</option>
-                            <option value="p">P
-                            </option>
+                            <option value="p">P</option>
                         </select>
                     </div>
 

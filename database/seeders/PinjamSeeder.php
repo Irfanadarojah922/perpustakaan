@@ -14,9 +14,9 @@ class PinjamSeeder extends Seeder
     public function run(): void
     {
 
-        $anggota = DB::table('anggotas')->first();
-        $buku = DB::table('bukus')->first();
-        $kategori = DB::table('kategoris')->first();
+        $anggota = DB::table('anggotas')->pluck('id')->toArray();
+        $buku = DB::table('bukus')->pluck('id')->toArray();
+        $kategori = DB::table('kategoris')->pluck('id')->toArray();
 
 
         $faker = \Faker\Factory::create('id_ID');
@@ -24,12 +24,12 @@ class PinjamSeeder extends Seeder
 
         DB::table('pinjams')->insert([
 
-            'tanggal_pinjam' => $faker->date,
-            'tanggal_kembali' => $faker->date,
-            'status_pengembalian' => $faker->randomElement(['dipinjam', 'dikembalikan']),
-            'anggota_id' => $faker->numberBetween(1, 10),
-            'buku_id' => $faker->numberBetween(1, 10),
-            'kategori_id' => $faker->numberBetween(1, 10),
+            'tanggal_pinjam' => $faker -> date,
+            'tanggal_kembali' => $faker -> date,
+            'status_pengembalian' => $faker -> randomElement(['dipinjam', 'dikembalikan']),
+            'anggota_id' => $faker->randomElement($anggota),
+            'buku_id' => $faker->randomElement($buku),
+            'kategori_id' => $faker->randomElement($kategori),
             ]);
         }
     }
