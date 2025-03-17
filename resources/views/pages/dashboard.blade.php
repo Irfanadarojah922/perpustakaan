@@ -20,10 +20,6 @@
             {{-- <li><a href="/katalog" class="active">Katalog</a></li> --}}
         </ul>
     </div>
-    <a href="#" class="report">
-        <i class='bx bx-cloud-download'></i>
-        <span>Download CSV</span>
-    </a>
 </div>  
 
 {{-- <div class="flex">
@@ -136,6 +132,7 @@
     <!-- End of Insights -->
 
     <div class="bottom-data">
+
         <div class="orders">
             <div class="header">
                 <i class='bx bx-receipt'></i>
@@ -225,8 +222,8 @@
                     <tr>
                     </tbody>
             </table>
+        
         </div>
-
         <!-- End of Reminders-->
 
     </div> 

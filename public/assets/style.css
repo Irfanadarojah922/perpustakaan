@@ -368,11 +368,14 @@ button.side-toggle.show {
     max-height: calc(100vh - 56px);
 }
 
-.content main .header {
+.content main .header{
+    justify-content: left;
+}
+
+.content main .body{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    grid-gap: 16px;
+    justify-content: right;
     flex-wrap: wrap;
 }
 
@@ -401,19 +404,6 @@ button.side-toggle.show {
 .content main .header .left .breadcrumb li a.active {
     color: var(--primary);
     pointer-events: none;
-}
-
-.content main .header .report {
-    height: 36px;
-    padding: 0 16px;
-    border-radius: 36px;
-    background: var(--primary);
-    color: var(--light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-gap: 10px;
-    font-weight: 500;
 }
 
 .content main .insights {

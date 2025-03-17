@@ -21,10 +21,13 @@
             /
         </ul>
     </div>
-    <a href="#" class="report">
+
+    <div class="body">
+    <a href="#" style="height: 36px; padding: 15px; margin: 15px; border-radius: 36px; background: var(--primary); color: var(--light); display: flex; align-items: center; justify-content: right; gap: 5px; font-weight: 500;">
         <i class='bx bx-cloud-download'></i>
         <span>Download CSV</span>
     </a>
+    </div>
 </div>
 
 <div class="mx-auto">

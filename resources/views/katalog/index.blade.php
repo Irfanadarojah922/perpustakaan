@@ -20,13 +20,20 @@
             {{-- <li><a href="/katalog" class="active">Katalog</a></li> --}}
         </ul>
     </div>
-    <a href="#" class="report">
-        <i class='bx bx-cloud-download'></i>
-        <span>Download CSV</span>
+</div>
+
+<div class="body">
+    <a href="#" style="height: 36px; padding: 15px; margin: 15px; border-radius: 36px; background: var(--primary); color: var(--light); display: flex; align-items: center; justify-content: right; gap: 5px; font-weight: 500;">
+        <i class="bx bx-folder-plus"></i>
+        <span>Tambah Kategori</span>
+    </a>
+    <a href="#" style="height: 36px; padding: 15px; margin: 15px; border-radius: 36px; background: var(--primary); color: var(--light); display: flex; align-items: center; justify-content: right; gap: 5px; font-weight: 500;">
+        <i class="bx bx-book-add"></i>
+        <span>Tambah Buku</span>
     </a>
 </div>
 
-        <div class="row">
+<div class="row">
     <div class="col-md-3 mb-3">
         <div class="card">
             <div class="card-header">
