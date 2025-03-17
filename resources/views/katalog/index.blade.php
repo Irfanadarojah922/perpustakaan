@@ -28,7 +28,7 @@
             gap: 10px;
         }
 
-        .btn {
+        .add-btn {
             height: 36px;
             padding: 0 15px;
             border-radius: 36px;
@@ -53,11 +53,11 @@
                 </ul>
             </div>
             <div class="right">
-                <a href="#" class="btn">
+                <a href="#" class="add-btn">
                     <i class="bx bx-folder-plus"></i>
                     <span>Tambah Kategori</span>
                 </a>
-                <a href="#" class="btn">
+                <a href="#" class="add-btn">
                     <i class="bx bx-book-add"></i>
                     <span>Tambah Buku</span>
                 </a>
