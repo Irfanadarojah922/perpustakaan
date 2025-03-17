@@ -6,11 +6,10 @@
     <meta name="csrf_token" content="{{csrf_token()}}" />
 @endpush
 
-
 @section("content")
     <style>
         .header {
-            padding: 20px;
+            padding: 15px;
         }
 
         .col {
@@ -42,6 +41,7 @@
             text-decoration: none;
         }
     </style>
+
     <div class="header">
         <div class="col">
             <div class="left">
@@ -49,9 +49,9 @@
                 <ul class="breadcrumb">
                     <li><a href="#">Dashboard</a></li>
                     /
-                    {{-- <li><a href="/katalog" class="active">Katalog</a></li> --}}
                 </ul>
             </div>
+            
             <div class="right">
                 <a href="#" class="add-btn">
                     <i class="bx bx-folder-plus"></i>

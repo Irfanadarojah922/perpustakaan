@@ -10,24 +10,59 @@
 @endpush
 
 @section("content")
+<style>
+    .header {
+        padding: 15px;
+    }
+
+    .col {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .left h1 {
+        margin: 0;
+    }
+
+    .right {
+        display: flex;
+        gap: 10px;
+    }
+
+    .download {
+        height: 36px;
+        padding: 0 15px;
+        border-radius: 36px;
+        background: var(--primary);
+        color: var(--light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+</style>
 
 <div class="header">
+    <div class="col">
     <div class="left">
         <h1> @yield ("header") </h1>
         <ul class="breadcrumb">
-            <li><a href="#">
-                    Dashboard
-                </a></li>
+            <li><a href="#"> Dashboard </a></li>
             /
         </ul>
     </div>
 
-    <div class="body">
-    <a href="#" style="height: 36px; padding: 15px; margin: 15px; border-radius: 36px; background: var(--primary); color: var(--light); display: flex; align-items: center; justify-content: right; gap: 5px; font-weight: 500;">
-        <i class='bx bx-cloud-download'></i>
-        <span>Download CSV</span>
-    </a>
+
+    <div class="right">
+        <a href="#"  class="download">
+            <i class='bx bx-cloud-download'></i>
+            <span>Download CSV</span>
+        </a>
     </div>
+</div>
 </div>
 
 <div class="mx-auto">
