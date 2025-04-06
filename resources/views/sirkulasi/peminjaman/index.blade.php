@@ -29,7 +29,6 @@
 
 <div class="mx-auto">
     <!-- untuk memasukkan data -->
-    <!-- untuk mengeluarkan data -->
     <div class="card">
         <div class="card-header align-items-center d-flex mb-2">
             <h4 class="card-title  mb-0 flex-grow-1">Tabel Peminjaman</h4>

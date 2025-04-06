@@ -54,14 +54,11 @@
             
             <div class="right">
                 <a href="#" class="add-btn">
-                    <i class="bx bx-folder-plus"></i>
-                    <span>Tambah Kategori</span>
-                </a>
-                <a href="#" class="add-btn">
                     <i class="bx bx-book-add"></i>
                     <span>Tambah Buku</span>
                 </a>
             </div>
+
         </div>
     </div>
 

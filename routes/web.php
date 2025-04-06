@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
 
     Route::resource('/sirkulasi/pengembalian', PengembalianController::class);
+
 });
 
 
