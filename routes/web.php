@@ -34,3 +34,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Route::get('/sirkulasi', [PeminjamanController::class, 'PeminjamanByAnggotaId'])->name('peminjaman.byanggota');
 
+Route::get('/pages/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);

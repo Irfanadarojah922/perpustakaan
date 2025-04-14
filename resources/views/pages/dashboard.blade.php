@@ -96,36 +96,39 @@
             <i class='bx bx-book'></i>
             <span class="info">
                 <h3>
-                    1,074
+                    {{ $kategoris }}
                 </h3>
-                <p>Katalog</p>
+                <p>Total Katalog</p>
             </span>
         </li>
+
         <li>
             <i class='bx bx-group'></i>
             <span class="info">
                 <h3>
-                    3,944
+                    {{ $anggota }}
                 </h3>
-                <p>Anggota</p>
+                <p>Total Anggota</p>
             </span>
         </li>
+
         <li>
             <i class='bx bx-book-bookmark'></i>
             <span class="info">
                 <h3>
-                    14,721
+                    {{ $peminjaman }}
                 </h3>
-                <p>Peminjaman</p>
+                <p>Total Peminjaman</p>
             </span>
         </li>
+
         <li>
             <i class='bx bx-book-reader'></i>
             <span class="info">
                 <h3>
-                    6,742
+                    {{ $pengembalian }}
                 </h3>
-                <p>Pengembalian</p>
+                <p>Total Pengembalian</p>
             </span>
         </li>
     </ul>
