@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $kembalis = Kembali::count();
 
         return view('pages.dashboard', compact(
-            'kategoris', 'anggota', 'peminjaman', 'pengembalian'
+            'kategoris', 'anggotas', 'pinjams', 'kembalis'
         ));   
     }
 }

@@ -24,7 +24,7 @@ class Anggota extends Model
 
     public function kategoris()
     {
-        return $this->belongsTo(Kategoris::class);
+        return $this->belongsTo(Kategori::class);
     }
 
     public function pinjams()

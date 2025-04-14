@@ -20,18 +20,13 @@ Route::group(['middleware' => 'auth'], function () {
         ]);
     });
 
-    Route::get('/pages/dashboard', function () {
-        return view('pages.dashboard', [
-        ]);
-    });
-
     Route::resource('/keanggotaan', AnggotaController::class);
 
     Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
 
     Route::resource('/sirkulasi/pengembalian', PengembalianController::class);
 
-    // Route::get('/pages/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+    Route::get('/pages/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
 
 });
 

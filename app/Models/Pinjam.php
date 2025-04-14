@@ -29,7 +29,7 @@ class Pinjam extends Model
 
     public function kategoris()
     {
-        return $this->belongsTo(Kategoris::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class, 'kategori_id');
     }
 
     public function kembalis()

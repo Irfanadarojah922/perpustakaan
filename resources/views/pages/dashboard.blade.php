@@ -106,7 +106,7 @@
             <i class='bx bx-group'></i>
             <span class="info">
                 <h3>
-                    {{ $anggota }}
+                    {{ $anggotas }}
                 </h3>
                 <p>Total Anggota</p>
             </span>
@@ -116,7 +116,7 @@
             <i class='bx bx-book-bookmark'></i>
             <span class="info">
                 <h3>
-                    {{ $peminjaman }}
+                    {{ $pinjams }}
                 </h3>
                 <p>Total Peminjaman</p>
             </span>
@@ -126,7 +126,7 @@
             <i class='bx bx-book-reader'></i>
             <span class="info">
                 <h3>
-                    {{ $pengembalian }}
+                    {{ $kembalis }}
                 </h3>
                 <p>Total Pengembalian</p>
             </span>
