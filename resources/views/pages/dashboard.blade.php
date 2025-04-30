@@ -139,7 +139,7 @@
         <div class="orders">
             <div class="header">
                 <i class='bx bx-receipt'></i>
-                <h3>Transaksi Terakhir</h3>
+                <h3>Transaksi Terakhir </h3>
                 <i class='bx bx-filter'></i>
                 <i class='bx bx-search'></i>
             </div>
@@ -158,7 +158,8 @@
                             <p>John Doe</p>
                         </td>
                         <td>24-01-2025</td>
-                        <td><span class="status completed">Peminjaman</span></td>
+                        <td>
+                            <span class="status pending">Pengembalian</span></td>
                     </tr>
                     <tr>
                         <td>
@@ -166,15 +167,8 @@
                             <p>John Doe</p>
                         </td>
                         <td>24-01-2025</td>
-                        <td><span class="status pending">Pengembalian</span></td>
-                    </tr>
-                    <tr>
                         <td>
-                            <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
-                            <p>John Doe</p>
-                        </td>
-                        <td>24-01-2025</td>
-                        <td><span class="status pending">Pengembalian</span></td>
+                            <span class="status pending">Pengembalian</span></td>
                     </tr>
                 </tbody>
             </table>

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
+    
     public function index()
     {   
         $kategoris = Kategori::count();

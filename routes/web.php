@@ -4,6 +4,7 @@ use App\Http\Controllers\WEB\AnggotaController;
 use App\Http\Controllers\WEB\PeminjamanController;
 use App\Http\Controllers\WEB\PengembalianController;
 use App\Http\Controllers\WEB\DashboardController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,10 @@ Route::group(['middleware' => 'auth'], function () {
     // });
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
+
+    Route::get('/transaksi-terakhir', [TransaksiController::class, 'transaksiTerakhir']);
+    
+    Route::get('/pengingat', [TransaksiController::class, 'pengingat']);
 
     Route::get('/katalog', function () {
         return view('katalog.index', [

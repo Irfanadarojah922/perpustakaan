@@ -45,24 +45,23 @@
     }
 </style>
 
-
 <div class="header">
     <div class="col">
-    <div class="left">
-        <h1> @yield ("header") </h1>
-        <ul class="breadcrumb">
-            <li><a href="#"> Dashboard </a></li>
-            /
-        </ul>
-    </div>
+        <div class="left">
+            <h1> @yield ("header") </h1>
+            <ul class="breadcrumb">
+                <li><a href="#"> Dashboard </a></li>
+                /
+            </ul>
+        </div>
 
-    <div class="right">
-        <a href="#"  class="download">
-            <i class='bx bx-cloud-download'></i>
-            <span>Download CSV</span>
-        </a>
+        <div class="right">
+            <a href="#"  class="download">
+                <i class='bx bx-cloud-download'></i>
+                <span>Download CSV</span>
+            </a>
+        </div>
     </div>
-</div>
 </div>
 
 <div class="mx-auto">
@@ -75,10 +74,11 @@
                 <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     <i class="bx bx-plus" style="font-size:1rem;"></i>
-                    Add
+                    Add 
                 </a>
             </div>
         </div>
+        
         <div class="card-body">
             <table id="table_anggota" class="table table-bordered table-striped" style="width:100%">
                 <thead>
@@ -92,8 +92,6 @@
                         <th scope="col">Alamat</th>
                         <th scope="col">No Telepon</th>
                         <th scope="col">Status</th>
-                        
-                    </tr>
                     </tr>
                 </thead>
                 <tbody>
