@@ -15,7 +15,7 @@
         "laravel/passport": "^12.3",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "spatie/laravel-permission": "^6.10",
+        "spatie/laravel-permission": "^6.17",
         "yajra/laravel-datatables": "^11"
     },
     "require-dev": {

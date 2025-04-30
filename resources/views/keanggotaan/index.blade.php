@@ -10,100 +10,100 @@
 @endpush
 
 @section("content")
-<style>
-    .header {
-        padding: 15px;
-    }
+    <style>
+        .header {
+            padding: 15px;
+        }
 
-    .col {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+        .col {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .left h1 {
-        margin: 0;
-    }
+        .left h1 {
+            margin: 0;
+        }
 
-    .right {
-        display: flex;
-        gap: 10px;
-    }
+        .right {
+            display: flex;
+            gap: 10px;
+        }
 
-    .download {
-        height: 36px;
-        padding: 0 15px;
-        border-radius: 36px;
-        background: var(--primary);
-        color: var(--light);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        font-weight: 500;
-        text-decoration: none;
-    }
-</style>
+        .download {
+            height: 36px;
+            padding: 0 15px;
+            border-radius: 36px;
+            background: var(--primary);
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+    </style>
 
-<div class="header">
-    <div class="col">
-        <div class="left">
-            <h1> @yield ("header") </h1>
-            <ul class="breadcrumb">
-                <li><a href="#"> Dashboard </a></li>
-                /
-            </ul>
-        </div>
+    <div class="header">
+        <div class="col">
+            <div class="left">
+                <h1> @yield ("header") </h1>
+                <ul class="breadcrumb">
+                    <li><a href="#"> Dashboard </a></li>
+                    /
+                </ul>
+            </div>
 
-        <div class="right">
-            <a href="#"  class="download">
-                <i class='bx bx-cloud-download'></i>
-                <span>Download CSV</span>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="mx-auto">
-    <!-- untuk memasukkan data -->
-    <!-- untuk mengeluarkan data -->
-    <div class="card">
-        <div class="card-header align-items-center d-flex mb-2">
-            <h4 class="card-title  mb-0 flex-grow-1">Tabel Keanggotaan</h4>
-            <div class="flex-shrink-0 mx-2">
-                <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <i class="bx bx-plus" style="font-size:1rem;"></i>
-                    Add 
+            <div class="right">
+                <a href="#" class="download">
+                    <i class='bx bx-cloud-download'></i>
+                    <span>Download CSV</span>
                 </a>
             </div>
         </div>
-        
-        <div class="card-body">
-            <table id="table_anggota" class="table table-bordered table-striped" style="width:100%">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Tempat Lahir</th>
-                        <th scope="col">Tanggal Lahir</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">Pendidikan</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">No Telepon</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th colspan="7" class="text-center">No Data Display</th>
-                    </tr>
-                </tbody>
-            </table>
+    </div>
+
+    <div class="mx-auto">
+        <!-- untuk memasukkan data -->
+        <!-- untuk mengeluarkan data -->
+        <div class="card">
+            <div class="card-header align-items-center d-flex mb-2">
+                <h4 class="card-title  mb-0 flex-grow-1">Tabel Keanggotaan</h4>
+                <div class="flex-shrink-0 mx-2">
+                    <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        <i class="bx bx-plus" style="font-size:1rem;"></i>
+                        Add
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table id="table_anggota" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Tempat Lahir</th>
+                            <th scope="col">Tanggal Lahir</th>
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Pendidikan</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">No Telepon</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th colspan="7" class="text-center">No Data Display</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-@include('keanggotaan.create')
+    @include('keanggotaan.create')
 @endsection
 
 @push('script-libs')

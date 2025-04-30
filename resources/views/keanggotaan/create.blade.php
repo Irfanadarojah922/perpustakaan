@@ -1,4 +1,3 @@
-
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -29,20 +28,20 @@
                     <div class="mb-3">
                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
-                        <option value="">- Pilih Jenis Kelamin -</option>
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
+                            <option value="">- Pilih Jenis Kelamin -</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="pendidikan" class="form-label">Pendidikan</label>
                         <select class="form-control" name="pendidikan" id="pendidikan">
-                        <option value="">- Pilih Pendidikan -</option>
-                        <option value="SD">SD</option>
-                        <option value="SMP">SMP</option>
-                        <option value="SMA">SMA</option>
-                        <option value="Sarjana">Sarjana</option>
+                            <option value="">- Pilih Pendidikan -</option>
+                            <option value="SD">SD</option>
+                            <option value="SMP">SMP</option>
+                            <option value="SMA">SMA</option>
+                            <option value="Sarjana">Sarjana</option>
                         </select>
                     </div>
 
@@ -59,10 +58,10 @@
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
                         <select class="form-control" name="status" id="status">
-                        <option value="">- Pilih Status -</option>
-                        <option value="pelajar">Pelajar</option>
-                        <option value="mahasiswa">Mahasiswa</option>
-                        <option value="umum">Umum</option>
+                            <option value="">- Pilih Status -</option>
+                            <option value="pelajar">Pelajar</option>
+                            <option value="mahasiswa">Mahasiswa</option>
+                            <option value="umum">Umum</option>
                         </select>
                     </div>
                 </div>
