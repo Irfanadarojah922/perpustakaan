@@ -62,38 +62,6 @@
                 </a>
             </div>
         </div>
-<<<<<<< HEAD
-        
-        <div class="card-body">
-            <table id="table_anggota" class="table table-bordered table-striped" style="width:100%">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Tempat Lahir</th>
-                        <th scope="col">Tanggal Lahir</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">Pendidikan</th>
-                        <th scope="col">Alamat</th>
-                        <th scope="col">No Telepon</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Aksi</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td colspan="9" class="text-center">No Data Display</td>
-                        <td>
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-success">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-=======
     </div>
 
     <div class="mx-auto">
