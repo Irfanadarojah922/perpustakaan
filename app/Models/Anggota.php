@@ -10,6 +10,7 @@ class Anggota extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'anggota_id',
         'nama',
         'tempat_lahir',
@@ -30,5 +31,10 @@ class Anggota extends Model
     public function pinjams()
     {
         return $this->hasMany(Pinjam::class);
+    }
+
+    public function hasUser()
+    {
+        return $this->hasOne(User::class);
     }
 }
