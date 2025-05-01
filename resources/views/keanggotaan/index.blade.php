@@ -92,16 +92,23 @@
                             <th scope="col">Alamat</th>
                             <th scope="col">No Telepon</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Aksi</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th colspan="7" class="text-center">No Data Display</th>
+                            <td colspan="9" class="text-center">No Data Display</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-success">Edit</button>
+                                    <button type="button" class="btn btn-danger">Delete</button>
+                                </div>
+                            </td>
                         </tr>
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
->>>>>>> 0f01efb6c59f002779e182a4fc1ad40a633888d8
         </div>
     </div>
     @include('keanggotaan.create')
