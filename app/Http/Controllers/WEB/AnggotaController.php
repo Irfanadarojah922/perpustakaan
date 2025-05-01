@@ -36,9 +36,10 @@ class AnggotaController extends Controller
         return $data ? redirect("/keanggotaan")->with("success", "Anggota 
         Created Successfully!") : back()->with("error", "Something Error!");
     }
-    
-    public function create ()
+
+    public function edit ()
     {
-        return view('keanggotaan.create');
+        return view('keanggotaan.edit');
     }
+
 }
