@@ -47,9 +47,5 @@ class AnggotaController extends Controller
         Created Successfully!") : back()->with("error", "Something Error!");
     }
 
-    public function edit ()
-    {
-        return view('keanggotaan.edit');
-    }
 
 }

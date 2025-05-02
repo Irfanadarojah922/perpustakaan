@@ -20,9 +20,7 @@
                 </a></li>
             /
         </ul>
-    </div>
-
-   
+    </div>  
 </div>
 
 <div class="mx-auto">
@@ -50,9 +48,9 @@
                         <th scope="col">Nama Anggota</th>
                         <th scope="col">Judul Buku</th>
                         <th scope="col">Kategori Buku</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr>
                         <th colspan="7" class="text-center">No Data Display</th>
@@ -62,7 +60,8 @@
         </div>
     </div>
 </div>
-@include('sirkulasi.peminjaman.create')
+    @include('sirkulasi.peminjaman.create')
+    @include('sirkulasi.peminjaman.edit')
 @endsection
 
 @push('script-libs')
@@ -87,6 +86,8 @@
                     { data: 'anggotas.nama', name: 'anggota_id' },
                     { data: 'bukus.judul', name: 'buku_id' },
                     { data: 'kategoris.nama_kategori', name: 'kategori_id' },
+                    { data: 'action', name: 'action' }
+
                 ]
             })
         })

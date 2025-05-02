@@ -47,6 +47,8 @@
                             <th scope="col">Tanggal Kembali</th>
                             <th scope="col">Denda</th>
                             <th scope="col">Keterangan</th>
+                            <th scope="col">Aksi</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -59,6 +61,8 @@
         </div>
     </div>
     @include('sirkulasi.pengembalian.create')
+    @include('sirkulasi.pengembalian.edit')
+
 @endsection
 
 @push('script-libs')
@@ -82,6 +86,8 @@
                     { data: 'tanggal_kembali', name: 'tanggal_kembali' },
                     { data: 'denda', name: 'denda' },
                     { data: 'keterangan', name: 'keterangan' },
+                    { data: 'action', name: 'action' }
+
                 ]
             })
         })

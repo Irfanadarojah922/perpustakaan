@@ -16,7 +16,17 @@ class PeminjamanController extends Controller
 
             $pinjam = Pinjam::with(['bukus', 'anggotas', 'kategoris'])->get();
             // dd($pinjam);
-            return DataTables::of($pinjam)->make(true);
+            return DataTables::of($pinjam)->addColumn("action", function($row){
+                $action =
+                        '<td class="text-center">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#edit_modal">Edit</button>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </div>
+                        </td>';
+            return $action;
+            })->make(true);
         }
         return view("sirkulasi.peminjaman.index", compact('pinjam'));
     }

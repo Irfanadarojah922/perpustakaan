@@ -1,0 +1,57 @@
+<div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <form method="POST" action="{{route('pengembalian.store')}}">
+                @csrf
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pengembalian</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" value="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pinjam_id" class="form-label">Pinjam ID</label>
+                        <input type="text" class="form-control" id="pinjam_id" name="pinjam_id" value="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="buku_id" class="form-label">Buku ID</label>
+                        <input type="text" class="form-control" id="buku_id" name="buku_id" value="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
+                        <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" value="">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="denda" class="form-label">Denda</label>
+                        <select class="form-control" name="denda" id="denda">
+                            <option value="">- Pilih -</option>
+                            <option value="ganti buku"> Ganti Buku </option>
+                            <option value="perbaikan Buku"> Perbaikan Buku </option>
+                            <option value="tepat waktu"> Tepat Waktu </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan" value="">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
