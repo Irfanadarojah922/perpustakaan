@@ -93,25 +93,19 @@
                             <th scope="col">No Telepon</th>
                             <th scope="col">Status</th>
                             <th scope="col">Aksi</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td colspan="9" class="text-center">No Data Display</td>
-                            <td class="text-center">
-                                <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-success">Edit</button>
-                                    <button type="button" class="btn btn-danger">Delete</button>
-                                </div>
-                            </td>
                         </tr>
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
     @include('keanggotaan.create')
+    @include('keanggotaan.edit')
 @endsection
 
 @push('script-libs')
@@ -138,7 +132,7 @@
                     { data: 'alamat', name: 'alamat' },
                     { data: 'no_telepon', name: 'no_telepon' },
                     { data: 'status', name: 'status' },
-
+                    { data: 'action', name: 'action' }
                 ]
             })
         })
