@@ -152,35 +152,39 @@
                 <h1>Registration</h1>
 
                 <div class="input-box">
-                    <input type="text" placeholder="No. NIK" required>
+                    <input type="text" placeholder="No. NIK" name="anggota_id" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" placeholder="Nama Lengkap" required>
+                    <input type="text" placeholder="Nama Lengkap" name="nama" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="date" placeholder="Tempat & Tanggal Lahir" required>
+                    <input type="date" placeholder="Tempat Lahir" name="tempat_lahir" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" placeholder="Jenis Kelamin" required>
+                    <input type="date" placeholder="Tanggal Lahir" name="tanggal_lahir" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" placeholder="Alamat" required>
+                    <input type="text" placeholder="Jenis Kelamin" name="jenis_kelamin" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" placeholder="No. Telepon" required>
+                    <input type="text" placeholder="Alamat" name="alamat" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="email" placeholder="E-mail" required>
+                    <input type="text" placeholder="No. Telepon" name="no_telepon" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" placeholder="Password" required>
+                    <input type="email" placeholder="E-mail" name="email" required>
+                </div>
+
+                <div class="input-box">
+                    <input type="text" placeholder="Password" name="password" required>
                 </div>
 
 
