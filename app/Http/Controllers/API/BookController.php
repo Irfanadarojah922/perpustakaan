@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Books\StoreRequest;
 use App\Http\Requests\Books\UpdateRequest;
 use App\Models\Buku;
-use App\Models\Kategoris;
+use App\Models\Kategori;
 
 
 class BookController extends Controller
@@ -129,7 +129,7 @@ class BookController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategoris::where('nama_kategori', 'like', "%$name%")->get();
+            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
             return response()->json([
                 "success" => true,
                 "message" => $category

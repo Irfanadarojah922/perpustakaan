@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Categories\StoreRequest;
 use App\Http\Requests\Categories\UpdateRequest;
-use App\Models\Kategoris;
+use App\Models\Kategori;
 use GrahamCampbell\ResultType\Success;
 
 class CategoryController extends Controller
@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         try {
-            $categories = Kategoris::all();
+            $categories = Kategori::all();
             return response()->json([
                 "success" => true,
                 "data" => $categories
@@ -35,7 +35,7 @@ class CategoryController extends Controller
     public function store(StoreRequest $request)
     {
         try {
-            $category = Kategoris::create($request->validated());
+            $category = Kategori::create($request->validated());
             return response()->json([
                 "success" => true,
                 "data" => $category
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     public function show(string $id)
     {
         try {
-            $category = Kategoris::find($id);
+            $category = Kategori::find($id);
             if (!$category) {
                 return response()->json([
                     "success" => false,
@@ -79,7 +79,7 @@ class CategoryController extends Controller
     public function update(UpdateRequest $request, string $id)
     {
         try {
-            $category = Kategoris::find($id);
+            $category = Kategori::find($id);
             if (!$category) {
                 return response()->json([
                     "success" => false,
@@ -105,7 +105,7 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         try {
-            $category = Kategoris::find($id);
+            $category = Kategori::find($id);
             if (!$category) {
                 return response()->json([
                     "success" => false,
@@ -128,7 +128,7 @@ class CategoryController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategoris::where('nama_kategori', 'like', "%$name%")->get();
+            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
             return response()->json([
                 "success" => true,
                 "message" => $category

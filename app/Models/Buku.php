@@ -22,7 +22,7 @@ class Buku extends Model
         'foto',
     ];
 
-    public function kategoris()
+    public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'kategori_id', 'nama_kategori');
     }

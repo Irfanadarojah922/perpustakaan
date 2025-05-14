@@ -129,7 +129,7 @@ class KembaliController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategoris::where('nama_kategori', 'like', "%$name%")->get();
+            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
             return response()->json([
                 "success" => true,
                 "message" => $category

@@ -58,11 +58,25 @@
                     <span>Tambah Buku</span>
                 </a>
             </div>
-
         </div>
     </div>
 
-    <div class="row">
+    <div class="container">
+    @if ($bukus)
+        @foreach ( $bukus as $buku)
+            <div class="card" class="ml-5 mt-5 ml-5 p-2" style="width:20rem;">
+                <img src="/images{{$buku->foto}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{$buku->title}}</h5>
+                    <p class="card-text"><b>Kategori : {{$buku->kategoris->nama_kategori}}</b></p>
+                    <a href="#" class="btn btn-primary">Detail</a>
+                </div>
+            </div>
+        @endforeach
+    @endif
+    </div>
+
+    <!-- <div class="row">
         <div class="col-md-3 mb-3">
             <div class="card">
                 <div class="card-header">
@@ -79,6 +93,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-3 mb-3">
             <div class="card">
                 <div class="card-header">
@@ -187,74 +202,5 @@
             </div>
         </div>
 
-        {{-- <div class="container-fluid py-5">
-            <div class="container">
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s"
-                            alt="" width="270px" height="350px">
-                        <div class="card-body">
-                            <h5 class="card-title"> Fiksi </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Veritatis exercitationem unde non animi in fugit itaque sequi,
-                                ducimus iusto illo?
-                            </p>
-                            <button class="btn btn-primary">Selengkapnya</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s"
-                            alt="" width="270px" height="350px">
-                        <div class="card-body">
-                            <h5 class="card-title"> Fiksi </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Veritatis exercitationem unde non animi in fugit itaque sequi,
-                                ducimus iusto illo?
-                            </p>
-                            <button class="btn btn-primary">Selengkapnya</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s"
-                            alt="" width="270px" height="350px">
-                        <div class="card-body">
-                            <h5 class="card-title"> Fiksi </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Veritatis exercitationem unde non animi in fugit itaque sequi,
-                                ducimus iusto illo?
-                            </p>
-                            <button class="btn btn-primary">Selengkapnya</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="card">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVhVdHQZ4Th-DacmexWd66RCCLMX1iI6P1zA&s"
-                            alt="" width="270px" height="350px">
-                        <div class="card-body">
-                            <h5 class="card-title"> Fiksi </h5>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Veritatis exercitationem unde non animi in fugit itaque sequi,
-                                ducimus iusto illo?
-                            </p>
-                            <button class="btn btn-primary">Selengkapnya</button>
-                        </div>
-                    </div>
-                </div> --}}
-
-            </div>
-        </div>
-    </div>
-@endsection
+    </div>  -->
+@endsection 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Kategoris;
+use App\Models\Kategori;
 use App\Models\Anggota;
 use App\Models\Buku;
 use Illuminate\Http\Request;
@@ -44,7 +44,7 @@ class PerpusdaCOntroller extends Controller
         ]);
 
         // Cari kategori berdasarkan kode
-        $kategori = Kategoris::where('nama_kategori', $validatedData['kategori_nama_kategori'])->first();
+        $kategori = Kategori::where('nama_kategori', $validatedData['kategori_nama_kategori'])->first();
 
         if (!$kategori) {
             return response()->json(['error' => 'Kategori tidak ditemukan'], 404);
@@ -70,7 +70,7 @@ class PerpusdaCOntroller extends Controller
             ]);
     
             // 2. Simpan data ke tabel kategori
-            $kategori = Kategoris::create([
+            $kategori = Kategori::create([
                 'nama_kategori' => $validatedData['kategori_nama_kategori'],
             ]);
     

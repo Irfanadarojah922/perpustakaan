@@ -23,11 +23,6 @@ class Anggota extends Model
         'foto',
     ];
 
-    public function kategoris()
-    {
-        return $this->belongsTo(Kategori::class);
-    }
-
     public function pinjams()
     {
         return $this->hasMany(Pinjam::class);

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Anggotas\StoreRequest;
 use App\Http\Requests\Anggotas\UpdateRequest;
 use App\Models\Anggota;
-use App\Models\Kategoris;
+use App\Models\Kategori;
 
 class AnggotaController extends Controller
 {
@@ -105,7 +105,7 @@ class AnggotaController extends Controller
     public function destroy(string $id)
     {
         try {
-            $category = Kategoris::find($id);
+            $category = Kategori::find($id);
             if (!$category) {
                 return response()->json([
                     "success" => false,
@@ -128,7 +128,7 @@ class AnggotaController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategoris::where('nama_kategori', 'like', "%$name%")->get();
+            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
             return response()->json([
                 "success" => true,
                 "message" => $category

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Pinjams\StoreRequest;
 use App\Http\Requests\Pinjams\UpdateRequest;
 use App\Models\Pinjam;
-use App\Models\Kategoris;
+use App\Models\Kategori;
 
 
 class PinjamController extends Controller
@@ -129,7 +129,7 @@ class PinjamController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategoris::where('nama_kategori', 'like', "%$name%")->get();
+            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
             return response()->json([
                 "success" => true,
                 "message" => $category
