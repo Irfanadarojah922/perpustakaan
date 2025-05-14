@@ -53,10 +53,14 @@
             </div>
             
             <div class="right">
-                <a href="#" class="add-btn">
+                <!-- <a href="#" class="add-btn" >
                     <i class="bx bx-book-add"></i>
                     <span>Tambah Buku</span>
-                </a>
+                </a> -->
+              <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+  Add buku
+</button>
             </div>
         </div>
     </div>
@@ -65,12 +69,11 @@
         @if ($bukus)
             @foreach ( $bukus as $buku)
                 <div class="card ml-5 mt-5 ml-5 p-2" style="width:20rem;">
-                    <img src="/{{$buku->foto}}" class="card-img-top" alt="...">
+                    <img src={{ asset('assets/images/' . $buku->foto) }} class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">{{$buku->title}}</h5>
                         <p class="card-text"><b>Kategori : {{$buku->kategori?->nama_kategori}}</b></p>
                         <p class="card-text"><b>Deskripsi :</b> {{ $buku->deskripsi ?? '-' }}</p>
-                        <a href="{{ route('katalog.index') }}" class="btn btn-secondary">Kembali</a>
                         <a href="{{ route('katalog.show', $buku->id) }}" class="btn btn-primary">Detail</a>
 
                     </div>
@@ -79,6 +82,7 @@
         @endif
     </div>
 
+    @include('katalog.create');
     <!-- <div class="row">
         <div class="col-md-3 mb-3">
             <div class="card">

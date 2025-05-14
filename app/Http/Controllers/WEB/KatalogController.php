@@ -13,9 +13,17 @@ class KatalogController extends Controller
     {
         $bukus = Buku::with('kategori')->get();
         // debug
+        
         // return $bukus;
         return view('katalog.index', compact('bukus')); 
     }
+
+       public function create()
+    {
+        return view('katalog.create'); 
+    }
+
+    
 
     public function show($id)
     {
