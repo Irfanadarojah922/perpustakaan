@@ -11,12 +11,16 @@ class KatalogController extends Controller
 {
     public function index()
     {
-        $bukus = Buku::all();
-        return view('katalog.index', compact('bukus'));
+        $bukus = Buku::with('kategori')->get();
+        // debug
+        // return $bukus;
+        return view('katalog.index', compact('bukus')); 
     }
 
-    public function show()
+    public function show($id)
     {
-        //detail page
+        $bukus = Buku::with('kategori')->findOrFail($id);
+        
+        return view('katalog.show', compact('bukus'));
     }
 }

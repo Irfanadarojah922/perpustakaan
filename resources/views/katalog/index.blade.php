@@ -62,18 +62,21 @@
     </div>
 
     <div class="container">
-    @if ($bukus)
-        @foreach ( $bukus as $buku)
-            <div class="card" class="ml-5 mt-5 ml-5 p-2" style="width:20rem;">
-                <img src="/images{{$buku->foto}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{$buku->title}}</h5>
-                    <p class="card-text"><b>Kategori : {{$buku->kategoris->nama_kategori}}</b></p>
-                    <a href="#" class="btn btn-primary">Detail</a>
+        @if ($bukus)
+            @foreach ( $bukus as $buku)
+                <div class="card ml-5 mt-5 ml-5 p-2" style="width:20rem;">
+                    <img src="/{{$buku->foto}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$buku->title}}</h5>
+                        <p class="card-text"><b>Kategori : {{$buku->kategori?->nama_kategori}}</b></p>
+                        <p class="card-text"><b>Deskripsi :</b> {{ $buku->deskripsi ?? '-' }}</p>
+                        <a href="{{ route('katalog.index') }}" class="btn btn-secondary">Kembali</a>
+                        <a href="{{ route('katalog.show', $buku->id) }}" class="btn btn-primary">Detail</a>
+
+                    </div>
                 </div>
-            </div>
-        @endforeach
-    @endif
+            @endforeach
+        @endif
     </div>
 
     <!-- <div class="row">

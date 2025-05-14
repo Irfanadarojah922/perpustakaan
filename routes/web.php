@@ -21,13 +21,14 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-    Route::get('/katalog', function () {
-        return view('katalog.index', [
-        ]);
-    });
+    // Route::get('/katalog', function () {
+    //     return view('katalog.index', [
+    //     ]);
+    // });
 
-    Route::get('/katalog/index', [KatalogController::class, 'index'])->name('buku.index');
+    Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
 
+    Route::get('/katalog/{id}', [KatalogController::class, 'show'])->name('katalog.show');
 
     Route::resource('/keanggotaan', AnggotaController::class);
 
