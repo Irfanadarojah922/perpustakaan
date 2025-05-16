@@ -72,7 +72,7 @@
                 @foreach ( $bukus as $buku)
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="card ml-5 mt-5 ml-5 p-2">
-                            <img src="{{ $buku->foto }}" class="card-img-top" alt="gambar">
+                            <img src="/assets/images/{{ $buku->foto }}" class="card-img-top" alt="gambar">
                             <div class="card-body">
                                 <h6 class="card-title">{{ $buku->judul }}</h6>
                                 <p class="card-text"><b>Kategori : {{ $buku->kategori?->nama_kategori }}</b></p>
