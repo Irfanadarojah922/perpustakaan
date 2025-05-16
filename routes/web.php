@@ -5,7 +5,6 @@ use App\Http\Controllers\WEB\PeminjamanController;
 use App\Http\Controllers\WEB\PengembalianController;
 use App\Http\Controllers\WEB\DashboardController;
 use App\Http\Controllers\WEB\KatalogController;
-use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,10 +25,16 @@ Route::group(['middleware' => 'auth'], function () {
     //     ]);
     // });
 
-    Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
+    // Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
 
-    Route::get('/katalog/{id}', [KatalogController::class, 'show'])->name('katalog.show');
+    // Route::get('/katalog/{id}', [KatalogController::class, 'show'])->name('katalog.show');
 
+    // Route::get('/katalog/{id}', [KatalogController::class, 'detail'])->name('katalog.detail');
+
+    // Route::post('/katalog', [KatalogController::class, 'store'])->name('katalog.store');
+
+    Route::resource('/katalog', KatalogController::class);
+    
     Route::resource('/keanggotaan', AnggotaController::class);
 
     Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
