@@ -80,7 +80,8 @@
             </div>
 
             <div class="card-body">
-                <table id="table_anggota" class="table table-bordered table-striped" style="width:100%">
+               <div class="table-responsive">
+                 <table id="table_anggota" class="table table-sm table-bordered table-striped" style="width:100%">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">ID</th>
@@ -101,6 +102,7 @@
                         </tr>
                     </tbody>
                 </table>
+               </div>
             </div>
         </div>
     </div>
@@ -119,6 +121,7 @@
     <script>
         $(document).ready(function () {
             $('#table_anggota').DataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: '{{url()->current()}}',

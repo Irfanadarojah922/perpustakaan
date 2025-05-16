@@ -12,22 +12,39 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control @error('nama') is-invalid
+                        @enderror" id="nama" name="nama" value="{{ old('nama') }}">
+                        @error('nama')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                        <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir">
+                        <input type="text" class="form-control @error('tempat_lahir') is-invalid
+                        @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
+                        @error('tempat_lahir')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir">
+                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid
+                        @enderror" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
+                        @error('tanggal_lahir')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                        <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
+                        <select class="form-control @error('jenis_kelamin') is-invalid
+                        @enderror" name="jenis_kelamin" id="jenis_kelamin" value="{{ old('jenis_kelamin') }}">
+                        @error('jenis_kelamin')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        
                             <option value="">- Pilih Jenis Kelamin -</option>
                             <option value="L">Laki-laki</option>
                             <option value="P">Perempuan</option>
@@ -36,7 +53,11 @@
 
                     <div class="mb-3">
                         <label for="pendidikan" class="form-label">Pendidikan</label>
-                        <select class="form-control" name="pendidikan" id="pendidikan">
+                        <select class="form-control @error('pendidikan') is-invalid
+                        @enderror" name="pendidikan" id="pendidikan" value="{{ old('pendidikan') }}">
+                        @error('pendidikan')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                             <option value="">- Pilih Pendidikan -</option>
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
@@ -47,17 +68,30 @@
 
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="alamat"></textarea>
+                        <textarea class="form-control @error('judul') is-invalid
+                        @enderror" id="alamat" name="alamat" value="{{ old('alamat') }}">
+                        @error('alamat')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        </textarea>
                     </div>
 
                     <div class="mb-3">
                         <label for="no_telepon" class="form-label">No. Telepon</label>
-                        <input type="text" class="form-control" id="no_telepon" name="no_telepon">
+                        <input type="text" class="form-control @error('no_telepon') is-invalid
+                        @enderror" id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}">
+                        @error('no_telepon')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="status" class="form-label">Status</label>
-                        <select class="form-control" name="status" id="status">
+                        <select class="form-control @error('status') is-invalid
+                        @enderror" name="status" id="status" value="{{ old('status') }}">
+                        @error('status')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                             <option value="">- Pilih Status -</option>
                             <option value="pelajar">Pelajar</option>
                             <option value="mahasiswa">Mahasiswa</option>

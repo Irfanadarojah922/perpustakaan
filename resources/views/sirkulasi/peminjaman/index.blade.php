@@ -38,43 +38,64 @@
         </div>
         
         <div class="card-body">
-            <table id="table_peminjaman" class="table table-bordered table-striped" style="width:100%">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">ID</th>
-                        <th scope="col">Tanggal Pinjam</th>
-                        <th scope="col">Tanggal Kembali</th>
-                        <th scope="col">Status Pengembalian</th>
-                        <th scope="col">Nama Anggota</th>
-                        <th scope="col">Judul Buku</th>
-                        <th scope="col">Kategori Buku</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th colspan="7" class="text-center">No Data Display</th>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table id="table_peminjaman" class="table table-bordered table-striped" style="width:100%">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">ID</th>
+                            <th scope="col">Tanggal Pinjam</th>
+                            <th scope="col">Tanggal Kembali</th>
+                            <th scope="col">Status Pengembalian</th>
+                            <th scope="col">Nama Anggota</th>
+                            <th scope="col">Judul Buku</th>
+                            <th scope="col">Kategori Buku</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th colspan="8" class="text-center">No Data Display</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
+
     @include('sirkulasi.peminjaman.create')
     @include('sirkulasi.peminjaman.edit')
+
+
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                  var myModal = new bootstrap.Modal(document.getElementById('createModal'));
+            myModal.show();
+            })
+        </script>
+    @endif
+    
 @endsection
 
 @push('script-libs')
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> 
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+
+    <script>
+        
+    
+    </script>
 @endpush
 
 @push("scripts")
     <script>
         $(document).ready(function () {
             $('#table_peminjaman').DataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: '{{url()->current()}}',
@@ -89,7 +110,15 @@
                     { data: 'action', name: 'action' }
 
                 ]
-            })
-        })
+            });       
+            
+ 
+
+    
+            function editForm(url){
+                $('#editModal').modal('show');
+            }
+
+        });
     </script>
 @endpush

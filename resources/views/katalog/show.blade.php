@@ -4,7 +4,7 @@
 {{-- Banner --}}
 <div class="banner mb-5">
     <div>
-        <h2 class="fw-bold">Detail | Pustaka Pintar</h2>
+        <h2 class="fw-bold">Detail  |  Pustaka Pintar</h2>
         <p class="text-light">Selamat Datang di Halaman Katalog Aplikasi Pustaka Pintar</p>
     </div>
 </div>
@@ -13,14 +13,9 @@
 <div class="container">
     <div class="row">
         {{-- Gambar Buku --}}
+
         <div class="col-md-4 mb-4">
-            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner rounded shadow">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('assets/images/1747293992_Screenshot 2024-11-18 215441.png') }}" class="d-block w-100" alt="cover buku">
-                    </div>
-                </div>
-            </div>
+            <img src="{{ asset($bukus->foto) }}" class="cover-buku img-fluid" alt="cover buku">
         </div>
 
         {{-- Detail Buku --}}

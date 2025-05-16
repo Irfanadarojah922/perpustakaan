@@ -48,15 +48,15 @@
                     <div class="mb-3">
                         <label for="kategori_id" class="form-label">Kategori</label>
                         <select class="form-select @error('kategori_id') is-invalid
-                        @enderror" id="kategori_id" name="kategori_id" value="{{ old('kategori_id') }}">
-                        @error('kategori')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                            @enderror" id="kategori_id" name="kategori_id" value="{{ old('kategori_id') }}">
+                            @error('kategori')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
 
                             <option selected disabled>Pilih Kategori</option>
-                            @foreach ($kategoris as $kategori)
-                                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
-                            @endforeach
+                                @foreach ($kategoris as $kategori)
+                                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                @endforeach
                         </select>
                     </div>
 

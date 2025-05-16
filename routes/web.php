@@ -38,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/keanggotaan', AnggotaController::class);
 
     Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
+    Route::get('/pinjam/{id}/edit', [PeminjamanController::class, 'edit']);
+    Route::put('/pinjam/{id}', [PeminjamanController::class, 'update'])->name('pinjam.update');
 
     Route::resource('/sirkulasi/pengembalian', PengembalianController::class);
 

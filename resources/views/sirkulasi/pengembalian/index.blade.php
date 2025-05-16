@@ -48,12 +48,11 @@
                             <th scope="col">Denda</th>
                             <th scope="col">Keterangan</th>
                             <th scope="col">Aksi</th>
-
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th colspan="7" class="text-center">No Data Display</th>
+                            <th colspan="8" class="text-center">No Data Display</th>
                         </tr>
                     </tbody>
                 </table>
@@ -62,6 +61,15 @@
     </div>
     @include('sirkulasi.pengembalian.create')
     @include('sirkulasi.pengembalian.edit')
+
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                  var myModal = new bootstrap.Modal(document.getElementById('createModal'));
+            myModal.show();
+            })
+        </script>
+    @endif
 
 @endsection
 
@@ -76,6 +84,7 @@
     <script>
         $(document).ready(function () {
             $('#table_pengembalian').DataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
                 ajax: '{{url()->current()}}',

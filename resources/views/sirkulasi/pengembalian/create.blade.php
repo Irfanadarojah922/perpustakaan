@@ -10,27 +10,48 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="id" class="form-label">ID</label>
-                        <input type="text" class="form-control" id="id" name="id" value="">
+                        <input type="text" class="form-control @error('id') is-invalid
+                        @enderror" id="id" name="id" value="{{ old('id') }}">
+                        @error('id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="pinjam_id" class="form-label">Pinjam ID</label>
-                        <input type="text" class="form-control" id="pinjam_id" name="pinjam_id" value="">
+                        <input type="text" class="form-control @error('pinjam_id') is-invalid
+                        @enderror" id="pinjam_id" name="pinjam_id" value="{{ old('pinjam_id') }}">
+                        @error('pinjam_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="buku_id" class="form-label">Buku ID</label>
-                        <input type="text" class="form-control" id="buku_id" name="buku_id" value="">
+                        <input type="text" class="form-control @error('buku_id') is-invalid
+                        @enderror" id="buku_id" name="buku_id" value="{{ old('buku_id') }}">
+                        @error('buku_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
-                        <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" value="">
+                        <input type="date" class="form-control @error('tanggal_kembali') is-invalid
+                        @enderror" id="tanggal_kembali" name="tanggal_kembali" value="{{ old('tanggal_kembali') }}">
+                        @error('tanggal_kembali')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="denda" class="form-label">Denda</label>
-                        <select class="form-control" name="denda" id="denda">
+                        <select class="form-control @error('denda') is-invalid
+                        @enderror" name="denda" id="denda" value="{{ old('denda') }}">
+                        @error('denda')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+
                             <option value="">- Pilih -</option>
                             <option value="ganti buku"> Ganti Buku </option>
                             <option value="perbaikan Buku"> Perbaikan Buku </option>
@@ -41,7 +62,11 @@
 
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan" value="">
+                        <input type="text" class="form-control @error('keterangan') is-invalid
+                        @enderror" id="keterangan" name="keterangan" value="{{ old('keterangan') }}">
+                        @error('keterangan')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="modal-footer">

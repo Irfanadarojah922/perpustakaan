@@ -23,8 +23,8 @@ class PengembalianController extends Controller
                         '<td class="text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#edit_modal">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
+                                    data-bs-target="#edit_modal"> <i class="bx bx-edit" style="font-size:1rem;"></i></button>
+                                <button type="button" class="btn btn-danger"> <i class="bx bx-trash" style="font-size:1rem;"></i></button>
                             </div>
                         </td>';
             return $action;
