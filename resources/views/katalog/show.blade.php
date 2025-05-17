@@ -15,7 +15,7 @@
         {{-- Gambar Buku --}}
 
         <div class="col-md-4 mb-4">
-            <img src="{{ asset("assets/images/" . $bukus->foto )}}" class="cover-buku img-fluid" alt="cover buku">
+            <img src="{{ asset( $bukus->foto )}}" class="cover-buku img-fluid" alt="cover buku">
         </div>
 
         {{-- Detail Buku --}}
