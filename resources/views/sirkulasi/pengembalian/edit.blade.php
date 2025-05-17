@@ -1,57 +1,60 @@
-<div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <form id="editForm">
+            @csrf
+            @method('PUT')
 
-            <form method="POST" action="{{route('pengembalian.store')}}">
-                @csrf
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Pengembalian</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">Edit Pinjam</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <div class="modal-body">
+                    <input type="hidden" id="edit_id" name="id">
+
                     <div class="mb-3">
-                        <label for="id" class="form-label">ID</label>
-                        <input type="text" class="form-control" id="id" name="id" value="">
+                        <label>ID</label>
+                        <input type="text" name="id" id="edit_id" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label for="pinjam_id" class="form-label">Pinjam ID</label>
-                        <input type="text" class="form-control" id="pinjam_id" name="pinjam_id" value="">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="buku_id" class="form-label">Buku ID</label>
-                        <input type="text" class="form-control" id="buku_id" name="buku_id" value="">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
-                        <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" value="">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="denda" class="form-label">Denda</label>
-                        <select class="form-control" name="denda" id="denda">
-                            <option value="">- Pilih -</option>
-                            <option value="ganti buku"> Ganti Buku </option>
-                            <option value="perbaikan Buku"> Perbaikan Buku </option>
-                            <option value="tepat waktu"> Tepat Waktu </option>
+                        <label>Pinjam ID</label>
+                        {{-- <input type="text" name="pinjam_id" id="edit_pinjam_id" class="form-control"> --}}
+                        <select name="pinjam_id" id="edit_pinjam_id" class="form-control" required>
+                        <!-- Option akan diisi lewat JavaScript (lihat bawah) -->
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label">Keterangan</label>
-                        <input type="text" class="form-control" id="keterangan" name="keterangan" value="">
+                        <label>Buku ID</label>
+                        {{-- <input type="text" name="buku_id" id="edit_buku_id" class="form-control"> --}}
+                        <select name="buku_id" id="edit_buku_id" class="form-control" required>
+                        <!-- Option akan diisi lewat JavaScript (lihat bawah) -->
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Tanggal Kembali</label>
+                        <input type="date" name="tanggal_kembali" id="edit_tanggal_kembali" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Denda</label>
+                        <input type="text" name="denda" id="edit_denda" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Keterangan</label>
+                        <input type="text" name="keterangan" id="edit_keterangan" class="form-control">
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
-            </form>
 
-        </div>
+            </div>
+        </form>      
     </div>
 </div>

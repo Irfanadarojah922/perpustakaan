@@ -4,6 +4,8 @@ namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kembali;
+use App\Models\Pinjam;
+use App\Models\Buku;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -20,20 +22,22 @@ class PengembalianController extends Controller
 
             return DataTables::of($kembali)->addColumn("action", function($row){
                 $action =
-                        '<td class="text-center">
+                    '<td class="text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#edit_modal"> <i class="bx bx-edit" style="font-size:1rem;"></i></button>
+
+                            <button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '"><i class="bx bx-edit" style="font-size:1rem;"></i></button>
                                 <button type="button" class="btn btn-danger"> <i class="bx bx-trash" style="font-size:1rem;"></i></button>
                             </div>
                         </td>';
-            return $action;
-            })->make(true);
+                return $action;
+            })->rawColumns(['action'])
+
+                ->make(true);
         }
 
         return view("sirkulasi.pengembalian.index", compact('kembali'));
     }
-        public function store(Request $request)
+    public function store(Request $request)
     {
         $data = Kembali::create($request->validate([
             "pinjam_id" => "required|string|max:255",
@@ -46,4 +50,36 @@ class PengembalianController extends Controller
         return $data ? redirect("/sirkulasi/pengembalian")->with("success", "Pengembalian
         Created Successfully!") : back()->with("error", "Something Error!");
     }
+
+    public function edit($id)
+    {
+        $data = Kembali::with(['bukus', 'pinjams'])->findOrFail($id);
+
+        $bukus = Buku::all();
+        $pinjams = Pinjam::all();
+
+        return response()->json([
+            'data' => $data,
+            'bukus' => $bukus,
+            'pinjams' => $pinjams,
+        ]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            "pinjam_id" => "required|exists:pinjams,id",
+            "buku_id" => "required|exists:bukus,id",
+            "tanggal_kembali" => "required|string|max:255",
+            "denda" => "required|string|max:255",
+            "keterangan" => "required|string|max:255",
+        ]);
+
+        $data = Kembali::findOrFail($id);
+        $data->update($validated);
+
+        return response()->json(['message' => 'Data berhasil diupdate']);
+    }
+
 }
