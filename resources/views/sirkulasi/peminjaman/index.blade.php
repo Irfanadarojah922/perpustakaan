@@ -65,6 +65,7 @@
 
     @include('sirkulasi.peminjaman.create')
     @include('sirkulasi.peminjaman.edit')
+    @include('sirkulasi.peminjaman.delete')
 
 
     @if ($errors->any())
@@ -176,6 +177,35 @@
             alert('Terjadi kesalahan saat mengupdate.');
             console.log(err.responseJSON);
           }
+        });
+      });
+
+      $(document).on('click', '.deleteBtn', function () {
+        let id = $(this).data('id');
+        $('#delete_id').val(id);
+        $('#deleteModal').modal('show');
+      });
+
+      $('#deleteForm').submit(function (e) {
+        e.preventDefault();
+          let id = $('#delete_id').val();
+
+        $.ajax({
+          url: `/peminjaman/${id}`,
+          type: 'POST',
+          data: {
+           _method: 'DELETE',
+           _token: '{{ csrf_token() }}'
+          },
+          success: function (res) {
+              $('#deleteModal').modal('hide');
+              $('#table_peminjaman').DataTable().ajax.reload();
+              alert(res.message);
+            },
+              error: function (err) {
+              alert('Terjadi kesalahan saat menghapus.');
+              console.log(err.responseText);
+            }
         });
       });
     });

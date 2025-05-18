@@ -65,6 +65,7 @@
 
     @include('sirkulasi.pengembalian.create')
     @include('sirkulasi.pengembalian.edit')
+    @include('sirkulasi.pengembalian.delete')
 
     @if ($errors->any())
         <script>
@@ -160,7 +161,36 @@
                 }
                 });
             });
+            });
+
+            $(document).on('click', '.deleteBtn', function () {
+                let id = $(this).data('id');
+                $('#delete_id').val(id);
+                $('#deleteModal').modal('show');
+            });
+
+            $('#deleteForm').submit(function (e) {
+                e.preventDefault();
+                let id = $('#delete_id').val();
+
+                $.ajax({
+                url: `/pengembalian/${id}`,
+                type: 'POST',
+                data: {
+                _method: 'DELETE',
+                _token: '{{ csrf_token() }}'
+                },
+                success: function (res) {
+                    $('#deleteModal').modal('hide');
+                    $('#table_pengembalian').DataTable().ajax.reload();
+                    alert(res.message);
+                    },
+                    error: function (err) {
+                    alert('Terjadi kesalahan saat menghapus.');
+                    console.log(err.responseText);
+                    }
+                });
+            });
         });
-    });
     </script>
 @endpush
