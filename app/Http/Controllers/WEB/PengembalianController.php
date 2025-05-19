@@ -18,7 +18,7 @@ class PengembalianController extends Controller
             if (\request()->ajax()) {
 
             // misal $kembali= Kembali::all() artinya ambil semua data dari tabel kembali tanpa relasi atau tanpa tabel pinjam dan buku atau juga tanpa tabel yang berkaitan
-            $kembali = Kembali::with(['pinjams:id', 'bukus:id,judul'])->get(); // ambil semua data dari tabel kembali dengan relasi tabel pinjam dan buku, data yang diambil dari Pinjam cuma id, dari buku cuma id dan judul
+            $kembali = Kembali::with(['pinjam:id', 'bukus:id,judul', 'anggota:nama'])->get(); // ambil semua data dari tabel kembali dengan relasi tabel pinjam dan buku, data yang diambil dari Pinjam cuma id, dari buku cuma id dan judul
 
             return DataTables::of($kembali)->addColumn("action", function($row){
                 $action =
@@ -37,6 +37,18 @@ class PengembalianController extends Controller
 
         return view("sirkulasi.pengembalian.index", compact('kembali'));
     }
+
+    public function add()
+    {
+        $bukus = Buku::all();
+        $pinjams  = Pinjam::all();
+
+        return response()->json([
+            'bukus' => $bukus,
+            'pinjams' => $pinjams
+            
+        ]);
+    }    
     public function store(Request $request)
     {
         $data = Kembali::create($request->validate([
@@ -65,7 +77,6 @@ class PengembalianController extends Controller
         ]);
     }
 
-
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -89,6 +100,5 @@ class PengembalianController extends Controller
 
     return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
     }
-
 
 }

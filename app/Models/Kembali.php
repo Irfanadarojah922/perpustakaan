@@ -16,9 +16,22 @@ class Kembali extends Model
         'denda',
         'keterangan',
     ];
-    public function pinjams()
+    public function pinjam()
     {
         return $this->belongsTo(Pinjam::class, 'pinjam_id');
+    }
+
+    // Access anggota THROUGH pinjam
+    public function anggota()
+    {
+        return $this->hasOneThrough(
+            Anggota::class,   // Final model
+            Pinjam::class,    // Intermediate model
+            'id',             // Foreign key on Pinjam (referencing Anggota)
+            'id',             // Primary key on Anggota
+            'pinjam_id',      // Foreign key on Kembali
+            'anggota_id'      // Foreign key on Pinjam
+        );
     }
 
     public function bukus()

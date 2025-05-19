@@ -14,12 +14,12 @@
     <div class="header">
         <div class="left">
             <h1> @yield ("header") </h1>
-            <ul class="breadcrumb">
+            {{-- <ul class="breadcrumb">
                 <li><a href="#">
                         Dashboard
                     </a></li>
                 /
-            </ul>
+            </ul> --}}
         </div>
     </div>
 
@@ -43,7 +43,7 @@
                         <thead>
                             <tr class="text-center">
                             <th scope="col">ID</th>
-                            <th scope="col">Pinjam ID</th>
+                            <th scope="col">Nama Anggota</th>
                             <th scope="col">Judul Buku</th>
                             <th scope="col">Tanggal Kembali</th>
                             <th scope="col">Denda</th>
@@ -94,8 +94,14 @@
                 serverSide: true,
                 ajax: '{{url()->current()}}',
                 columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'pinjam_id', name: 'pinjam_id' },
+                    // { data: 'id', name: 'id' },
+                    {
+                        data: null,
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    { data: 'anggota.nama', name: 'nama' },        
                     { data: 'bukus.judul', name: 'buku_id' },
                     { data: 'tanggal_kembali', name: 'tanggal_kembali' },
                     { data: 'denda', name: 'denda' },
@@ -104,6 +110,44 @@
                 ]
             });
 
+            // utk form input
+            $.get(`/pengembalian/add`, function(res) {
+                let data = res.data;
+
+                // console.log(judul buku);
+                let bukuOptions = ``;
+                res.bukus.forEach(function(buku) {
+
+                    bukuOptions += `<option value="${buku.id}">${buku.judul}</option>`;
+                });
+                $('#add_buku_id').html(bukuOptions);
+
+                // console.log(nama peminjam);
+                let pinjamOptions = ``;
+                res.pinjams.forEach(function(pinjam) {
+
+                    pinjamOptions += `<option value="${pinjam.id}">${pinjam.anggota_id}</option>`;
+                });
+                $('#add_pinjam_id').html(pinjamOptions);
+
+                // // console.log(keterangan);
+                // let kembaliOptions = ``;
+                // res.kembalis.forEach(function(kembali) {
+
+                //     kembaliOptions += `<option value="${kembali.id}">${kembali.keterangan}</option>`;
+                // });
+                // $('#add_keterangan').html(kembaliOptions);
+                
+                // // console.log(denda);
+                // let kembaliOptions = ``;
+                // res.kembalis.forEach(function(kembali) {
+
+                //     kembaliOptions += `<option value="${kembali.id}">${kembali.denda}</option>`;
+                // });
+                // $('#add_denda').html(kembaliOptions);
+            
+            });
+            
             $(document).on('click', '.editBtn', function() {
             let id = $(this).data('id');
 
@@ -161,6 +205,26 @@
                 }
                 });
             });
+            });
+
+            $('#editForm').submit(function(e) {
+                e.preventDefault();
+                let id = $('#edit_id').val();
+                $.ajax({
+
+                url: `/pengembalian/${id}`,
+                method: 'PUT',
+                data: $(this).serialize(),
+                success: function(res) {
+                    $('#editModal').modal('hide');
+                    $('#table_pengembalian').DataTable().ajax.reload();
+                    alert('Data berhasil diupdate!');
+                },
+                error: function(err) {
+                    alert('Terjadi kesalahan saat mengupdate.');
+                    console.log(err.responseJSON);
+                }
+                });
             });
 
             $(document).on('click', '.deleteBtn', function () {

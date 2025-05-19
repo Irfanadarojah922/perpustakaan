@@ -35,6 +35,22 @@ class PeminjamanController extends Controller
         }
         return view("sirkulasi.peminjaman.index", compact('pinjam'));
     }
+
+    public function add()
+    {
+        $bukus = Buku::all();
+        $anggotas = Anggota::all();
+        $kategoris = Kategori::all();
+        $pinjams  = Pinjam::all();
+
+        return response()->json([
+            'bukus' => $bukus,
+            'anggotas' => $anggotas,
+            'kategoris' => $kategoris,
+            'pinjams' => $pinjams
+        ]);
+    }
+
     public function store(Request $request)
     {
         $data = Pinjam::create($request->validate([
@@ -66,7 +82,6 @@ class PeminjamanController extends Controller
             'kategoris' => $kategoris,
         ]);
     }
-
 
     public function update(Request $request, $id)
     {

@@ -39,12 +39,14 @@ Route::resource('/keanggotaan', AnggotaController::class);
 
 Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
 Route::get('/peminjaman/{id}/edit', [PeminjamanController::class, 'edit']);
+Route::get('/peminjaman/add', [PeminjamanController::class, 'add']);
 Route::put('/peminjaman/{id}', [PeminjamanController::class, 'update'])->name('pinjam.update');
 Route::delete('/peminjaman/{id}', [PeminjamanController::class, 'destroy']);
 
 
 Route::resource('/sirkulasi/pengembalian', PengembalianController::class);
 Route::get('/pengembalian/{id}/edit', [PengembalianController::class, 'edit']);
+Route::get('/pengembalian/add', [PengembalianController::class, 'add']);
 Route::put('/pengembalian/{id}', [PengembalianController::class, 'update'])->name('kembali.update');
 Route::delete('/pengembalian/{id}', [PengembalianController::class, 'destroy']);
 

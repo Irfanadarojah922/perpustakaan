@@ -15,40 +15,41 @@
 
           <div class="mb-3">
             <label>Tanggal Pinjam</label>
-            <input type="text" name="tanggal_pinjam" id="edit_tanggal_pinjam" class="form-control">
+            <input type="date" name="tanggal_pinjam" id="edit_tanggal_pinjam" class="form-control">
           </div>
 
           <div class="mb-3">
             <label>Tanggal Kembali</label>
-            <input type="text" name="tanggal_kembali" id="edit_tanggal_kembali" class="form-control">
+            <input type="date" name="tanggal_kembali" id="edit_tanggal_kembali" class="form-control">
           </div>
 
           <div class="mb-3">
             <label>Status Pengembalian</label>
-            <input type="text" name="status_pengembalian" id="edit_status_pengembalian" class="form-control">
+            {{-- <input type="text" name="status_pengembalian" id="edit_status_pengembalian" class="form-control"> --}}
+            <select name="status_pengembalian" id="edit_status_pengembalian" class="form-control" required>
+            </select>
+
           </div>
 
           <div class="mb-3">
-            <label>Anggota ID</label>
-            {{-- <input type="text" name="anggota_id" id="edit_anggota_id" class="form-control"> --}}
+             <label>Nama Anggota</label>
+             {{-- <input type="text" name="anggota_id" id="edit_anggota_id" class="form-control"> --}}
             <select name="anggota_id" id="edit_anggota_id" class="form-control" required>
-              <!-- Option akan diisi lewat JavaScript (lihat bawah) -->
+              
             </select>
           </div>
 
           <div class="mb-3">
-            <label>Buku ID</label>
+            <label>Judul Buku</label>
             {{-- <input type="text" name="buku_id" id="edit_buku_id" class="form-control"> --}}
             <select name="buku_id" id="edit_buku_id" class="form-control" required>
-              <!-- Option akan diisi lewat JavaScript (lihat bawah) -->
             </select>
           </div>
 
           <div class="mb-3">
-            <label>Kategori ID</label>
+            <label>Kategori</label>
             {{-- <input type="text" name="kategori_id" id="edit_kategori_id" class="form-control"> --}}
             <select name="kategori_id" id="edit_kategori_id" class="form-control" required>
-              <!-- Option akan diisi lewat JavaScript (lihat bawah) -->
             </select>
           </div>
 

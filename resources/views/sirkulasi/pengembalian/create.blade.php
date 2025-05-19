@@ -18,21 +18,16 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="pinjam_id" class="form-label">Pinjam ID</label>
-                        <input type="text" class="form-control @error('pinjam_id') is-invalid
-                        @enderror" id="pinjam_id" name="pinjam_id" value="{{ old('pinjam_id') }}">
-                        @error('pinjam_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label>Pinjam ID</label>
+                        <select name="pinjam_id" id="add_pinjam_id" class="form-control" required>
+                        </select>
                     </div>
 
                     <div class="mb-3">
-                        <label for="buku_id" class="form-label">Buku ID</label>
-                        <input type="text" class="form-control @error('buku_id') is-invalid
-                        @enderror" id="buku_id" name="buku_id" value="{{ old('buku_id') }}">
-                        @error('buku_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label>Judul Buku</label>
+                        {{-- <input type="text" name="buku_id" id="edit_buku_id" class="form-control"> --}}
+                        <select name="buku_id" id="add_buku_id" class="form-control" required>
+                        </select>
                     </div>
 
                     <div class="mb-3">
@@ -54,19 +49,23 @@
 
                             <option value="">- Pilih -</option>
                             <option value="ganti buku"> Ganti Buku </option>
-                            <option value="perbaikan Buku"> Perbaikan Buku </option>
+                            <option value="perbaikan Buku"> Perbaikan </option>
                             <option value="tepat waktu"> Tepat Waktu </option>
                         </select>
                     </div>
 
-
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">Keterangan</label>
-                        <input type="text" class="form-control @error('keterangan') is-invalid
-                        @enderror" id="keterangan" name="keterangan" value="{{ old('keterangan') }}">
+                        <select class="form-control @error('keterangan') is-invalid
+                        @enderror" name="keterangan" id="keterangan" value="{{ old('keterangan') }}">
                         @error('keterangan')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+
+                            <option value="">- Pilih -</option>
+                            <option value="dipinjam"> Buku hilang </option>
+                            <option value="dipinjam"> Rusak </option>
+                        </select>
                     </div>
 
                     <div class="modal-footer">

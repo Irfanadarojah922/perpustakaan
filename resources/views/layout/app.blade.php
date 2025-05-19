@@ -81,13 +81,13 @@
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
-            <a href="#" class="notif">
+            {{-- <a href="#" class="notif">
                 <i class='bx bx-bell'></i>
                 <span class="count">12</span>
             </a>
             <a href="#" class="profile">
                 <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
-            </a>
+            </a> --}}
         </nav>
         <!-- End of Navbar -->
 

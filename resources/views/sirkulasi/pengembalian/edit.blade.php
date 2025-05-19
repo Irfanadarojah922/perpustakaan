@@ -20,17 +20,13 @@
 
                     <div class="mb-3">
                         <label>Pinjam ID</label>
-                        {{-- <input type="text" name="pinjam_id" id="edit_pinjam_id" class="form-control"> --}}
                         <select name="pinjam_id" id="edit_pinjam_id" class="form-control" required>
-                        <!-- Option akan diisi lewat JavaScript (lihat bawah) -->
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label>Buku ID</label>
-                        {{-- <input type="text" name="buku_id" id="edit_buku_id" class="form-control"> --}}
                         <select name="buku_id" id="edit_buku_id" class="form-control" required>
-                        <!-- Option akan diisi lewat JavaScript (lihat bawah) -->
                         </select>
                     </div>
 
@@ -41,12 +37,12 @@
 
                     <div class="mb-3">
                         <label>Denda</label>
-                        <input type="text" name="denda" id="edit_denda" class="form-control">
+                        <select name="denda" id="edit_denda" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
                         <label>Keterangan</label>
-                        <input type="text" name="keterangan" id="edit_keterangan" class="form-control">
+                        <select name="keterangan" id="edit_keterangan" class="form-control" required>
                     </div>
                 </div>
 

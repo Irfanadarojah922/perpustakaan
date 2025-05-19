@@ -14,12 +14,12 @@
     <div class="header">
       <div class="left">
         <h1> @yield ("header") </h1>
-        <ul class="breadcrumb">
+        {{-- <ul class="breadcrumb">
           <li><a href="#">
               Dashboard
             </a></li>
           /
-        </ul>
+        </ul> --}}
       </div>
     </div>
 
@@ -42,7 +42,7 @@
             <table id="table_peminjaman" class="table table-bordered table-striped" style="width:100%">
               <thead>
                 <tr class="text-center">
-                  <th scope="col">ID</th>
+                  <th scope="col">No</th>
                   <th scope="col">Tanggal Pinjam</th>
                   <th scope="col">Tanggal Kembali</th>
                   <th scope="col">Status Pengembalian</th>
@@ -96,7 +96,13 @@
         serverSide: true,
         ajax: '{{ url()->current() }}',
         columns: [
-          {data: 'id', name: 'id'},
+          // {data: 'id', name: 'id'},
+          {
+              data: null,
+              render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }
+          },
           {data: 'tanggal_pinjam', name: 'tanggal_pinjam'},
           {data: 'tanggal_kembali', name: 'tanggal_kembali'},
           {data: 'status_pengembalian', name: 'status_pengembalian'},
@@ -105,6 +111,43 @@
           {data: 'kategoris.nama_kategori', name: 'kategori_id'},
           {data: 'action', name: 'action'}
         ]
+      });
+
+      // utk form input
+      $.get(`/peminjaman/add`, function(res) {
+        let data = res.data;
+
+        // console.log(anggota.id);
+        let anggotaOptions = ``;
+        res.anggotas.forEach(function(anggota) {
+            anggotaOptions += `<option value="${anggota.id}">${anggota.nama}</option>`;
+          });
+        $('#add_anggota_id').html(anggotaOptions);
+
+        // console.log(judul buku);
+        let bukuOptions = ``;
+        res.bukus.forEach(function(buku) {
+
+            bukuOptions += `<option value="${buku.id}">${buku.judul}</option>`;
+          });
+        $('#add_buku_id').html(bukuOptions);
+          
+        // console.log(kategori);
+        let kategoriOptions = ``;
+        res.kategoris.forEach(function(kategori) {
+
+            kategoriOptions += `<option value="${kategori.id}">${kategori.nama_kategori}</option>`;
+          });
+        $('#add_kategori_id').html(kategoriOptions);
+
+        // console.log(status);
+        let pinjamOptions = ``;
+        res.pinjams.forEach(function(pinjam) {
+
+            pinjamOptions += `<option value="${pinjam.id}">${pinjam.status_pengembalian}</option>`;
+          });
+        $('#add_pinjam_id').html(pinjamOptions);
+          
       });
 
       $(document).on('click', '.editBtn', function() {
@@ -118,6 +161,15 @@
           $('#edit_tanggal_kembali').val(data.tanggal_kembali);
           $('#edit_status_pengembalian').val(data.status_pengembalian);
 
+
+          // Populate select status_pengembalian
+          let statusOptions = ['Dipinjam', 'Dikembalikan'];
+          let statusSelect = $('#edit_status_pengembalian');
+          statusSelect.empty();
+          statusOptions.forEach(function(status) {
+            statusSelect.append(`<option value="${status}" ${status == data.status_pengembalian ? 'selected' : ''}>${status}</option>`);
+          });
+          
           // Populate select buku
           let bukuOptions = '';
           res.bukus.forEach(function(buku) {
@@ -127,10 +179,11 @@
           $('#edit_buku_id').html(bukuOptions);
 
           // Populate select anggota
-          let anggotaOptions = '';
+          let anggotaOptions = ``;
+          
           res.anggotas.forEach(function(anggota) {
-            anggotaOptions +=
-              `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nama}</option>`;
+            // console.log(anggota.id);
+            anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nama}</option>`;
           });
           $('#edit_anggota_id').html(anggotaOptions);
 

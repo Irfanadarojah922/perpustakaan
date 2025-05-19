@@ -49,17 +49,10 @@
         <div class="col">
             <div class="left">
                 <h1> @yield ("header") </h1>
-                <ul class="breadcrumb">
+                {{-- <ul class="breadcrumb">
                     <li><a href="#"> Dashboard </a></li>
                     /
-                </ul>
-            </div>
-
-            <div class="right">
-                <a href="#" class="download">
-                    <i class='bx bx-cloud-download'></i>
-                    <span>Download CSV</span>
-                </a>
+                </ul> --}}
             </div>
         </div>
     </div>
