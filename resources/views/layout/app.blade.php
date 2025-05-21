@@ -74,7 +74,7 @@
         <nav>
             <i class='bx bx-menu'></i>
             <form action="#">
-                <div class="form-input">
+                <div class="form-input" style="display: none;">
                     <input type="search" placeholder="Search...">
                     <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>

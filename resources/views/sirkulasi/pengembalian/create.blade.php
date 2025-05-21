@@ -9,26 +9,22 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="id" class="form-label">ID</label>
-                        <input type="text" class="form-control @error('id') is-invalid
-                        @enderror" id="id" name="id" value="{{ old('id') }}">
-                        @error('id')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label for="add_kode_buku" class="form-label">Kode Buku</label>
+                        <select name="buku_id" id="add_kode_buku" class="form-control" required>
+                        </select>
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label>Pinjam ID</label>
                         <select name="pinjam_id" id="add_pinjam_id" class="form-control" required>
                         </select>
-                    </div>
+                    </div> --}}
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label>Judul Buku</label>
-                        {{-- <input type="text" name="buku_id" id="edit_buku_id" class="form-control"> --}}
                         <select name="buku_id" id="add_buku_id" class="form-control" required>
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3">
                         <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
@@ -48,9 +44,9 @@
                         @enderror
 
                             <option value="">- Pilih -</option>
-                            <option value="ganti buku"> Ganti Buku </option>
-                            <option value="perbaikan Buku"> Perbaikan </option>
-                            <option value="tepat waktu"> Tepat Waktu </option>
+                            <option value="Ganti Buku"> Ganti Buku </option>
+                            <option value="Perbaikan"> Perbaikan </option>
+                            <option value="Tepat Waktu"> Tepat Waktu </option>
                         </select>
                     </div>
 
@@ -63,8 +59,8 @@
                         @enderror
 
                             <option value="">- Pilih -</option>
-                            <option value="dipinjam"> Buku hilang </option>
-                            <option value="dipinjam"> Rusak </option>
+                            <option value="buku hilang"> Buku hilang </option>
+                            <option value="rusak"> Rusak </option>
                         </select>
                     </div>
 

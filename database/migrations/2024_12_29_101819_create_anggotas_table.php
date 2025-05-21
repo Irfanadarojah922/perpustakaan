@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('anggotas', function (Blueprint $table) {
             $table->id();
-            $table->char('anggota_id', 20)->unique();
+            $table->char('anggota_nik', 20)->unique();
             $table->string('nama', 255);
             $table->string('tempat_lahir', 255);
             $table->date('tanggal_lahir');

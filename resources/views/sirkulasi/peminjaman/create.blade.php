@@ -54,8 +54,8 @@
                         @enderror
 
                             <option value="">- Pilih -</option>
-                            <option value="ganti buku"> Dipinjam </option>
-                            <option value="perbaikan Buku"> Dikembalikan </option>
+                            <option value="Dipinjam"> Dipinjam </option>
+                            <option value="Dikembalikan"> Dikembalikan </option>
                         </select>
                     </div>
                    

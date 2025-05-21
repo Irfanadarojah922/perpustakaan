@@ -14,19 +14,19 @@
                     <input type="hidden" id="edit_id" name="id">
 
                     <div class="mb-3">
-                        <label>ID</label>
-                        <input type="text" name="id" id="edit_id" class="form-control">
+                        <label>NIK</label>
+                        <input type="text" name="id" id="edit_nik" class="form-control">
                     </div>
 
                     <div class="mb-3">
-                        <label>Pinjam ID</label>
-                        <select name="pinjam_id" id="edit_pinjam_id" class="form-control" required>
+                        <label>Nama Anggota</label>
+                        <select name="pinjam_id" id="edit_nama_anggota" class="form-control" required>
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label>Buku ID</label>
-                        <select name="buku_id" id="edit_buku_id" class="form-control" required>
+                        <label>Judul Buku</label>
+                        <select name="buku_id" id="edit_judul_buku" class="form-control" required>
                         </select>
                     </div>
 
@@ -38,11 +38,13 @@
                     <div class="mb-3">
                         <label>Denda</label>
                         <select name="denda" id="edit_denda" class="form-control" required>
+                        </select>
                     </div>
 
                     <div class="mb-3">
                         <label>Keterangan</label>
                         <select name="keterangan" id="edit_keterangan" class="form-control" required>
+                        </select>
                     </div>
                 </div>
 

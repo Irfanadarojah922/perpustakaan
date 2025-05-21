@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->id()->primary();
+            $table->string('kode_buku', 255);
             $table->unsignedBigInteger('kategori_id');
-            $table->string('judul', 255)->nullable();
-            $table->string('penulis', 255)->nullable();
-            $table->string('penerbit', 255)->nullable();
+            $table->string('judul', 255);
+            $table->string('penulis', 255);
+            $table->string('penerbit', 255);
             $table->year('tahun_terbit');
-            $table->string('isbn', 255)->nullable();
+            $table->string('isbn', 255);
             $table->integer('jumlah_eksemplar');
             $table->integer('jumlah_tersedia');
             $table->longText('deskripsi')->nullable();

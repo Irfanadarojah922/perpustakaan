@@ -25,7 +25,7 @@ class KembaliSeeder extends Seeder
             'buku_id' => $faker->randomElement($buku ),
             'tanggal_kembali' => '2024-12-15',
             'denda' => 'Ganti Buku',
-            'keterangan' => 'buku rusak/hilang',
+            'keterangan' => 'buku hilang',
         ]);
         }
     }

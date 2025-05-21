@@ -18,7 +18,7 @@ class PengembalianController extends Controller
             if (\request()->ajax()) {
 
             // misal $kembali= Kembali::all() artinya ambil semua data dari tabel kembali tanpa relasi atau tanpa tabel pinjam dan buku atau juga tanpa tabel yang berkaitan
-            $kembali = Kembali::with(['pinjam:id', 'bukus:id,judul', 'anggota:nama'])->get(); // ambil semua data dari tabel kembali dengan relasi tabel pinjam dan buku, data yang diambil dari Pinjam cuma id, dari buku cuma id dan judul
+            $kembali = Kembali::with(['pinjam:id', 'bukus:id,judul,kode_buku', 'anggota:nama,anggota_nik'])->get(); // ambil semua data dari tabel kembali dengan relasi tabel pinjam dan buku, data yang diambil dari Pinjam cuma id, dari buku cuma id, judul dan kode_buku
 
             return DataTables::of($kembali)->addColumn("action", function($row){
                 $action =
@@ -41,7 +41,7 @@ class PengembalianController extends Controller
     public function add()
     {
         $bukus = Buku::all();
-        $pinjams  = Pinjam::all();
+        $pinjams = Pinjam::with('anggotas')->get();
 
         return response()->json([
             'bukus' => $bukus,
@@ -52,9 +52,9 @@ class PengembalianController extends Controller
     public function store(Request $request)
     {
         $data = Kembali::create($request->validate([
-            "pinjam_id" => "required|string|max:255",
-            "buku_id" => "required|string|max:255",
-            "tanggal_kembali" => "required|string|max:255",
+            "pinjam_id" => "required|exists:pinjams,id",
+            "buku_id" => "required|exists:bukus,id",
+            "tanggal_kembali" => "required|date",
             "denda" => "required|string|max:255",
             "keterangan" => "required|string|max:255",
         ]));
@@ -65,7 +65,7 @@ class PengembalianController extends Controller
 
     public function edit($id)
     {
-        $data = Kembali::with(['bukus', 'pinjams'])->findOrFail($id);
+        $data = Kembali::with(['bukus', 'pinjam'])->findOrFail($id);
 
         $bukus = Buku::all();
         $pinjams = Pinjam::all();
@@ -82,7 +82,7 @@ class PengembalianController extends Controller
         $validated = $request->validate([
             "pinjam_id" => "required|exists:pinjams,id",
             "buku_id" => "required|exists:bukus,id",
-            "tanggal_kembali" => "required|string|max:255",
+            "tanggal_kembali" => "required|date",
             "denda" => "required|string|max:255",
             "keterangan" => "required|string|max:255",
         ]);

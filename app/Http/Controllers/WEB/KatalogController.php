@@ -34,6 +34,7 @@ class KatalogController extends Controller
     {
         // Validasi input
         $validated = $request->validate([
+            'kode_buku'  => 'required|string|max:255' ,
             'judul' => 'required|string|max:255',
             'penulis' => 'required|string|max:255',
             'penerbit' => 'required|string|max:255',
@@ -70,4 +71,5 @@ class KatalogController extends Controller
         $kategoris = Kategori::find($id);
         return view('katalog.detail', compact('kategoris'));
     }
+
 }

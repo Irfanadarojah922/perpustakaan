@@ -154,7 +154,6 @@
                 <tbody>
                     <tr>
                         <td>
-                            <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
                         <td>24-01-2025</td>
@@ -163,7 +162,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
                         <td>24-01-2025</td>
@@ -193,7 +191,6 @@
                 <tbody>
                     <tr>
                         <td>
-                            <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
                         <td>24-01-2025</td>
@@ -202,7 +199,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
                         <td>24-01-2025</td>
@@ -210,7 +206,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <img src="{{ asset('assets/images/images.jpeg') }}" alt="Gambar" width="200">
                             <p>John Doe</p>
                         </td>
                         <td>24-01-2025</td>

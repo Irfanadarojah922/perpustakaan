@@ -17,6 +17,7 @@ class BukuSeeder extends Seeder
         $kategori = DB::table('kategoris')->first();
 
          DB::table('bukus')->insert([
+            'kode_buku' => 'FI001',
             'kategori_id' => $kategori -> id,
             'judul' => 'Laskar Pelangi', 
             'penulis' => 'Andrea Hirata', 

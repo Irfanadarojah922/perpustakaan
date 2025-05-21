@@ -110,7 +110,12 @@
           {data: 'bukus.judul', name: 'buku_id'},
           {data: 'kategoris.nama_kategori', name: 'kategori_id'},
           {data: 'action', name: 'action'}
+        ],
+
+        columnDefs: [
+          { targets: [0, 2], className: 'dt-left'}
         ]
+       
       });
 
       // utk form input
@@ -180,7 +185,6 @@
 
           // Populate select anggota
           let anggotaOptions = ``;
-          
           res.anggotas.forEach(function(anggota) {
             // console.log(anggota.id);
             anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nama}</option>`;

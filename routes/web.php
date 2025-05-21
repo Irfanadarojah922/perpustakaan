@@ -35,7 +35,9 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::resource('/katalog', KatalogController::class);
 
+
 Route::resource('/keanggotaan', AnggotaController::class);
+
 
 Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
 Route::get('/peminjaman/{id}/edit', [PeminjamanController::class, 'edit']);

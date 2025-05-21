@@ -42,7 +42,7 @@
                     <table id="table_pengembalian" class="table table-bordered table-striped" style="width:100%">
                         <thead>
                             <tr class="text-center">
-                            <th scope="col">ID</th>
+                            <th scope="col">NIK</th>
                             <th scope="col">Nama Anggota</th>
                             <th scope="col">Judul Buku</th>
                             <th scope="col">Tanggal Kembali</th>
@@ -87,7 +87,7 @@
 
 @push("scripts")
     <script>
-        $(document).ready(function () {
+        $(document).ready(function () {             //yang ditampilkan di list tabel
             $('#table_pengembalian').DataTable({
                 responsive: true,
                 processing: true,
@@ -95,18 +95,16 @@
                 ajax: '{{url()->current()}}',
                 columns: [
                     // { data: 'id', name: 'id' },
-                    {
-                        data: null,
-                        render: function (data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                    { data: 'anggota.anggota_nik', name: 'nik' }, 
                     { data: 'anggota.nama', name: 'nama' },        
                     { data: 'bukus.judul', name: 'buku_id' },
                     { data: 'tanggal_kembali', name: 'tanggal_kembali' },
                     { data: 'denda', name: 'denda' },
                     { data: 'keterangan', name: 'keterangan' },
                     { data: 'action', name: 'action' }
+                ],
+                columnDefs: [
+                    { targets: [0, 3], className: 'dt-left'}
                 ]
             });
 
@@ -114,38 +112,14 @@
             $.get(`/pengembalian/add`, function(res) {
                 let data = res.data;
 
-                // console.log(judul buku);
+                // console.log(kode buku);
                 let bukuOptions = ``;
                 res.bukus.forEach(function(buku) {
 
-                    bukuOptions += `<option value="${buku.id}">${buku.judul}</option>`;
+                    bukuOptions += `<option value="${buku.id}">${buku.kode_buku}</option>`;
                 });
-                $('#add_buku_id').html(bukuOptions);
-
-                // console.log(nama peminjam);
-                let pinjamOptions = ``;
-                res.pinjams.forEach(function(pinjam) {
-
-                    pinjamOptions += `<option value="${pinjam.id}">${pinjam.anggota_id}</option>`;
-                });
-                $('#add_pinjam_id').html(pinjamOptions);
-
-                // // console.log(keterangan);
-                // let kembaliOptions = ``;
-                // res.kembalis.forEach(function(kembali) {
-
-                //     kembaliOptions += `<option value="${kembali.id}">${kembali.keterangan}</option>`;
-                // });
-                // $('#add_keterangan').html(kembaliOptions);
-                
-                // // console.log(denda);
-                // let kembaliOptions = ``;
-                // res.kembalis.forEach(function(kembali) {
-
-                //     kembaliOptions += `<option value="${kembali.id}">${kembali.denda}</option>`;
-                // });
-                // $('#add_denda').html(kembaliOptions);
-            
+                $('#add_kode_buku').html(bukuOptions);
+                            
             });
             
             $(document).on('click', '.editBtn', function() {
@@ -154,8 +128,28 @@
             $.get(`/pengembalian/${id}/edit`, function(res) {
                 let data = res.data;
 
-                $('#edit_id').val(data.id);
+                $('#edit_nik').val(data.nik);
+                $('#edit_nama_anggota').val(data.nama_anggota);
+                $('#edit_judul_buku').val(data.judul_buku);
                 $('#edit_tanggal_kembali').val(data.tanggal_kembali);
+                $('#edit_denda').val(data.denda);
+                $('#edit_keterangan').val(data.keterangan);
+              
+
+                // Populate NIK
+                let nikOptions = '';
+                res.anggotas.forEach(function(anggota) {
+                    nikOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_nik ? 'selected' : ''}>${anggota.anggota_nik}</option>`;
+                });
+                $('#edit_nik').html(nikOptions);
+
+                // Populate anggota
+                let anggotaOptions = ``;
+                res.anggotas.forEach(function(anggota) {
+                    // console.log(anggota.id);
+                    anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.nama_anggota ? 'selected' : ''}>${anggota.nama}</option>`;
+                });
+                $('#edit_nama_anggota').html(anggotaOptions);
 
                 // Populate buku
                 let bukuOptions = '';
@@ -163,14 +157,7 @@
                     bukuOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.judul}</option>`;
                 });
                 $('#edit_buku_id').html(bukuOptions);
-
-                // Populate pinjam
-                let pinjamOptions = '';
-                res.pinjams.forEach(function(pinjam) {
-                    pinjamOptions += `<option value="${pinjam.id}" ${pinjam.id == data.pinjam_id ? 'selected' : ''}>Pinjam ID: ${pinjam.id}</option>`;
-                });
-                $('#edit_pinjam_id').html(pinjamOptions);
-
+                    
                 $('#editModal').modal('show');
             });
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
+use App\Models\Buku;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -74,7 +76,7 @@ class AnggotaController extends Controller
             "kategori_id" => "required|exists:kategoris,id",
         ]);
 
-        $data = Pinjam::findOrFail($id);
+        $data = Anggota::findOrFail($id);
         $data->update($validated);
 
         return response()->json(['message' => 'Data berhasil diupdate']);

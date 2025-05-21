@@ -25,7 +25,6 @@
 
           <div class="mb-3">
             <label>Status Pengembalian</label>
-            {{-- <input type="text" name="status_pengembalian" id="edit_status_pengembalian" class="form-control"> --}}
             <select name="status_pengembalian" id="edit_status_pengembalian" class="form-control" required>
             </select>
 

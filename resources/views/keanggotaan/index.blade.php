@@ -74,10 +74,10 @@
 
             <div class="card-body">
                <div class="table-responsive">
-                 <table id="table_anggota" class="table table-sm table-bordered table-striped" style="width:100%">
+                 <table id="table_anggota" class="table table-sm table-bordered table-striped" style="width:100%; white-space: nowrap;">
                     <thead>
                         <tr class="text-center">
-                            <th scope="col">ID</th>
+                            <th scope="col">NIK</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Tempat Lahir</th>
                             <th scope="col">Tanggal Lahir</th>
@@ -119,7 +119,7 @@
                 serverSide: true,
                 ajax: '{{url()->current()}}',
                 columns: [
-                    { data: 'id', name: 'id' },
+                    { data: 'anggota_nik', name: 'anggota_nik' }, 
                     { data: 'nama', name: 'nama' },
                     { data: 'tempat_lahir', name: 'tempat_lahir' },
                     { data: 'tanggal_lahir', name: 'tanggal_lahir' },
@@ -129,6 +129,9 @@
                     { data: 'no_telepon', name: 'no_telepon' },
                     { data: 'status', name: 'status' },
                     { data: 'action', name: 'action' }
+                ],
+                columnDefs: [
+                    { targets: [0, 3], className: 'dt-left'}
                 ]
             })
         })
