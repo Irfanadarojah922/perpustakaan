@@ -18,7 +18,7 @@ class AnggotaSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             
             DB::table('anggotas')->insert([
-                'anggota_nik' => $faker->nik(),
+                'nik' => $faker->nik(),
                 'nama' => $faker->name(),
                 'tempat_lahir' => $faker->city(),
                 'tanggal_lahir' => $faker->date(),

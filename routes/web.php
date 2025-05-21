@@ -5,6 +5,7 @@ use App\Http\Controllers\WEB\PeminjamanController;
 use App\Http\Controllers\WEB\PengembalianController;
 use App\Http\Controllers\WEB\DashboardController;
 use App\Http\Controllers\WEB\KatalogController;
+use App\Http\Controllers\WEB\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -58,3 +59,5 @@ Route::delete('/pengembalian/{id}', [PengembalianController::class, 'destroy']);
 
 // Route::get('/getByname', [PeminjamanController::class, 'getByName'])->name('getByName');
 // Route::get('/sirkulasi', [PeminjamanController::class, 'PeminjamanByAnggotaId'])->name('peminjaman.byanggota');
+
+Route::resource('/register', RegisterController::class)->only(['index', 'store']);

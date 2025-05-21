@@ -47,7 +47,7 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::loginView(fn() => view('auth.login'));
-        Fortify::registerView(fn() => view('auth.register'));
+        // Fortify::registerView(fn() => view('auth.register'));
 
         Fortify::authenticateUsing(function (Request $request) {
             // Log::info('Login attempt', ['email' => $request->email]);

@@ -24,6 +24,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "nik" => "required|string|unique:anggotas,nik|max:20",
             "nama" => "required|string|max:255",
             "email" => "required|string|max:255",
             "password" => "required|string|max:255",
