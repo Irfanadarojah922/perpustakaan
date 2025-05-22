@@ -56,7 +56,7 @@ class PeminjamanController extends Controller
         $data = Pinjam::create($request->validate([
             "tanggal_pinjam" => "required|string|max:255",
             "tanggal_kembali" => "required|string|max:255",
-            "status_pengembalian" => "required|string|max:255",
+            // "status_pengembalian" => "required|string|max:255",
             "anggota_id" => "required|string|max:255",
             "buku_id" => "required|string|max:255",
             "kategori_id" => "required|string|max:255",
@@ -88,7 +88,7 @@ class PeminjamanController extends Controller
         $validated = $request->validate([
             "tanggal_pinjam" => "required|string|max:255",
             "tanggal_kembali" => "required|string|max:255",
-            "status_pengembalian" => "required|string|max:255",
+            // "status_pengembalian" => "required|string|max:255",
             "anggota_id" => "required|exists:anggotas,id",
             "buku_id" => "required|exists:bukus,id",
             "kategori_id" => "required|exists:kategoris,id",

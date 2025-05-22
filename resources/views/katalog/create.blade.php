@@ -10,6 +10,15 @@
 
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="judul" class="form-label">Kode Buku</label>
+                        <input type="text" class="form-control @error('kode_buku') is-invalid
+                        @enderror" id="kode_buku" name="kode_buku" value="{{ old('kode_buku') }}">
+                        @error('kode_buku')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="judul" class="form-label">Judul</label>
                         <input type="text" class="form-control @error('judul') is-invalid
                         @enderror" id="judul" name="judul" value="{{ old('judul') }}">

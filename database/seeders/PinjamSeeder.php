@@ -26,7 +26,7 @@ class PinjamSeeder extends Seeder
 
             'tanggal_pinjam' => $faker -> date,
             'tanggal_kembali' => $faker -> date,
-            'status_pengembalian' => $faker -> randomElement(['dipinjam', 'dikembalikan']),
+            // 'status_pengembalian' => $faker -> randomElement(['dipinjam', 'dikembalikan']),
             'anggota_id' => $faker->randomElement($anggota),
             'buku_id' => $faker->randomElement($buku),
             'kategori_id' => $faker->randomElement($kategori),

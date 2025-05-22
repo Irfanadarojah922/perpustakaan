@@ -41,14 +41,15 @@
           <div class="table-responsive">
             <table id="table_peminjaman" class="table table-bordered table-striped" style="width:100%">
               <thead>
-                <tr class="text-center">
+                <tr class="text-right">
                   <th scope="col">No</th>
-                  <th scope="col">Tanggal Pinjam</th>
-                  <th scope="col">Tanggal Kembali</th>
-                  <th scope="col">Status Pengembalian</th>
                   <th scope="col">Nama Anggota</th>
                   <th scope="col">Judul Buku</th>
                   <th scope="col">Kategori Buku</th>
+                  <th scope="col">Tanggal Pinjam</th>
+                  <th scope="col">Tanggal Harus Kembali</th>
+                  {{-- <th scope="col">Status Pengembalian</th> --}}
+
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
@@ -103,17 +104,17 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }
           },
-          {data: 'tanggal_pinjam', name: 'tanggal_pinjam'},
-          {data: 'tanggal_kembali', name: 'tanggal_kembali'},
-          {data: 'status_pengembalian', name: 'status_pengembalian'},
           {data: 'anggotas.nama', name: 'anggota_id'},
           {data: 'bukus.judul', name: 'buku_id'},
           {data: 'kategoris.nama_kategori', name: 'kategori_id'},
+          {data: 'tanggal_pinjam', name: 'tanggal_pinjam'},
+          {data: 'tanggal_kembali', name: 'tanggal_kembali'},
+          // {data: 'status_pengembalian', name: 'status_pengembalian'},
           {data: 'action', name: 'action'}
         ],
 
         columnDefs: [
-          { targets: [0, 2], className: 'dt-left'}
+          { targets: [0, 4], className: 'dt-left'}
         ]
        
       });
@@ -146,13 +147,12 @@
         $('#add_kategori_id').html(kategoriOptions);
 
         // console.log(status);
-        let pinjamOptions = ``;
-        res.pinjams.forEach(function(pinjam) {
+        // let pinjamOptions = ``;
+        // res.pinjams.forEach(function(pinjam) {
 
-            pinjamOptions += `<option value="${pinjam.id}">${pinjam.status_pengembalian}</option>`;
-          });
-        $('#add_pinjam_id').html(pinjamOptions);
-          
+        //     pinjamOptions += `<option value="${pinjam.id}">${pinjam.status_pengembalian}</option>`;
+        //   });
+        // $('#add_pinjam_id').html(pinjamOptions);
       });
 
       $(document).on('click', '.editBtn', function() {
@@ -164,16 +164,15 @@
           $('#edit_id').val(data.id);
           $('#edit_tanggal_pinjam').val(data.tanggal_pinjam);
           $('#edit_tanggal_kembali').val(data.tanggal_kembali);
-          $('#edit_status_pengembalian').val(data.status_pengembalian);
-
+          // $('#edit_status_pengembalian').val(data.status_pengembalian);
 
           // Populate select status_pengembalian
-          let statusOptions = ['Dipinjam', 'Dikembalikan'];
-          let statusSelect = $('#edit_status_pengembalian');
-          statusSelect.empty();
-          statusOptions.forEach(function(status) {
-            statusSelect.append(`<option value="${status}" ${status == data.status_pengembalian ? 'selected' : ''}>${status}</option>`);
-          });
+          // let statusOptions = ['Dipinjam', 'Dikembalikan'];
+          // let statusSelect = $('#edit_status_pengembalian');
+          // statusSelect.empty();
+          // statusOptions.forEach(function(status) {
+          //   statusSelect.append(`<option value="${status}" ${status == data.status_pengembalian ? 'selected' : ''}>${status}</option>`);
+        
           
           // Populate select buku
           let bukuOptions = '';
@@ -265,6 +264,7 @@
             }
         });
       });
+    
     });
   </script>
 @endpush

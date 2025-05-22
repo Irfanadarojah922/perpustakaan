@@ -11,7 +11,7 @@ class Pinjam extends Model
 
         'tanggal_pinjam',
         'tanggal_kembali',
-        'status_pengembalian',
+        // 'status_pengembalian',
         'anggota_id',
         'buku_id',
         'kategori_id',

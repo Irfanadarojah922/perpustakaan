@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
+                        <label for="tanggal_kembali" class="form-label">Tanggal Harus Kembali</label>
                         <input type="date" class="form-control  @error('tanggal_kembali') is-invalid
                         @enderror" id="tanggal_kembali" name="tanggal_kembali" value="{{ old('tanggal_kembali') }}">
                         @error('tanggal_kembali')
@@ -45,7 +45,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="status_pengembalian" class="form-label">Status Pengembalian</label>
                         <select class="form-control @error('status_pengembalian') is-invalid
                         @enderror" name="status_pengembalian" id="status_pengembalian" value="{{ old('status_pengembalian') }}">
@@ -56,7 +56,7 @@
                             <option value="">- Pilih -</option>
                             <option value="Dipinjam"> Dipinjam </option>
                             <option value="Dikembalikan"> Dikembalikan </option>
-                        </select>
+                        </select> --}}
                     </div>
                    
                     <div class="modal-footer">

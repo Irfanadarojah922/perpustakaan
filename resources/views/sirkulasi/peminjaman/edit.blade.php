@@ -14,23 +14,6 @@
           <input type="hidden" id="edit_id" name="id">
 
           <div class="mb-3">
-            <label>Tanggal Pinjam</label>
-            <input type="date" name="tanggal_pinjam" id="edit_tanggal_pinjam" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label>Tanggal Kembali</label>
-            <input type="date" name="tanggal_kembali" id="edit_tanggal_kembali" class="form-control">
-          </div>
-
-          <div class="mb-3">
-            <label>Status Pengembalian</label>
-            <select name="status_pengembalian" id="edit_status_pengembalian" class="form-control" required>
-            </select>
-
-          </div>
-
-          <div class="mb-3">
              <label>Nama Anggota</label>
              {{-- <input type="text" name="anggota_id" id="edit_anggota_id" class="form-control"> --}}
             <select name="anggota_id" id="edit_anggota_id" class="form-control" required>
@@ -46,11 +29,27 @@
           </div>
 
           <div class="mb-3">
-            <label>Kategori</label>
+            <label>Kategori Buku</label>
             {{-- <input type="text" name="kategori_id" id="edit_kategori_id" class="form-control"> --}}
             <select name="kategori_id" id="edit_kategori_id" class="form-control" required>
             </select>
           </div>
+
+          <div class="mb-3">
+            <label>Tanggal Pinjam</label>
+            <input type="date" name="tanggal_pinjam" id="edit_tanggal_pinjam" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label>Tanggal Harus Kembali</label>
+            <input type="date" name="tanggal_kembali" id="edit_tanggal_kembali" class="form-control">
+          </div>
+
+          {{-- <div class="mb-3">
+            <label>Status Pengembalian</label>
+            <select name="status_pengembalian" id="edit_status_pengembalian" class="form-control" required>
+            </select>
+          </div> --}}
 
         </div>
         

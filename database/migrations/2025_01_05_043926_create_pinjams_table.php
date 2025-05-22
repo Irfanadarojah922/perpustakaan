@@ -19,7 +19,7 @@ return new class extends Migration {
 
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali');
-            $table->enum('status_pengembalian', ['Dipinjam', 'Dikembalikan']);
+            // $table->enum('status_pengembalian', ['Dipinjam', 'Dikembalikan']);
             $table->timestamps();
 
             $table->foreign('anggota_id')->references('id')->on('anggotas');
