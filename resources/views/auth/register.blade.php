@@ -50,7 +50,7 @@
             width: 100%;
             height: 50px;
             margin: 30px 0;
-            border-bottom: 2px solid #162938;
+            /* border-bottom: 2px solid #162938; */
         }
 
         .input-box input {
@@ -60,7 +60,7 @@
             border: none;
             outline: none;
             /* border: 2px solid rgba(255, 255, 255, .2);
-    border-radius: 40px; */
+            border-radius: 40px; */
             font-size: 16px;
             color: white;
             padding: 20px 45px 20px 20px;
@@ -70,7 +70,6 @@
         .input-box input:focus {
             border-bottom: 2px solid #dfeaea;
         }
-
 
         .input-box input::placeholder {
             color: gray;
@@ -140,19 +139,68 @@
         .register-link p a:hover {
             text-decoration: underline;
         }
+
+        .input-box select {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            /* border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 40px; */
+            font-size: 16px;
+            color: white;
+            padding: 20px 45px 20px 20px;
+            border-bottom: 2px solid rgba(78, 73, 73, 0.652);
+        }
+
+        .input-box select option {
+            color: black;
+        }
+
+        .input-box label {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            /* border: none;
+            outline: none; */
+            /* border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 40px; */
+            font-size: 16px;
+            color: white;
+            padding: 20px 45px 20px 20px;
+            /* border-bottom: 2px solid rgba(78, 73, 73, 0.652); */
+        }
+
+        .input-box input[type="file"] {
+            color: white;
+            font-size: 16px;
+            border: none;
+            background: transparent;
+            margin-top: 5px;
+            border-bottom: 2px solid rgba(78, 73, 73, 0.652);
+
+        }
+        
     </style>
 </head>
 
 <body>
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
 
     <div class="wrapper">
+        <div class="register">
+            <form action="{{route('register.store')}}" method="post">
+            @csrf
 
-        <div class="registrasi">
-            <form action="">
-                <h1>Registration</h1>
+            <h1>Registration</h1>
 
                 <div class="input-box">
-                    <input type="text" placeholder="No. NIK" name="anggota_id" required>
+                    <input type="text" placeholder="No. NIK" name="nik" required>
                 </div>
 
                 <div class="input-box">
@@ -160,7 +208,7 @@
                 </div>
 
                 <div class="input-box">
-                    <input type="date" placeholder="Tempat Lahir" name="tempat_lahir" required>
+                    <input type="text" placeholder="Tempat Lahir" name="tempat_lahir" required>
                 </div>
 
                 <div class="input-box">
@@ -168,7 +216,21 @@
                 </div>
 
                 <div class="input-box">
-                    <input type="text" placeholder="Jenis Kelamin" name="jenis_kelamin" required>
+                    <select name="jenis_kelamin" required>
+                        <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <select name="pendidikan" required>
+                        <option value="" disabled selected>Pilih Jenjang Pendidikan</option>
+                        <option value="SD">SD</option>
+                        <option value="SMP">SMP</option>
+                        <option value="SMA">SMA</option>
+                        <option value="Sarjana">Sarjana</option>
+                    </select>
                 </div>
 
                 <div class="input-box">
@@ -178,15 +240,32 @@
                 <div class="input-box">
                     <input type="text" placeholder="No. Telepon" name="no_telepon" required>
                 </div>
+               
+                <div class="input-box">
+                    <select name="status" required>
+                        <option value="" disabled selected>Pilih Status</option>
+                        <option value="pelajar">Pelajar</option>
+                        <option value="mahasiswa">Mahasiswa</option>
+                        <option value="umum">Umum</option>
+                    </select>
+                </div>
+                
+                <div class="input-box">
+                    <label for="foto">Upload Foto</label>
+                    <input type="file" name="foto" id="foto" accept="image/*" required>
+                </div>
+
+                <div class="input-box">
+                    <input type="date" placeholder="Tanggal Daftar" name="tanggal_daftar" required>
+                </div>
 
                 <div class="input-box">
                     <input type="email" placeholder="E-mail" name="email" required>
                 </div>
 
                 <div class="input-box">
-                    <input type="text" placeholder="Password" name="password" required>
+                    <input type="password" placeholder="Password" name="password" required>
                 </div>
-
 
                 <div class="remember-forgot">
                     <label>
@@ -198,9 +277,10 @@
 
                 <div class="register link">
                     <p> Already have account ?
-                        <a href="#"> Login </a>
+                        <a href="/login"> Login </a>
                     </p>
                 </div>
+
             </form>
         </div>
     </div>

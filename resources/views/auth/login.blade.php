@@ -164,7 +164,7 @@
 
             <div class="register link">
                 <p> Don't have a account ?
-                    <a href="#"> Register </a>
+                    <a href="/register"> Register </a>
                 </p>
             </div>
         </form>

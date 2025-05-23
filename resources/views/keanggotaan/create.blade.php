@@ -11,6 +11,16 @@
 
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="anggota_nik" class="form-label">NIK</label>
+                        <input type="char" class="form-control @error('nik') is-invalid
+                        @enderror" id="nik" name="nik" value="{{ old('nik') }}">
+                        @error('nik')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control @error('nama') is-invalid
                         @enderror" id="nama" name="nama" value="{{ old('nama') }}">
@@ -46,8 +56,8 @@
                         @enderror
                         
                             <option value="">- Pilih Jenis Kelamin -</option>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
 
@@ -98,6 +108,27 @@
                             <option value="umum">Umum</option>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Foto</label>
+                        <input type="file" class="form-control @error('foto') is-invalid
+                        @enderror" id="foto" name="foto" value="{{ old('foto') }}">
+                        @error('foto')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal_daftar" class="form-label">Tanggal Daftar</label>
+                        <input type="date" class="form-control @error('tanggal_daftar') is-invalid
+                        @enderror" id="tanggal_daftar" name="tanggal_daftar" value="{{ old('tanggal_daftar') }}">
+                        @error('tanggal_daftar')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+
                 </div>
 
                 <div class="modal-footer">

@@ -23,8 +23,10 @@ class RegisterController extends Controller
 
     public function store(StoreRequest $storeRequest): RedirectResponse
     {
+    
+        $data = $this->registerRepository->store($storeRequest);
         try {
-            $data = $this->registerRepository->store($storeRequest);
+            // dd($data);
 
             return redirect()->route('login')->with('success', "Registration Successfully!");
         } catch (\Throwable $th) {

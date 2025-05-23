@@ -16,12 +16,14 @@ return new class extends Migration {
             $table->string('nama', 255);
             $table->string('tempat_lahir', 255);
             $table->date('tanggal_lahir');
-            $table->enum('jenis_kelamin', ['L', 'P']);
+            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
             $table->enum('pendidikan', ['SD', 'SMP', 'SMA', 'Sarjana']);
             $table->string('alamat');
             $table->char('no_telepon', 20);
             $table->enum('status', ['pelajar', 'mahasiswa', 'umum']);
             $table->string('foto')->nullable();
+            $table->date('tanggal_daftar');
+
             $table->timestamps();
         });
     }

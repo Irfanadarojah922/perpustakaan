@@ -19,6 +19,9 @@ Route::get('/', function () {
 //     return view('pages.dashboard');
 // });
 
+Route::resource('/register', RegisterController::class)->only(['index', 'store']);
+
+
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
 // Route::get('/katalog', function () {
@@ -54,10 +57,8 @@ Route::put('/pengembalian/{id}', [PengembalianController::class, 'update'])->nam
 Route::delete('/pengembalian/{id}', [PengembalianController::class, 'destroy']);
 
 
-
 // });
 
 // Route::get('/getByname', [PeminjamanController::class, 'getByName'])->name('getByName');
 // Route::get('/sirkulasi', [PeminjamanController::class, 'PeminjamanByAnggotaId'])->name('peminjaman.byanggota');
 
-Route::resource('/register', RegisterController::class)->only(['index', 'store']);

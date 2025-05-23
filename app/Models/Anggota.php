@@ -10,7 +10,6 @@ class Anggota extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'nik',
         'nama',
         'tempat_lahir',
@@ -21,6 +20,7 @@ class Anggota extends Model
         'no_telepon',
         'status',
         'foto',
+        'tanggal_daftar',
     ];
 
     public function pinjams()

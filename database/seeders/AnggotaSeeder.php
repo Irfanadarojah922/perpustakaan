@@ -22,12 +22,14 @@ class AnggotaSeeder extends Seeder
                 'nama' => $faker->name(),
                 'tempat_lahir' => $faker->city(),
                 'tanggal_lahir' => $faker->date(),
-                'jenis_kelamin' => $faker->randomElement(['L', 'P']),
+                'jenis_kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'pendidikan' => $faker->randomElement(['SD', 'SMP', 'SMA', 'SARJANA']),
                 'alamat' => $faker->address(),
                 'no_telepon' => $faker->phoneNumber(),
                 'status' => $faker->randomElement(['pelajar', 'mahasiswa', 'umum']),
                 'foto' => $faker->imageUrl(),
+                'tanggal_daftar' => $faker->date(),
+
             ]);
         }
     }
