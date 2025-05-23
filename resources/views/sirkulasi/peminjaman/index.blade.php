@@ -114,7 +114,7 @@
         ],
 
         columnDefs: [
-          { targets: [0, 4], className: 'dt-left'}
+          { targets: [0, 5], className: 'dt-left'}
         ]
        
       });

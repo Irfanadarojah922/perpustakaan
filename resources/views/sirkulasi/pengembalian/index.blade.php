@@ -95,7 +95,7 @@
                 ajax: '{{url()->current()}}',
                 columns: [
                     // { data: 'id', name: 'id' },
-                    { data: 'anggota.anggota_nik', name: 'nik' }, 
+                    { data: 'anggota.nik', name: 'nik' }, 
                     { data: 'anggota.nama', name: 'nama' },        
                     { data: 'bukus.judul', name: 'buku_id' },
                     { data: 'tanggal_kembali', name: 'tanggal_kembali' },
@@ -139,7 +139,7 @@
                 // Populate NIK
                 let nikOptions = '';
                 res.anggotas.forEach(function(anggota) {
-                    nikOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_nik ? 'selected' : ''}>${anggota.anggota_nik}</option>`;
+                    nikOptions += `<option value="${anggota.id}" ${anggota.id == data.nik ? 'selected' : ''}>${anggota.nik}</option>`;
                 });
                 $('#edit_nik').html(nikOptions);
 

@@ -23,7 +23,7 @@ const searchForm = document.querySelector('.content nav form');
 
 searchBtn.addEventListener('click', function (e) {
     if (window.innerWidth < 576) {
-        e.preventDefault;
+        e.preventDefault();   //perbaikan
         searchForm.classList.toggle('show');
         if (searchForm.classList.contains('show')) {
             searchBtnIcon.classList.replace('bx-search', 'bx-x');
@@ -48,11 +48,31 @@ window.addEventListener('resize', () => {
 const toggler = document.getElementById('theme-toggle');
 const tables = document.querySelectorAll('table');
 
+// Atur tema saat pertama kali halaman dimuat  //perbaikan
+if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    toggler.checked = true;
+    tables.forEach(table => {
+        table.classList.remove('table-light');
+        table.classList.add('table-dark');
+    });
+} else {
+    document.body.classList.remove('dark');
+    toggler.checked = false;
+    tables.forEach(table => {
+        table.classList.remove('table-dark');
+        table.classList.add('table-light');
+    });
+}
+
+// Toggle tema saat user mengganti switch      
 toggler.addEventListener('change', function () {
     if (this.checked) {
         document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');      //perbaikan
     } else {
         document.body.classList.remove('dark');
+        localStorage.setItem('theme', 'light');       //perbaikan
     }
     tables.forEach(table => {
         if (this.checked) {

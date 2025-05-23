@@ -101,6 +101,8 @@
     </div>
     @include('keanggotaan.create')
     @include('keanggotaan.edit')
+    @include('keanggotaan.delete')
+
 @endsection
 
 @push('script-libs')
@@ -119,7 +121,7 @@
                 serverSide: true,
                 ajax: '{{url()->current()}}',
                 columns: [
-                    { data: 'anggota_nik', name: 'anggota_nik' }, 
+                    { data: 'nik', name: 'anggota_nik' }, 
                     { data: 'nama', name: 'nama' },
                     { data: 'tempat_lahir', name: 'tempat_lahir' },
                     { data: 'tanggal_lahir', name: 'tanggal_lahir' },

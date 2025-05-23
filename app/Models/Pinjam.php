@@ -34,6 +34,6 @@ class Pinjam extends Model
 
     public function kembalis()
     {
-        return $this->belongsTo(Kembali::class, 'kembali_id');
+        return $this->hasOne(Kembali::class, 'kembali_id');
     }
 }

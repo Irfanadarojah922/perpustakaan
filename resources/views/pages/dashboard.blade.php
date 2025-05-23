@@ -96,9 +96,9 @@
             <i class='bx bx-book'></i>
             <span class="info">
                 <h3>
-                    {{ $kategoris }}
+                    {{ $bukuTotal }}
                 </h3>
-                <p>Total Katalog</p>
+                <p>Total Buku</p>
             </span>
         </li>
 
