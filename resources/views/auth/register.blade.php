@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -142,7 +142,6 @@
 
         .input-box select {
             width: 100%;
-            height: 100%;
             background: transparent;
             border: none;
             outline: none;
@@ -181,40 +180,27 @@
             border-bottom: 2px solid rgba(78, 73, 73, 0.652);
 
         }
-        
+
     </style>
 </head>
 
 <body>
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <div class="wrapper">
         <div class="register">
-            <form action="{{route('register.store')}}" method="post">
-            @csrf
-
-            <h1>Registration</h1>
-
+            <form action="#" id="form-register">
+                <h1>Registration</h1>
                 <div class="input-box">
                     <input type="text" placeholder="No. NIK" name="nik" required>
                 </div>
-
                 <div class="input-box">
                     <input type="text" placeholder="Nama Lengkap" name="nama" required>
                 </div>
-
                 <div class="input-box">
                     <input type="text" placeholder="Tempat Lahir" name="tempat_lahir" required>
                 </div>
-
                 <div class="input-box">
                     <input type="date" placeholder="Tanggal Lahir" name="tanggal_lahir" required>
                 </div>
-
                 <div class="input-box">
                     <select name="jenis_kelamin" required>
                         <option value="" disabled selected>Pilih Jenis Kelamin</option>
@@ -222,7 +208,6 @@
                         <option value="Perempuan">Perempuan</option>
                     </select>
                 </div>
-
                 <div class="input-box">
                     <select name="pendidikan" required>
                         <option value="" disabled selected>Pilih Jenjang Pendidikan</option>
@@ -232,15 +217,12 @@
                         <option value="Sarjana">Sarjana</option>
                     </select>
                 </div>
-
                 <div class="input-box">
                     <input type="text" placeholder="Alamat" name="alamat" required>
                 </div>
-
                 <div class="input-box">
                     <input type="text" placeholder="No. Telepon" name="no_telepon" required>
                 </div>
-               
                 <div class="input-box">
                     <select name="status" required>
                         <option value="" disabled selected>Pilih Status</option>
@@ -249,41 +231,97 @@
                         <option value="umum">Umum</option>
                     </select>
                 </div>
-                
                 <div class="input-box">
                     <label for="foto">Upload Foto</label>
                     <input type="file" name="foto" id="foto" accept="image/*" required>
                 </div>
-
                 <div class="input-box">
                     <input type="date" placeholder="Tanggal Daftar" name="tanggal_daftar" required>
                 </div>
-
                 <div class="input-box">
                     <input type="email" placeholder="E-mail" name="email" required>
                 </div>
-
                 <div class="input-box">
                     <input type="password" placeholder="Password" name="password" required>
                 </div>
-
                 <div class="remember-forgot">
                     <label>
                         <input type="checkbox"> I agree to the terms & conditions
                     </label>
                 </div>
-
                 <button type="submit" class="btn"> Register </button>
-
                 <div class="register link">
                     <p> Already have account ?
                         <a href="/login"> Login </a>
                     </p>
                 </div>
-
             </form>
         </div>
     </div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const formElement = document.querySelector("#form-register");
+
+        formElement.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(formElement);
+
+            try {
+                const response = await fetch("/api/register", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    Toastify({
+                        text: "Registrasi berhasil!",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        }
+                    }).showToast();
+
+                    setTimeout(() => {
+                        window.location.href = "/login";
+                    }, 3000); 
+
+                    formElement.reset();
+                } else {
+                    Toastify({
+                        text: result.message || "Registrasi gagal. Silakan periksa input Anda.",
+                        duration: 4000,
+                        close: true,
+                        gravity: "top",
+                        position: "right",
+                        style: {
+                            background: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                        }
+                    }).showToast();
+                }
+            } catch (error) {
+                console.error("Upload error", error);
+                Toastify({
+                    text: "Terjadi kesalahan jaringan. Coba lagi nanti.",
+                    duration: 4000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    style: {
+                        background: "linear-gradient(to right, #ff416c, #ff4b2b)",
+                    }
+                }).showToast();
+            }
+        });
+    });
+</script>
 
 </body>
 

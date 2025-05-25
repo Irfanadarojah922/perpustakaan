@@ -23,6 +23,11 @@ class Anggota extends Model
         'tanggal_daftar',
     ];
 
+    protected $cast = [
+        "tanggal_lahir" => "date:d/m/Y",
+        "tanggal_daftar" => "date:d/m/Y"
+    ];
+
     public function pinjams()
     {
         return $this->hasMany(Pinjam::class);

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests\Anggotas;
 
 use Illuminate\Contracts\Validation\Validator;
@@ -24,15 +23,19 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "nik" => "required|string|unique:anggotas,nik|max:20",
-            "nama" => "required|string|max:255",
-            "email" => "required|string|max:255",
-            "password" => "required|string|max:255",
-            "no_telepon" => "required|string|max:255",
-            "alamat" => "required|string|max:255",
-            "tanggal_daftar" => "required|string|max:255",
-            "status" => "required|string|max:255",
-            "foto" => "required|string|max:255",
+            "nik"            => "required|string|unique:anggotas,nik|max:20",
+            "nama"           => "required|string|max:255",
+            "tempat_lahir"   => "required|string|max:255",
+            "tanggal_lahir"  => "required|date",
+            "jenis_kelamin"  => "required|string|max:255",
+            "pendidikan"     => "required|string|max:255",
+            "alamat"         => "required|string|max:255",
+            'no_telepon'     => 'required|string|regex:/^\+\d{1,3}\s?\d{7,15}$/',
+            "status"         => "required|string|max:255",
+            "foto"           => "required|image|mimes:jpg,jpeg,png,webp|max:2048",
+            "tanggal_daftar" => "required|date",
+            "email"          => "required|string|unique:users,email|max:255",
+            "password"       => "required|string|max:255",
         ];
     }
 
@@ -40,11 +43,10 @@ class StoreRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json(
             [
-                'success' => false,
-                'errors' => $validator->getMessageBag(),
+                "success" => false,
+                "errors"  => $validator->getMessageBag(),
             ],
             422
         ));
     }
 }
-
