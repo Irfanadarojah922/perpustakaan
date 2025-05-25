@@ -19,7 +19,7 @@ Route::get('/', function () {
 //     return view('pages.dashboard');
 // });
 
-Route::resource('/register', RegisterController::class)->only(['index', 'store']);
+Route::resource('/register', RegisterController::class)->only(['index']);
 
 
 Route::get('/dashboard', [DashboardController::class, 'index']);

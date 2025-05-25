@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Requests\Anggotas;
 
 use Illuminate\Contracts\Validation\Validator;
@@ -24,14 +23,19 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "nama" => "nullable|string|max:255|anggotas,nama",
-            "email" =>"nullable|string|max:255|anggotas,email",
-            "password" => "nullable|string|max:255|anggotas,password",
-            "no_telepon" => "nullable|string|max:255|anggotas,no_telepon",
-            "alamat" => "nullable|string|max:255|anggotas,alamat",
-            "tanggal_daftar" => "nullable|string|anggotas,tanggal_daftar",
-            "status" => "nullable|string|max:255|anggotas,status",
-            "foto" => "nullable|string|anggotas,foto",
+            "nik"            => "nullable|string|unique:anggotas,nik|max:20",
+            "nama"           => "nullable|string|max:255",
+            "tempat_lahir"   => "nullable|string|max:255",
+            "tanggal_lahir"  => "nullable|date|date_format:d/m/Y",
+            "jenis_kelamin"  => "nullable|string|max:255",
+            "pendidikan"     => "nullable|string|max:255",
+            "alamat"         => "nullable|string|max:255",
+            "no_telepon"     => "nullable|string|regex:/^\+\d{1,3}\s?\d{7,15}$/",
+            "status"         => "nullable|string|max:255",
+            "foto"           => "nullable|image|mimes:jpg,jpeg,png,webp|max:2048",
+            "tanggal_daftar" => "nullable|date|date_format:d/m/Y",
+            "email"          => "nullable|string|unique:users,email|max:255",
+            "password"       => "nullable|string|max:255",
         ];
     }
 
@@ -39,8 +43,8 @@ class UpdateRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json(
             [
-                'success' => false,
-                'errors' => $validator->getMessageBag(),
+                "success" => false,
+                "errors"  => $validator->getMessageBag(),
             ],
             422
         ));
