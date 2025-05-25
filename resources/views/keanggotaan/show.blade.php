@@ -204,7 +204,6 @@
                 </tr>
             </table>
 
-            <div class="badge">Aktif</div>
             </div>
         </div>
 
