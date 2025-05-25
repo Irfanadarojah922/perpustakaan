@@ -86,7 +86,7 @@
         @endif
     </div>
 
-    @include('katalog.create');
+    @include('katalog.create')
 
     @if ($errors->any())
         <script>

@@ -102,6 +102,8 @@
     @include('keanggotaan.create')
     @include('keanggotaan.edit')
     @include('keanggotaan.delete')
+    {{-- @include('keanggotaan.show') --}}
+   
 
 @endsection
 
@@ -137,5 +139,11 @@
                 ]
             })
         })
+
+        function detail_anggota(id) {
+            let url = '{{ route("keanggotaan.show", ":id") }}';
+            url = url.replace(':id', id);
+            window.open(url);
+        }
     </script>
 @endpush

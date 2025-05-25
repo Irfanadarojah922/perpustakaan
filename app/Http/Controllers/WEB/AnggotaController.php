@@ -23,6 +23,7 @@ class AnggotaController extends Controller
                             <div class="btn-group" role="group" aria-label="Basic example">
 
                             <button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '"> <i class="bx bx-edit" style="font-size:1rem;"></i></button>
+                                <button class="btn btn-info btn-sm" onclick="detail_anggota('.$row->id.')"> <i class="bx bx-show" style="font-size:1rem;"></i> </button>     
                                 <button type="button" class="btn btn-danger deleteBtn" data-id="' . $row->id . '"> <i class="bx bx-trash" style="font-size:1rem;"></i></button>
                             </div>
                         </td>';
@@ -94,6 +95,13 @@ class AnggotaController extends Controller
         $anggota->forceDelete(); // Hapus permanen dari database
 
         return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
+    }
+
+    public function show($id)
+    {
+        $anggota = Anggota::findOrFail($id);
+
+        return view('keanggotaan.show', compact('anggota'));
     }
 
 
