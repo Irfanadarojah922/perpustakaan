@@ -42,8 +42,8 @@
                     <table id="table_pengembalian" class="table table-bordered table-striped" style="width:100%">
                         <thead>
                             <tr class="text-center">
-                            <th scope="col">NIK</th>
                             <th scope="col">Nama Anggota</th>
+                            <th scope="col">Kode Buku</th>
                             <th scope="col">Judul Buku</th>
                             <th scope="col">Tanggal Kembali</th>
                             <th scope="col">Denda</th>
@@ -95,8 +95,9 @@
                 ajax: '{{url()->current()}}',
                 columns: [
                     // { data: 'id', name: 'id' },
-                    { data: 'anggota.nik', name: 'nik' }, 
-                    { data: 'anggota.nama', name: 'nama' },        
+                    // { data: 'anggota.nik', name: 'nik' }, 
+                    { data: 'anggota.nama', name: 'nama' },  
+                    { data: 'bukus.kode_buku', name: 'buku_id' },
                     { data: 'bukus.judul', name: 'buku_id' },
                     { data: 'tanggal_kembali', name: 'tanggal_kembali' },
                     { data: 'denda', name: 'denda' },
@@ -128,20 +129,21 @@
             $.get(`/pengembalian/${id}/edit`, function(res) {
                 let data = res.data;
 
-                $('#edit_nik').val(data.nik);
-                $('#edit_nama_anggota').val(data.nama_anggota);
-                $('#edit_judul_buku').val(data.judul_buku);
+                // $('#edit_nik').val(data.nik);
+                // $('#edit_nama_anggota').val(data.nama);
+                // $('#edit_kode_buku').val(data.kode_buku);
+                // $('#edit_judul_buku').val(data.judul);
                 $('#edit_tanggal_kembali').val(data.tanggal_kembali);
                 $('#edit_denda').val(data.denda);
                 $('#edit_keterangan').val(data.keterangan);
               
 
                 // Populate NIK
-                let nikOptions = '';
-                res.anggotas.forEach(function(anggota) {
-                    nikOptions += `<option value="${anggota.id}" ${anggota.id == data.nik ? 'selected' : ''}>${anggota.nik}</option>`;
-                });
-                $('#edit_nik').html(nikOptions);
+                // let nikOptions = '';
+                // res.anggotas.forEach(function(anggota) {
+                //     nikOptions += `<option value="${anggota.id}" ${anggota.id == data.nik ? 'selected' : ''}>${anggota.nik}</option>`;
+                // });
+                // $('#edit_nik').html(nikOptions);
 
                 // Populate anggota
                 let anggotaOptions = ``;
@@ -154,9 +156,9 @@
                 // Populate buku
                 let bukuOptions = '';
                 res.bukus.forEach(function(buku) {
-                    bukuOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.judul}</option>`;
+                    bukuOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.kode_buku}</option>`;
                 });
-                $('#edit_buku_id').html(bukuOptions);
+                $('#edit_kode_buku').html(bukuOptions);
                     
                 $('#editModal').modal('show');
             });

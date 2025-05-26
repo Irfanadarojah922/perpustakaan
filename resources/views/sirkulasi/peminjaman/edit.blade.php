@@ -14,26 +14,34 @@
           <input type="hidden" id="edit_id" name="id">
 
           <div class="mb-3">
+             <label>No NIK</label>
+            <select name="anggota_id" id="edit_anggota_nik" class="form-control" required> 
+            </select>
+          </div>
+
+          {{-- <div class="mb-3">
              <label>Nama Anggota</label>
-             {{-- <input type="text" name="anggota_id" id="edit_anggota_id" class="form-control"> --}}
-            <select name="anggota_id" id="edit_anggota_id" class="form-control" required>
-              
+            <select name="anggota_id" id="edit_anggota_nik" class="form-control" required> 
+            </select>
+          </div> --}}
+
+          <div class="mb-3">
+            <label>Kode Buku</label>
+            <select name="buku_id" id="edit_kode_buku" class="form-control" required>
             </select>
           </div>
 
-          <div class="mb-3">
+          {{-- <div class="mb-3">
             <label>Judul Buku</label>
-            {{-- <input type="text" name="buku_id" id="edit_buku_id" class="form-control"> --}}
-            <select name="buku_id" id="edit_buku_id" class="form-control" required>
+            <select name="buku_id" id="edit_judul" class="form-control" required>
             </select>
-          </div>
+          </div> --}}
 
-          <div class="mb-3">
-            <label>Kategori Buku</label>
-            {{-- <input type="text" name="kategori_id" id="edit_kategori_id" class="form-control"> --}}
-            <select name="kategori_id" id="edit_kategori_id" class="form-control" required>
+          {{-- <div class="mb-3">
+            <label>Kategori Buku</label> --}}
+            {{-- <select name="kategori_id" id="edit_kategori_id" class="form-control" required>
             </select>
-          </div>
+          </div> --}}
 
           <div class="mb-3">
             <label>Tanggal Pinjam</label>
@@ -42,7 +50,7 @@
 
           <div class="mb-3">
             <label>Tanggal Harus Kembali</label>
-            <input type="date" name="tanggal_kembali" id="edit_tanggal_kembali" class="form-control">
+            <input type="date" name="tanggal_kembali" id="edit_tanggal_harus_kembali" class="form-control">
           </div>
 
           {{-- <div class="mb-3">

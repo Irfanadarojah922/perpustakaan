@@ -43,11 +43,12 @@
               <thead>
                 <tr class="text-right">
                   <th scope="col">No</th>
+                  <th scope="col">No NIK</th>
                   <th scope="col">Nama Anggota</th>
+                  <th scope="col">Kode Buku</th>
                   <th scope="col">Judul Buku</th>
-                  <th scope="col">Kategori Buku</th>
                   <th scope="col">Tanggal Pinjam</th>
-                  <th scope="col">Tanggal Harus Kembali</th>
+                  {{-- <th scope="col">Tanggal Harus Kembali</th> --}}
                   {{-- <th scope="col">Status Pengembalian</th> --}}
 
                   <th scope="col">Aksi</th>
@@ -104,11 +105,13 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }
           },
+          {data: 'anggotas.nik', name: 'anggota_id'},
           {data: 'anggotas.nama', name: 'anggota_id'},
+          {data: 'bukus.kode_buku', name: 'buku_id'},
           {data: 'bukus.judul', name: 'buku_id'},
-          {data: 'kategoris.nama_kategori', name: 'kategori_id'},
+          // {data: 'kategoris.nama_kategori', name: 'kategori_id'},
           {data: 'tanggal_pinjam', name: 'tanggal_pinjam'},
-          {data: 'tanggal_kembali', name: 'tanggal_kembali'},
+          // {data: 'tanggal_kembali', name: 'tanggal_kembali'},
           // {data: 'status_pengembalian', name: 'status_pengembalian'},
           {data: 'action', name: 'action'}
         ],
@@ -126,25 +129,32 @@
         // console.log(anggota.id);
         let anggotaOptions = ``;
         res.anggotas.forEach(function(anggota) {
-            anggotaOptions += `<option value="${anggota.id}">${anggota.nama}</option>`;
+            anggotaOptions += `<option value="${anggota.id}">${anggota.nik}</option>`;
+            // anggotaOptions += `<option value="${anggota.id}">${anggota.nama}</option>`;
+
           });
-        $('#add_anggota_id').html(anggotaOptions);
+        $('#add_anggota_nik').html(anggotaOptions);
+        // $('#add_anggota_nama').html(anggotaOptions);
+
 
         // console.log(judul buku);
         let bukuOptions = ``;
         res.bukus.forEach(function(buku) {
 
-            bukuOptions += `<option value="${buku.id}">${buku.judul}</option>`;
+            bukuOptions += `<option value="${buku.id}">${buku.kode_buku}</option>`;
+            // bukuOptions += `<option value="${buku.id}">${buku.judul}</option>`;
           });
-        $('#add_buku_id').html(bukuOptions);
+
+        $('#add_kode_buku').html(bukuOptions);        
+        // $('#add_buku_id').html(bukuOptions);
           
         // console.log(kategori);
-        let kategoriOptions = ``;
-        res.kategoris.forEach(function(kategori) {
+        // let kategoriOptions = ``;
+        // res.kategoris.forEach(function(kategori) {
 
-            kategoriOptions += `<option value="${kategori.id}">${kategori.nama_kategori}</option>`;
-          });
-        $('#add_kategori_id').html(kategoriOptions);
+        //     kategoriOptions += `<option value="${kategori.id}">${kategori.nama_kategori}</option>`;
+        //   });
+        // $('#add_kategori_id').html(kategoriOptions);
 
         // console.log(status);
         // let pinjamOptions = ``;
@@ -163,7 +173,7 @@
 
           $('#edit_id').val(data.id);
           $('#edit_tanggal_pinjam').val(data.tanggal_pinjam);
-          $('#edit_tanggal_kembali').val(data.tanggal_kembali);
+          $('#edit_tanggal_harus_kembali').val(data.tanggal_kembali);
           // $('#edit_status_pengembalian').val(data.status_pengembalian);
 
           // Populate select status_pengembalian
@@ -176,27 +186,28 @@
           
           // Populate select buku
           let bukuOptions = '';
+
           res.bukus.forEach(function(buku) {
-            bukuOptions +=
-              `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.judul}</option>`;
+            bukuOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.kode_buku} - ${buku.judul}</option>`;          
           });
-          $('#edit_buku_id').html(bukuOptions);
+          $('#edit_kode_buku').html(bukuOptions); 
+
 
           // Populate select anggota
           let anggotaOptions = ``;
           res.anggotas.forEach(function(anggota) {
             // console.log(anggota.id);
-            anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nama}</option>`;
+            anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nik} - ${anggota.nama}</option>`;
           });
-          $('#edit_anggota_id').html(anggotaOptions);
+          $('#edit_anggota_nik').html(anggotaOptions);
 
           // Populate select kategori
-          let kategoriOptions = '';
-          res.kategoris.forEach(function(kategori) {
-            kategoriOptions +=
-              `<option value="${kategori.id}" ${kategori.id == data.kategori_id ? 'selected' : ''}>${kategori.nama_kategori}</option>`;
-          });
-          $('#edit_kategori_id').html(kategoriOptions);
+          // let kategoriOptions = '';
+          // res.kategoris.forEach(function(kategori) {
+          //   kategoriOptions +=
+          //     `<option value="${kategori.id}" ${kategori.id == data.kategori_id ? 'selected' : ''}>${kategori.nama_kategori}</option>`;
+          // });
+          // $('#edit_kategori_id').html(kategoriOptions);
 
           $('#editModal').modal('show');
         });
