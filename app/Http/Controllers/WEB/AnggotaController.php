@@ -35,23 +35,30 @@ class AnggotaController extends Controller
     }
     public function store(Request $request)
     {
-        $data = Anggota::create($request->validate([
-            "nik" => "required|string|max:255",
+        // Simpan hasil validasi ke variabel
+        $validated = $request->validate([
+            "nik" => "required|string|max:255|unique:anggotas,nik",
             "nama" => "required|string|max:255",
             "tempat_lahir" => "required|string|max:255", 
-            "tanggal_lahir" => "required|string|max:255",
+            "tanggal_lahir" => "required|date",
             "jenis_kelamin" => "required|string|max:255",
             "pendidikan" => "required|string|max:255",
             "alamat" => "required|string|max:255",
-            "no_telepon" => "required|string|max:255",
+            "no_telepon" => "required|string|max:20",
             "status" => "required|string|max:255",
-            "foto" => "nullable|string|max:255",
-            "tanggal_daftar" => "required|string|max:255",
+            "foto" => "nullable|image|max:2048",
+            "tanggal_daftar" => "required|date"
+        ]);
 
-            // "email" => "required|string|max:255",
-            // "password" => "required|string|max:255",
+        // Validasi nomor telepon harus diawali dengan +62
+        if (!str_starts_with($validated['no_telepon'], '+62')) {
+            return back()->withInput()->withErrors([
+                'no_telepon' => 'Nomor telepon harus diawali dengan +62.'
+            ]);
+        }
 
-        ]));
+        // Simpan data ke database
+        $data = Anggota::create($validated);
 
         return $data ? redirect("/keanggotaan")->with("success", "Anggota 
         Created Successfully!") : back()->with("error", "Something Error!");

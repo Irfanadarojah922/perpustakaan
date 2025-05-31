@@ -28,10 +28,10 @@ class Anggota extends Model
         "tanggal_daftar" => "date:d/m/Y"
     ];
 
-    public function pinjams()
-    {
-        return $this->hasMany(Pinjam::class);
-    }
+    // public function pinjams()
+    // {
+    //     return $this->hasMany(Pinjam::class);
+    // }
 
     public function hasUser()
     {

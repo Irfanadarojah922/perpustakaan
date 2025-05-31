@@ -123,33 +123,23 @@
                             
             });
             
+            //edit
             $(document).on('click', '.editBtn', function() {
             let id = $(this).data('id');
 
             $.get(`/pengembalian/${id}/edit`, function(res) {
                 let data = res.data;
 
-                // $('#edit_nik').val(data.nik);
-                // $('#edit_nama_anggota').val(data.nama);
-                // $('#edit_kode_buku').val(data.kode_buku);
-                // $('#edit_judul_buku').val(data.judul);
                 $('#edit_tanggal_kembali').val(data.tanggal_kembali);
                 $('#edit_denda').val(data.denda);
                 $('#edit_keterangan').val(data.keterangan);
               
 
-                // Populate NIK
-                // let nikOptions = '';
-                // res.anggotas.forEach(function(anggota) {
-                //     nikOptions += `<option value="${anggota.id}" ${anggota.id == data.nik ? 'selected' : ''}>${anggota.nik}</option>`;
-                // });
-                // $('#edit_nik').html(nikOptions);
-
                 // Populate anggota
                 let anggotaOptions = ``;
                 res.anggotas.forEach(function(anggota) {
                     // console.log(anggota.id);
-                    anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.nama_anggota ? 'selected' : ''}>${anggota.nama}</option>`;
+                    anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nama}</option>`;
                 });
                 $('#edit_nama_anggota').html(anggotaOptions);
 
@@ -160,21 +150,15 @@
                 });
                 $('#edit_kode_buku').html(bukuOptions);
                     
+                let judulOptions = '';
+                res.bukus.forEach(function(buku) {
+                    judulOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.judul}</option>`;
+                });
+                $('#edit_judul_buku').html(judulOptions);
+
                 $('#editModal').modal('show');
             });
 
-            //   $(document).on('click', '.editBtn', function() {
-            //     let id = $(this).data('id');
-            //     $.get(`/peminjaman/${id}/edit`, function(res) {
-            //       $('#edit_id').val(res.id);
-            //       $('#edit_pinjam_id').val(res.pinjam_id);
-            //       $('#edit_buku_id').val(res.buku_id);
-            //       $('#edit_tanggal_kembali').val(res.tanggal_kembali);
-            //       $('#edit_denda').val(res.denda);
-            //       $('#edit_keterangan').val(res.keterangan);
-            //     });
-            //   });
-
             $('#editForm').submit(function(e) {
                 e.preventDefault();
                 let id = $('#edit_id').val();
@@ -194,26 +178,6 @@
                 }
                 });
             });
-            });
-
-            $('#editForm').submit(function(e) {
-                e.preventDefault();
-                let id = $('#edit_id').val();
-                $.ajax({
-
-                url: `/pengembalian/${id}`,
-                method: 'PUT',
-                data: $(this).serialize(),
-                success: function(res) {
-                    $('#editModal').modal('hide');
-                    $('#table_pengembalian').DataTable().ajax.reload();
-                    alert('Data berhasil diupdate!');
-                },
-                error: function(err) {
-                    alert('Terjadi kesalahan saat mengupdate.');
-                    console.log(err.responseJSON);
-                }
-                });
             });
 
             $(document).on('click', '.deleteBtn', function () {

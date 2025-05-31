@@ -13,11 +13,6 @@
                 <div class="modal-body">
                     <input type="hidden" id="edit_id" name="id">
 
-                    {{-- <div class="mb-3">
-                        <label>NIK</label>
-                        <input type="text" name="id" id="edit_nik" class="form-control">
-                    </div> --}}
-
                     <div class="mb-3">
                         <label>Nama Anggota</label>
                         <select name="pinjam_id" id="edit_nama_anggota" class="form-control" required>

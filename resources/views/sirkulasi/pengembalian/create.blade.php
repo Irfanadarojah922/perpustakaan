@@ -14,18 +14,6 @@
                         </select>
                     </div>
 
-                    {{-- <div class="mb-3">
-                        <label>Pinjam ID</label>
-                        <select name="pinjam_id" id="add_pinjam_id" class="form-control" required>
-                        </select>
-                    </div> --}}
-
-                    {{-- <div class="mb-3">
-                        <label>Judul Buku</label>
-                        <select name="buku_id" id="add_buku_id" class="form-control" required>
-                        </select>
-                    </div> --}}
-
                     <div class="mb-3">
                         <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
                         <input type="date" class="form-control @error('tanggal_kembali') is-invalid
@@ -61,6 +49,7 @@
                             <option value="">- Pilih -</option>
                             <option value="buku hilang"> Buku hilang </option>
                             <option value="rusak"> Rusak </option>
+                            <option value="tepat waktu"> Tepat Waktu </option>
                         </select>
                     </div>
 

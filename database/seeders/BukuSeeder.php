@@ -14,20 +14,26 @@ class BukuSeeder extends Seeder
      */
     public function run(): void
     {
+
+
+        $faker = \Faker\Factory::create('id_ID');
+        for ($i = 0; $i < 10; $i++) {
+
         $kategori = DB::table('kategoris')->first();
 
-         DB::table('bukus')->insert([
-            'kode_buku' => 'FI001',
-            'kategori_id' => $kategori -> id,
-            'judul' => 'Laskar Pelangi', 
-            'penulis' => 'Andrea Hirata', 
-            'penerbit' => 'Gramedia', 
-            'tahun_terbit' => 2005, 
-            'ISBN' => '979-3062-79-7',
-            'jumlah_eksemplar' => 10, 
-            'jumlah_tersedia' => 10, 
-            'deskripsi' => 'Novel inspiratif tentang persahabatan dan perjuangan anak-anak di Belitung.', 
-            'foto' => 'laskar_pelangi.jpg',
-        ]);
+            DB::table('bukus')->insert([
+                'kode_buku' => strtoupper($faker->bothify('BK-#####')),
+                'kategori_id' => $kategori -> id,
+                'judul' => $faker->sentence(3),
+                'penulis' => $faker->name,
+                'penerbit' => $faker->company,
+                'tahun_terbit' => $faker->year(),
+                'ISBN' => $faker->isbn13(),
+                'jumlah_eksemplar' => $jumlah = $faker->numberBetween(5, 20),
+                'jumlah_tersedia' => $faker->numberBetween(1, $jumlah),
+                'deskripsi' => $faker->paragraph(),
+                'foto' => $faker->imageUrl(200, 300, 'books', true),
+            ]);
+        }
     }
 }

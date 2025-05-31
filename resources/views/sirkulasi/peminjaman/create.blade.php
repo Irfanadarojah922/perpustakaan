@@ -15,30 +15,12 @@
                         </select>
                     </div>
 
-                    {{-- <div class="mb-3">
-                        <label>Nama Anggota</label>
-                        <select name="anggota_id" id="add_anggota_nama" class="form-control" required>
-                        </select>
-                    </div> --}}
-
                     <div class="mb-3">
                         <label>Kode Buku</label>
                         <select name="buku_id" id="add_kode_buku" class="form-control" required>
                         </select>
                     </div>
 
-                    {{-- <div class="mb-3">
-                        <label>Judul Buku</label>
-                        <select name="buku_id" id="add_buku_id" class="form-control" required>
-                        </select>
-                    </div> --}}
-
-                    {{-- <div class="mb-3">
-                        <label>Kategori</label>
-                        <select name="kategori_id" id="add_kategori_id" class="form-control" required>
-                        </select>
-                    </div>
- --}}
                     <div class="mb-3">
                         <label for="tanggal_pinjam" class="form-label">Tanggal Pinjam</label>
                         <input type="date" class="form-control  @error('tanggal_pinjam') is-invalid
@@ -48,27 +30,6 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3">
-                        <label for="tanggal_kembali" class="form-label">Tanggal Harus Kembali</label>
-                        <input type="date" class="form-control  @error('tanggal_kembali') is-invalid
-                        @enderror" id="tanggal_kembali" name="tanggal_kembali" value="{{ old('tanggal_kembali') }}">
-                        @error('tanggal_kembali')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-
-                    {{-- <div class="mb-3">
-                        <label for="status_pengembalian" class="form-label">Status Pengembalian</label>
-                        <select class="form-control @error('status_pengembalian') is-invalid
-                        @enderror" name="status_pengembalian" id="status_pengembalian" value="{{ old('status_pengembalian') }}">
-                        @error('status_pengembalian')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-
-                            <option value="">- Pilih -</option>
-                            <option value="Dipinjam"> Dipinjam </option>
-                            <option value="Dikembalikan"> Dikembalikan </option>
-                        </select> --}}
                     </div>
                    
                     <div class="modal-footer">

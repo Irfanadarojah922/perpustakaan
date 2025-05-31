@@ -137,13 +137,62 @@
                 columnDefs: [
                     { targets: [0, 3], className: 'dt-left'}
                 ]
-            })
-        })
+            });
 
-        function detail_anggota(id) {
-            let url = '{{ route("keanggotaan.show", ":id") }}';
-            url = url.replace(':id', id);
-            window.open(url);
-        }
+
+            //untuk validasi nomor telepon harus diawali +62
+            $(document).on('input', '#no_telepon', function () {
+                let value = $(this).val();
+                if (!value.startsWith('+62')) {
+                    $('#no_telp_error').text('Nomor telepon harus diawali dengan +62').show();
+                } else {
+                    $('#no_telp_error').hide();
+                }
+            });
+
+
+            //delete
+            $(document).on('click', '.deleteBtn', function () {
+                let id = $(this).data('id');
+                $('#delete_id').val(id);
+                $('#deleteModal').modal('show');
+            });
+
+            $('#deleteForm').submit(function (e) {
+                e.preventDefault();
+                let id = $('#delete_id').val();
+
+                $.ajax({
+                url: `/keanggotaan/${id}`,
+                type: 'POST',
+                data: {
+                _method: 'DELETE',
+                _token: '{{ csrf_token() }}'
+                },
+                success: function (res) {
+                    $('#deleteModal').modal('hide');
+                    $('#table_anggota').DataTable().ajax.reload();
+                    alert(res.message);
+                    },
+                    error: function (err) {
+                    alert('Terjadi kesalahan saat menghapus.');
+                    console.log(err.responseText);
+                    }
+                });
+            });
+
+        });
+
+
+
+            function detail_anggota(id) {
+                let url = '{{ route("keanggotaan.show", ":id") }}';
+                url = url.replace(':id', id);
+                window.open(url);
+            }
+
+
+
+
     </script>
 @endpush

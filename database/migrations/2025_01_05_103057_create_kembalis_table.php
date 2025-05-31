@@ -17,7 +17,7 @@ return new class extends Migration {
 
             $table->date('tanggal_kembali');
             $table->enum('denda', ['Ganti Buku', 'Perbaikan', 'Tepat Waktu']);
-            $table->enum('keterangan', ['buku hilang', 'rusak']);
+            $table->enum('keterangan', ['buku hilang', 'rusak','tepat waktu']);
             $table->timestamps();
 
             // Foreign key constraint

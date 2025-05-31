@@ -87,12 +87,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="no_telepon" class="form-label">No. Telepon</label>
-                        <input type="text" class="form-control @error('no_telepon') is-invalid
-                        @enderror" id="no_telepon" name="no_telepon" value="{{ old('no_telepon') }}">
-                        @error('no_telepon')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label for="foto" class="form-label">No. Telepon</label>
+                        <input type="text" name="no_telepon" id="no_telepon" class="form-control" required>
+                        <small id="no_telp_error" style="color: red; display: none;"></small>
                     </div>
 
                     <div class="mb-3">
@@ -126,9 +123,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-
-
-
                 </div>
 
                 <div class="modal-footer">

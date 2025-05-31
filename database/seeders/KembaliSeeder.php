@@ -23,9 +23,9 @@ class KembaliSeeder extends Seeder
 
             'pinjam_id' => $faker->randomElement($pinjam),
             'buku_id' => $faker->randomElement($buku ),
-            'tanggal_kembali' => '2024-12-15',
-            'denda' => 'Ganti Buku',
-            'keterangan' => 'buku hilang',
+            'tanggal_kembali' => $faker -> date,
+            'denda' => $faker -> randomElement(['Ganti Buku', 'Perbaikan', 'Tepat Waktu']),
+            'keterangan' => $faker -> randomElement(['buku hilang', 'rusak', 'tepat waktu']),
         ]);
         }
     }

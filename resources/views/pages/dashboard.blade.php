@@ -103,16 +103,6 @@
         </li>
 
         <li>
-            <i class='bx bx-group'></i>
-            <span class="info">
-                <h3>
-                    {{ $anggotas }}
-                </h3>
-                <p>Total Anggota</p>
-            </span>
-        </li>
-
-        <li>
             <i class='bx bx-book-bookmark'></i>
             <span class="info">
                 <h3>
@@ -131,6 +121,17 @@
                 <p>Total Pengembalian</p>
             </span>
         </li>
+
+        <li>
+            <i class='bx bx-group'></i>
+            <span class="info">
+                <h3>
+                    {{ $anggotas }}
+                </h3>
+                <p>Total Anggota</p>
+            </span>
+        </li>
+        
     </ul>
     <!-- End of Insights -->
 

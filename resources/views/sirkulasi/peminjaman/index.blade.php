@@ -100,29 +100,26 @@
         columns: [
           // {data: 'id', name: 'id'},
           {
-              data: null,
+              data: null,       //untuk menghitung jumlah baris mulai dari 1
               render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
               }
           },
+
           {data: 'anggotas.nik', name: 'anggota_id'},
           {data: 'anggotas.nama', name: 'anggota_id'},
           {data: 'bukus.kode_buku', name: 'buku_id'},
           {data: 'bukus.judul', name: 'buku_id'},
-          // {data: 'kategoris.nama_kategori', name: 'kategori_id'},
           {data: 'tanggal_pinjam', name: 'tanggal_pinjam'},
-          // {data: 'tanggal_kembali', name: 'tanggal_kembali'},
-          // {data: 'status_pengembalian', name: 'status_pengembalian'},
           {data: 'action', name: 'action'}
         ],
 
         columnDefs: [
           { targets: [0, 5], className: 'dt-left'}
-        ]
-       
+        ] 
       });
 
-      // utk form input
+      // utk input pengembalian
       $.get(`/peminjaman/add`, function(res) {
         let data = res.data;
 
@@ -130,11 +127,8 @@
         let anggotaOptions = ``;
         res.anggotas.forEach(function(anggota) {
             anggotaOptions += `<option value="${anggota.id}">${anggota.nik}</option>`;
-            // anggotaOptions += `<option value="${anggota.id}">${anggota.nama}</option>`;
-
           });
         $('#add_anggota_nik').html(anggotaOptions);
-        // $('#add_anggota_nama').html(anggotaOptions);
 
 
         // console.log(judul buku);
@@ -142,28 +136,10 @@
         res.bukus.forEach(function(buku) {
 
             bukuOptions += `<option value="${buku.id}">${buku.kode_buku}</option>`;
-            // bukuOptions += `<option value="${buku.id}">${buku.judul}</option>`;
           });
-
         $('#add_kode_buku').html(bukuOptions);        
-        // $('#add_buku_id').html(bukuOptions);
-          
-        // console.log(kategori);
-        // let kategoriOptions = ``;
-        // res.kategoris.forEach(function(kategori) {
-
-        //     kategoriOptions += `<option value="${kategori.id}">${kategori.nama_kategori}</option>`;
-        //   });
-        // $('#add_kategori_id').html(kategoriOptions);
-
-        // console.log(status);
-        // let pinjamOptions = ``;
-        // res.pinjams.forEach(function(pinjam) {
-
-        //     pinjamOptions += `<option value="${pinjam.id}">${pinjam.status_pengembalian}</option>`;
-        //   });
-        // $('#add_pinjam_id').html(pinjamOptions);
       });
+
 
       $(document).on('click', '.editBtn', function() {
         let id = $(this).data('id');
@@ -174,58 +150,41 @@
           $('#edit_id').val(data.id);
           $('#edit_tanggal_pinjam').val(data.tanggal_pinjam);
           $('#edit_tanggal_harus_kembali').val(data.tanggal_kembali);
-          // $('#edit_status_pengembalian').val(data.status_pengembalian);
 
-          // Populate select status_pengembalian
-          // let statusOptions = ['Dipinjam', 'Dikembalikan'];
-          // let statusSelect = $('#edit_status_pengembalian');
-          // statusSelect.empty();
-          // statusOptions.forEach(function(status) {
-          //   statusSelect.append(`<option value="${status}" ${status == data.status_pengembalian ? 'selected' : ''}>${status}</option>`);
-        
           
           // Populate select buku
           let bukuOptions = '';
-
           res.bukus.forEach(function(buku) {
-            bukuOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.kode_buku} - ${buku.judul}</option>`;          
+            bukuOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.kode_buku}</option>`;          
           });
           $('#edit_kode_buku').html(bukuOptions); 
+
+          let judulOptions = '';
+          res.bukus.forEach(function(buku) {
+            judulOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}> ${buku.judul}</option>`;          
+          });
+          $('#edit_judul').html(judulOptions); 
 
 
           // Populate select anggota
           let anggotaOptions = ``;
           res.anggotas.forEach(function(anggota) {
             // console.log(anggota.id);
-            anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nik} - ${anggota.nama}</option>`;
+            anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nik}</option>`;
           });
           $('#edit_anggota_nik').html(anggotaOptions);
 
-          // Populate select kategori
-          // let kategoriOptions = '';
-          // res.kategoris.forEach(function(kategori) {
-          //   kategoriOptions +=
-          //     `<option value="${kategori.id}" ${kategori.id == data.kategori_id ? 'selected' : ''}>${kategori.nama_kategori}</option>`;
-          // });
-          // $('#edit_kategori_id').html(kategoriOptions);
+          let namaOptions = ``;
+          res.anggotas.forEach(function(anggota) {
+            // console.log(anggota.id);
+            namaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}> ${anggota.nama}</option>`;
+          });
+          $('#edit_nama').html(namaOptions);          
+
 
           $('#editModal').modal('show');
         });
       });
-
-      //   $(document).on('click', '.editBtn', function() {
-      //     let id = $(this).data('id');
-      //     $.get(`/peminjaman/${id}/edit`, function(res) {
-      //       $('#edit_id').val(res.id);
-      //       $('#edit_tanggal_pinjam').val(res.tanggal_pinjam);
-      //       $('#edit_tanggal_kembali').val(res.tanggal_kembali);
-      //       $('#edit_status_pengembalian').val(res.status_pengembalian);
-      //       $('#edit_anggota_id').val(res.anggota_id);
-      //       $('#edit_buku_id').val(res.buku_id);
-      //       $('#edit_kategori_id').val(res.kategori_id);
-      //       $('#editModal').modal('show');
-      //     });
-      //   });
 
       $('#editForm').submit(function(e) {
         e.preventDefault();
@@ -247,6 +206,8 @@
         });
       });
 
+
+      //delete data
       $(document).on('click', '.deleteBtn', function () {
         let id = $(this).data('id');
         $('#delete_id').val(id);

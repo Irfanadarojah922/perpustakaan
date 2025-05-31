@@ -54,7 +54,7 @@ class KatalogController extends Controller
             $destinationPath = public_path('assets/images');
             $file->move($destinationPath, $filename);
 
-            $validated['foto'] = 'storage/buku/' . $filename;
+            $validated['foto'] = 'assets/images' . $filename;
         }
 
         // Simpan data buku
@@ -71,5 +71,7 @@ class KatalogController extends Controller
         $kategoris = Kategori::find($id);
         return view('katalog.detail', compact('kategoris'));
     }
+
+    
 
 }
