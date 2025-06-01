@@ -67,10 +67,14 @@
             color: white;
         }
 
+        .input-box {
+            position: relative;
+        }
+
         .input-box i {
             position: absolute;
-            right: 50px;
-            top: 35%;
+            right: 20px;
+            top: 50%;
             transform: translateY(-50%);
             font-size: 20px;
         }
@@ -78,8 +82,10 @@
         .wrapper .remember-forgot {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 14.5px;
             margin: -15px 0 15px;
+            margin-top: 10px;
         }
 
         .remember-forgot label input {
@@ -113,7 +119,8 @@
         .wrapper .register-link {
             font-size: 14.5px;
             text-align: center;
-            margin: 20px 0 15px;
+            margin: 40px 0 15px;
+
         }
 
         .register-link p a {
@@ -146,6 +153,7 @@
 
             <div class="input-box">
                 <input type="password" placeholder="Password" name="password" required>
+                <i class='bx bxs-lock'></i>
             </div>
 
             @if ($errors->has('email') || $errors->has('password'))
