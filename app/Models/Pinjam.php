@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pinjam extends Model
 {
     protected $fillable = [
 
-        'tanggal_pinjam',
-        'tanggal_kembali',
-        // 'status_pengembalian',
+        'tanggal_pinjam', 
+        'tanggal_pengembalian',
+        'status', 
         'anggota_id',
         'buku_id',
-        'kategori_id',
 
     ];
     public function anggotas()
@@ -27,13 +25,8 @@ class Pinjam extends Model
         return $this->belongsTo(Buku::class, 'buku_id');
     }
 
-    public function kategoris()
+    public function kembali() // Nama singular karena hasOne
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
-    }
-
-    public function kembalis()
-    {
-        return $this->hasOne(Kembali::class, 'kembali_id');
+        return $this->hasOne(Kembali::class, 'pinjam_id');
     }
 }

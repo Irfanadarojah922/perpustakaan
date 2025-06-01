@@ -15,17 +15,14 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('anggota_id');
             $table->unsignedBigInteger('buku_id');
-            $table->unsignedBigInteger('kategori_id');
 
             $table->date('tanggal_pinjam');
-            $table->date('tanggal_kembali');
-            // $table->enum('status_pengembalian', ['Dipinjam', 'Dikembalikan']);
+            $table->date('tanggal_pengembalian');
+            $table->enum('status', ['Dipinjam', 'Dikembalikan', 'Terlambat'])->default('Dipinjam');
             $table->timestamps();
 
             $table->foreign('anggota_id')->references('id')->on('anggotas');
             $table->foreign('buku_id')->references('id')->on('bukus');
-            $table->foreign('kategori_id')->references('id')->on('kategoris');
-
 
         });
     }

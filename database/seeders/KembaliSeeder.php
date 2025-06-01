@@ -14,7 +14,6 @@ class KembaliSeeder extends Seeder
     public function run(): void
     {
         $pinjam = DB::table('pinjams')->pluck('id')->toArray();
-        $buku = DB::table('bukus')->pluck('id')->toArray();
 
         $faker = \Faker\Factory::create('id_ID');
         for ($i = 0; $i < 10; $i++) {
@@ -22,7 +21,6 @@ class KembaliSeeder extends Seeder
         DB::table('kembalis')->insert([
 
             'pinjam_id' => $faker->randomElement($pinjam),
-            'buku_id' => $faker->randomElement($buku ),
             'tanggal_kembali' => $faker -> date,
             'denda' => $faker -> randomElement(['Ganti Buku', 'Perbaikan', 'Tepat Waktu']),
             'keterangan' => $faker -> randomElement(['buku hilang', 'rusak', 'tepat waktu']),

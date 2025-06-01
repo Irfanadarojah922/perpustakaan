@@ -13,18 +13,13 @@ return new class extends Migration {
         Schema::create('kembalis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('pinjam_id');
-            $table->unsignedBigInteger('buku_id');
 
             $table->date('tanggal_kembali');
             $table->enum('denda', ['Ganti Buku', 'Perbaikan', 'Tepat Waktu']);
             $table->enum('keterangan', ['buku hilang', 'rusak','tepat waktu']);
             $table->timestamps();
 
-            // Foreign key constraint
             $table->foreign('pinjam_id')->references('id')->on('pinjams')->onDelete('cascade');
-
-            $table->foreign('buku_id')->references('id')->on('bukus')->onDelete('cascade');
-
         });
     }
 

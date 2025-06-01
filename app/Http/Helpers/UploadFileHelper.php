@@ -53,7 +53,7 @@ class UploadFileHelper
     /**
      * Hapus file.
      */
-    public static function delete(string $filePath, string $disk = 'public'): bool
+    public static function delete(string $filePath, string $disk = 'public')
     {
         try {
             return Storage::disk($disk)->exists($filePath)
@@ -61,7 +61,7 @@ class UploadFileHelper
             : false;
         } catch (\Exception $e) {
             Log::error("Delete file error: " . $e->getMessage());
-            return false;
+            return null;
         }
     }
 }

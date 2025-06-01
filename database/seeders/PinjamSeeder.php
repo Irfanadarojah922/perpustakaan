@@ -25,11 +25,11 @@ class PinjamSeeder extends Seeder
         DB::table('pinjams')->insert([
 
             'tanggal_pinjam' => $faker -> date,
-            'tanggal_kembali' => $faker -> date,
+            'tanggal_pengembalian' => $faker -> date,
             // 'status_pengembalian' => $faker -> randomElement(['dipinjam', 'dikembalikan']),
             'anggota_id' => $faker->randomElement($anggota),
             'buku_id' => $faker->randomElement($buku),
-            'kategori_id' => $faker->randomElement($kategori),
+            // 'kategori_id' => $faker->randomElement($kategori),
             ]);
         }
     }

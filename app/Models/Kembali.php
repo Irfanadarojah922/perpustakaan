@@ -11,7 +11,6 @@ class Kembali extends Model
     protected $fillable = [
 
         'pinjam_id',
-        'buku_id',
         'tanggal_kembali',
         'denda',
         'keterangan',
@@ -34,9 +33,16 @@ class Kembali extends Model
         );
     }
 
-    public function bukus()
+    // Access buku THROUGH pinjam
+    public function buku()
     {
-        return $this->belongsTo(Buku::class, 'buku_id');
+        return $this->hasOneThrough(
+            Buku::class,
+            Pinjam::class,
+            'id',            
+            'id',      
+            'pinjam_id',   
+            'buku_id'
+        );
     }
-
 }

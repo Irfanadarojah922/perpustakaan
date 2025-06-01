@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('bukus', function (Blueprint $table) {
             $table->id()->primary();
-            $table->string('kode_buku', 255);
+            $table->string('kode_buku', 255)->unique()->index();
             $table->unsignedBigInteger('kategori_id');
             $table->string('judul', 255);
             $table->string('penulis', 255);

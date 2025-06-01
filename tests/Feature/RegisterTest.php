@@ -1,16 +1,16 @@
 <?php
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Faker\Factory;
 use Illuminate\Http\UploadedFile;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
-    use RefreshDatabase;
 
-    /** @test */
-    public function it_validates_required_fields()
+    #[Test]
+    public function it_validates_required_fields(): void
     {
         $response = $this->postJson('/api/register', []);
 
@@ -22,24 +22,23 @@ class RegisterTest extends TestCase
             ]);
     }
 
-    /** @test */
-    public function it_creates_register_successfully()
+    #[Test]
+    public function it_creates_register_successfully(): void
     {
-        // $user = User::factory()->create();
-
+        $faker = Factory::create("id_ID");
         $data = [
-            'nik'            => '12345678901234567890',
+            'nik'            => $faker->nik(),
             'nama'           => 'John Doe',
             'tempat_lahir'   => 'Jakarta',
-            'tanggal_lahir'  => '01/01/2000',
+            'tanggal_lahir'  => Factory::create("id_ID")->date(),
             'jenis_kelamin'  => 'Laki-laki',
             'pendidikan'     => 'SD',
             'alamat'         => 'Jl. Sudirman No. 1',
             'no_telepon'     => '+62 81234567890',
             'status'         => 'Pelajar',
             'foto'           => UploadedFile::fake()->image('photo.jpg'),
-            'tanggal_daftar' => '01/01/2025',
-            'email'          => 'johndoe@example.com',
+            'tanggal_daftar' => Factory::create("id_ID")->date(),
+            'email'          => $faker->email,
             'password'       => 'password123',
         ];
 
@@ -48,7 +47,7 @@ class RegisterTest extends TestCase
         $response->assertStatus(201)
             ->assertJson([
                 'success' => true,
-                'message' => 'Register Successfully!'
+                'message' => 'Register Successfully!',
             ]);
     }
 }

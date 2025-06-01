@@ -153,22 +153,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <p>John Doe</p>
-                        </td>
-                        <td>24-01-2025</td>
-                        <td>
-                            <span class="status pending">Pengembalian</span></td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>John Doe</p>
-                        </td>
-                        <td>24-01-2025</td>
-                        <td>
-                            <span class="status pending">Pengembalian</span></td>
-                    </tr>
+                    @foreach ($transaksi as $data)
+                        <tr>
+                            <td>
+                                <p>{{ $data['nama_anggota'] }}</p>
+                            </td>
+                            <td> <p>{{ $data['tanggal_transaksi'] }}</p></td>
+                            <td>
+                                <span class="status pending">{{ $data['tipe_transaksi'] }}</span></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -190,30 +184,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <p>John Doe</p>
-                        </td>
-                        <td>24-01-2025</td>
-                        <td>04-02-2025</td>
-
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>John Doe</p>
-                        </td>
-                        <td>24-01-2025</td>
-                        <td>04-02-2025</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>John Doe</p>
-                        </td>
-                        <td>24-01-2025</td>
-                        <td>04-02-2025</td>
-                    </tr>
-                    <tr>
-                    </tbody>
+                    @foreach ($pengingat as $data )
+                        <tr>
+                            <td>
+                                <p>{{ $data['nama_anggota'] }}</p>
+                            </td>
+                            <td>{{ $data['tanggal_pinjam'] }}</td>
+                            <td>{{ $data['jatuh_tempo'] }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
             </table>
         
         </div>

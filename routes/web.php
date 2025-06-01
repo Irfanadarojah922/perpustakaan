@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WEB\AnggotaController;
+use App\Http\Controllers\WEB\BookController;
 use App\Http\Controllers\WEB\PeminjamanController;
 use App\Http\Controllers\WEB\PengembalianController;
 use App\Http\Controllers\WEB\DashboardController;
@@ -37,7 +38,7 @@ Route::get('/dashboard', [DashboardController::class, 'index']);
 
 // Route::post('/katalog', [KatalogController::class, 'store'])->name('katalog.store');
 
-Route::resource('/katalog', KatalogController::class);
+Route::resource('/katalog', KatalogController::class)->only(["index", "show"]);
 
 
 Route::resource('/keanggotaan', AnggotaController::class);
@@ -64,4 +65,8 @@ Route::delete('/pengembalian/{id}', [PengembalianController::class, 'destroy']);
 
 // Route::get('/getByname', [PeminjamanController::class, 'getByName'])->name('getByName');
 // Route::get('/sirkulasi', [PeminjamanController::class, 'PeminjamanByAnggotaId'])->name('peminjaman.byanggota');
+
+//Buku
+
+Route::resource('buku', BookController::class)->only(["store", "create"]);
 

@@ -25,19 +25,19 @@ class RegisterController extends Controller
      */
     public function store(StoreRequest $storeRequest)
     {
-        try {
-            $data = $this->registerRepository->store($storeRequest);
+        $data = $this->registerRepository->store($storeRequest);
 
-            return response()->json([
-                "success" => true,
-                "message" => "Register Successfully!",
-            ], 201);
-        } catch (\Throwable $th) {
+        if (! $data) {
             return response()->json([
                 "success" => false,
-                "message" => $th->getMessage(),
+                "message" => "Ooopss! Something Error!",
             ], 500);
         }
+
+        return response()->json([
+            "success" => true,
+            "message" => "Register Successfully!",
+        ], 201);
 
     }
 
