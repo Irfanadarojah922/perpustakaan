@@ -11,6 +11,11 @@
 
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="nama" class="form-label">NIK</label>
+                        <input type="text" class="form-control" id="nik" name="nik">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama">
                     </div>
@@ -29,8 +34,8 @@
                         <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
                         <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                             <option value="">- Pilih Jenis Kelamin -</option>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
                         </select>
                     </div>
 
@@ -64,6 +69,12 @@
                             <option value="umum">Umum</option>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="tanggal_lahir" class="form-label">Tanggal Daftar</label>
+                        <input type="date" class="form-control" id="tanggal_daftar" name="tanggal_daftar">
+                    </div>
+                    
                 </div>
 
                 <div class="modal-footer">

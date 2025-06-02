@@ -65,7 +65,7 @@ class PengembalianController extends Controller
 
     public function edit($id)
     {
-        $data = Kembali::with(['bukus', 'pinjam'])->findOrFail($id);
+        $data = Kembali::with(['buku', 'pinjam'])->findOrFail($id);
 
         $bukus = Buku::all();
         $pinjams = Pinjam::all();
@@ -74,6 +74,7 @@ class PengembalianController extends Controller
             'data' => $data,
             'bukus' => $bukus,
             'pinjams' => $pinjams,
+
         ]);
     }
 

@@ -25,8 +25,15 @@ class Pinjam extends Model
         return $this->belongsTo(Buku::class, 'buku_id');
     }
 
+    public function kategoris()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
+
     public function kembali() // Nama singular karena hasOne
     {
         return $this->hasOne(Kembali::class, 'pinjam_id');
     }
+
 }

@@ -86,6 +86,7 @@
                             <th scope="col">Alamat</th>
                             <th scope="col">No Telepon</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Tanggal Daftar</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -132,6 +133,7 @@
                     { data: 'alamat', name: 'alamat' },
                     { data: 'no_telepon', name: 'no_telepon' },
                     { data: 'status', name: 'status' },
+                    { data: 'tanggal_daftar', name: 'tanggal_daftar' },
                     { data: 'action', name: 'action' }
                 ],
                 columnDefs: [
@@ -149,6 +151,25 @@
                     $('#no_telp_error').hide();
                 }
             });
+
+
+            // utk input pengembalian
+            $.get(`/keanggotaan/add`, function(res) {
+                let data = res.data;
+
+                    $('#nik').val(data.nik);
+                    $('#nama').val(data.nama);
+                    $('#tempat_lahir').val(data.tempat_lahir);
+                    $('#tanggal_lahir').val(data.tanggal_lahir);
+                    $('#jenis_kelamin').val(data.jenis_kelamin);
+                    $('#pendidikan').val(data.pendidikan);
+                    $('#alamat').val(data.alamat);
+                    $('#no_telepon').val(data.no_telepon);
+                    $('#status').val(data.status);
+                    $('#tanggal_daftar').val(data.tanggal_daftar);
+            });
+
+
 
 
             //delete
@@ -184,14 +205,12 @@
         });
 
 
-
+        //show kartu anggota
             function detail_anggota(id) {
                 let url = '{{ route("keanggotaan.show", ":id") }}';
                 url = url.replace(':id', id);
                 window.open(url);
             }
-
-
 
 
     </script>

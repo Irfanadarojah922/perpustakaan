@@ -34,7 +34,7 @@ class Kembali extends Model
     }
 
     // Access buku THROUGH pinjam
-    public function buku()
+    public function bukus()
     {
         return $this->hasOneThrough(
             Buku::class,

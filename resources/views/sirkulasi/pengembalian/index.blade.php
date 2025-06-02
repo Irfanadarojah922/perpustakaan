@@ -123,6 +123,7 @@
                             
             });
             
+            
             //edit
             $(document).on('click', '.editBtn', function() {
             let id = $(this).data('id');
@@ -159,6 +160,7 @@
                 $('#editModal').modal('show');
             });
 
+        
             $('#editForm').submit(function(e) {
                 e.preventDefault();
                 let id = $('#edit_id').val();
@@ -186,6 +188,8 @@
                 $('#deleteModal').modal('show');
             });
 
+
+            //delete
             $('#deleteForm').submit(function (e) {
                 e.preventDefault();
                 let id = $('#delete_id').val();

@@ -141,8 +141,8 @@
             <div class="header">
                 <i class='bx bx-receipt'></i>
                 <h3>Transaksi Terakhir </h3>
-                <i class='bx bx-filter'></i>
-                <i class='bx bx-search'></i>
+                <i class='bx bx-filter d-none'></i>
+                <i class='bx bx-search d-none'></i>
             </div>
             <table>
                 <thead>
@@ -172,8 +172,8 @@
             <div class="header">
                 <i class='bx bx-note'></i>
                 <h3>Pengingat</h3>
-                <i class='bx bx-filter'></i>
-                <i class='bx bx-search'></i>            
+                <i class='bx bx-filter d-none'></i>
+                <i class='bx bx-search d-none'></i>
             </div>
             <table>
                 <thead>
