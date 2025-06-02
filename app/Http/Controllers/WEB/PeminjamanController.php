@@ -17,7 +17,7 @@ class PeminjamanController extends Controller
         $pinjam = Pinjam::all();
         if (\request()->ajax()) {
 
-            $pinjam = Pinjam::with(['bukus', 'anggotas', 'kategoris'])->get();
+            $pinjam = Pinjam::with(['bukus', 'anggotas'])->get();
             // dd($pinjam);
             return DataTables::of($pinjam)->addColumn("action", function ($row) {
                 $action =

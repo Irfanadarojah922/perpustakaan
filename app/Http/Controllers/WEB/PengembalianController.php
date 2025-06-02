@@ -18,7 +18,7 @@ class PengembalianController extends Controller
             if (\request()->ajax()) {
 
             // misal $kembali= Kembali::all() artinya ambil semua data dari tabel kembali tanpa relasi atau tanpa tabel pinjam dan buku atau juga tanpa tabel yang berkaitan
-            $kembali = Kembali::with(['pinjam:id', 'bukus:id,judul,kode_buku', 'anggota:nama,nik'])->get(); // ambil semua data dari tabel kembali dengan relasi tabel pinjam dan buku, data yang diambil dari Pinjam cuma id, dari buku cuma id, judul dan kode_buku
+            $kembali = Kembali::with(['pinjam:id', 'bukus:judul,kode_buku', 'anggota:nama,nik'])->get(); // ambil semua data dari tabel kembali dengan relasi tabel pinjam dan buku, data yang diambil dari Pinjam cuma id, dari buku cuma id, judul dan kode_buku
 
             return DataTables::of($kembali)->addColumn("action", function($row){
                 $action =
