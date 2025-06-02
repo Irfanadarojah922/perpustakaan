@@ -7,7 +7,9 @@ use App\Models\Anggota;
 use App\Models\Buku;
 use App\Models\Kategori;
 use App\Models\Pinjam;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class PeminjamanController extends Controller
@@ -53,14 +55,13 @@ class PeminjamanController extends Controller
 
     public function store(Request $request)
     {
-        $data = Pinjam::create($request->validate([
-            "tanggal_pinjam" => "required|string|max:255",
-            "tanggal_kembali" => "required|string|max:255",
-            // "status_pengembalian" => "required|string|max:255",
-            "anggota_id" => "required|string|max:255",
-            "buku_id" => "required|string|max:255",
-            "kategori_id" => "required|string|max:255",
-
+        $validated = $request->validate([
+            "tanggal_pinjam" => "required|date|max:255",
+            "anggota_id" => "required|string|exists:anggotas,id|max:255",
+            "buku_id" => "required|string|exists:bukus,id|max:255", // Removed extra pipe
+        ]);
+        $data = Pinjam::create(array_merge($validated, [
+            'tanggal_pengembalian' => Carbon::createFromDate($validated['tanggal_pinjam'])->addDays(10) // Consider adding ->addDays(X) here
         ]));
 
         return $data ? redirect("/sirkulasi/peminjaman")->with("success", "Peminjaman
@@ -108,4 +109,28 @@ class PeminjamanController extends Controller
         return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
     }
 
+    public function searchAnggotaByNIK(Request $request)
+    {
+        $query = $request->input('q');
+        $anggota = Anggota::query();
+        if ($query) {
+            $anggota = $anggota->where('nik', 'LIKE', "%{$query}%");
+        }
+        $anggota = $anggota->limit(10)->get(['id', 'nik']);
+
+        return response()->json(['anggota' => $anggota]);
+    }
+
+    public function searchBukuByKodeBuku(Request $request)
+    {
+        $query = $request->input('q');
+        $buku = Buku::query();
+
+        if ($query) {
+            $buku = $buku->where('kode_buku', 'LIKE', "%{$query}%");
+        }
+        $buku = $buku->limit(10)->get(['id', 'kode_buku']);
+
+        return response()->json(['buku' => $buku]);
+    }
 }

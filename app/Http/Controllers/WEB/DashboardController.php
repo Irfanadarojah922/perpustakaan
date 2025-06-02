@@ -50,7 +50,7 @@ class DashboardController extends Controller
             });
 
         // Ambil transaksi pengembalian terakhir
-        $pengembalianTerakhir = Kembali::with(['anggota', 'buku', 'pinjam']) // Eager load relasi
+        $pengembalianTerakhir = Kembali::with(['anggota', 'bukus', 'pinjam']) // Eager load relasi
             ->orderBy('tanggal_kembali', 'desc')
             ->take($limit)
             ->get()

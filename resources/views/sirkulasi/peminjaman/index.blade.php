@@ -7,6 +7,8 @@
   <meta name="csrf_token" content="{{ csrf_token() }}" />
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
   <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endpush
 
 @section('content')
@@ -30,7 +32,7 @@
           <h4 class="card-title  mb-0 flex-grow-1">Tabel Peminjaman</h4>
           <div class="flex-shrink-0 mx-2">
             <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
+              data-bs-target="#addModal">
               <i class="bx bx-plus" style="font-size:1rem;"></i>
               Add
             </a>
@@ -73,7 +75,7 @@
     @if ($errors->any())
       <script>
         document.addEventListener('DOMContentLoaded', function() {
-          var myModal = new bootstrap.Modal(document.getElementById('createModal'));
+          var myModal = new bootstrap.Modal(document.getElementById('addModal'));
           myModal.show();
         })
       </script>
@@ -86,12 +88,73 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endpush
 
 @push('scripts')
   <script>
     $(document).ready(function() {
+
+
+      //Select2
+      $('#add_anggota_nik').select2({
+        theme: 'bootstrap-5',
+        dropdownParent: $('#addModal'),
+        ajax: {
+          url: '{{ route('search.anggota') }}',
+          dataType: 'json',
+          delay: 250,
+          method: 'GET',
+          data: function (params) {
+            var query = {
+              q: params.term
+            };
+            return query;
+          },
+          processResults: function (data) {
+            result = $.map(data.anggota, function(item) {
+              return {
+                id: item.id,
+                text: item.nik
+              }
+            })
+            
+            return {
+              results: result
+            };
+          }
+        }
+      });
+      $('#add_kode_buku').select2({
+        theme: 'bootstrap-5',
+        dropdownParent: $('#addModal'),
+        ajax: {
+          url: '{{ route('search.buku') }}',
+          dataType: 'json',
+          delay: 250,
+          method: 'GET',
+          data: function (params) {
+            var query = {
+              q: params.term
+            };
+            return query;
+          },
+          processResults: function (data) {
+            result = $.map(data.buku, function(item) {
+              return {
+                id: item.id,
+                text: item.kode_buku
+              }
+            })
+            
+            return {
+              results: result
+            };
+          }
+        }
+      });
+
+
       $('#table_peminjaman').DataTable({
         responsive: true,
         processing: true,
@@ -119,29 +182,6 @@
         ] 
       });
 
-      // utk input pengembalian
-      $.get(`/peminjaman/add`, function(res) {
-        let data = res.data;
-
-        // console.log(anggota.id);
-        let anggotaOptions = ``;
-        res.anggotas.forEach(function(anggota) {
-            anggotaOptions += `<option value="${anggota.id}">${anggota.nik}</option>`;
-          });
-        $('#add_anggota_nik').html(anggotaOptions);
-
-
-        // console.log(judul buku);
-        let bukuOptions = ``;
-        res.bukus.forEach(function(buku) {
-
-            bukuOptions += `<option value="${buku.id}">${buku.kode_buku}</option>`;
-          });
-        $('#add_kode_buku').html(bukuOptions);        
-      });
-
-
-
       //edit
       $(document).on('click', '.editBtn', function() {
         let id = $(this).data('id');
@@ -151,7 +191,7 @@
 
           $('#edit_id').val(data.id);
           $('#edit_tanggal_pinjam').val(data.tanggal_pinjam);
-          $('#edit_tanggal_harus_kembali').val(data.tanggal_kembali);
+          $('#edit_tanggal_harus_kembali').val(data.tanggal_pengembalian);
 
           
           // Populate select buku

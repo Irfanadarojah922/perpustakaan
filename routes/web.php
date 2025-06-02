@@ -70,3 +70,5 @@ Route::delete('/pengembalian/{id}', [PengembalianController::class, 'destroy']);
 
 Route::resource('buku', BookController::class)->only(["store", "create"]);
 
+Route::get('search/anggota', [PeminjamanController::class, 'searchAnggotaByNIK'])->name('search.anggota');
+Route::get('search/buku', [PeminjamanController::class, 'searchBukuByKodeBuku'])->name('search.buku');

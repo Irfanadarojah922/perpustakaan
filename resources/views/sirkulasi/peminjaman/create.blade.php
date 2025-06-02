@@ -1,16 +1,16 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form action="" method="POST" action="{{route('peminjaman.store')}}">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Input Peminjaman</h1>
+                    <h1 class="modal-title fs-5" id="addModalLabel">Input Peminjaman</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label>No NIK</label>
+                        <label class="form-label">No NIK</label>
                         <select name="anggota_id" id="add_anggota_nik" class="form-control" required>
                         </select>
                     </div>
