@@ -44,7 +44,7 @@
 
           <div class="mb-3">
             <label>Tanggal Harus Kembali</label>
-            <input type="date" name="tanggal_kembali" id="edit_tanggal_harus_kembali" class="form-control">
+            <input type="date" name="tanggal_pengembalian" id="edit_tanggal_harus_kembali" class="form-control">
           </div>
 
         </div>

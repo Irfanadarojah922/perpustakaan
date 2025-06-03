@@ -43,7 +43,7 @@ class PeminjamanController extends Controller
         $bukus = Buku::all();
         $anggotas = Anggota::all();
         $kategoris = Kategori::all();
-        $pinjams  = Pinjam::all();
+        $pinjams = Pinjam::all();
 
         return response()->json([
             'bukus' => $bukus,
@@ -70,17 +70,10 @@ class PeminjamanController extends Controller
 
     public function edit($id)
     {
-        $data = Pinjam::with(['bukus', 'anggotas', 'kategoris'])->findOrFail($id);
-
-        $bukus = Buku::all();
-        $anggotas = Anggota::all();
-        $kategoris = Kategori::all();
+        $data = Pinjam::with(['bukus', 'anggotas'])->findOrFail($id);
 
         return response()->json([
             'data' => $data,
-            'bukus' => $bukus,
-            'anggotas' => $anggotas,
-            'kategoris' => $kategoris,
         ]);
     }
 
@@ -88,11 +81,9 @@ class PeminjamanController extends Controller
     {
         $validated = $request->validate([
             "tanggal_pinjam" => "required|string|max:255",
-            "tanggal_kembali" => "required|string|max:255",
-            // "status_pengembalian" => "required|string|max:255",
+            "tanggal_pengembalian" => "required|string|max:255",
             "anggota_id" => "required|exists:anggotas,id",
             "buku_id" => "required|exists:bukus,id",
-            "kategori_id" => "required|exists:kategoris,id",
         ]);
 
         $data = Pinjam::findOrFail($id);
@@ -113,10 +104,10 @@ class PeminjamanController extends Controller
     {
         $query = $request->input('q');
         $anggota = Anggota::query();
-        
+
         if ($query) {
             $anggota = $anggota->where('nik', 'LIKE', "%{$query}%")
-                             ->orWhere('nama', 'LIKE', "%{$query}%");
+                ->orWhere('nama', 'LIKE', "%{$query}%");
         }
         $anggota = $anggota->limit(10)->get(['id', 'nik', 'nama']);
 
@@ -130,7 +121,7 @@ class PeminjamanController extends Controller
 
         if ($query) {
             $buku = $buku->where('kode_buku', 'LIKE', "%{$query}%")
-                        ->orWhere('judul', 'LIKE', "%{$query}%");
+                ->orWhere('judul', 'LIKE', "%{$query}%");
         }
         $buku = $buku->limit(10)->get(['id', 'kode_buku', 'judul']);
 
