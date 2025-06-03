@@ -24,11 +24,11 @@ class Buku extends Model
         'foto',
     ];
 
-    protected $appends = [
+    protected $appends = [              //mengubah data buku jadi bentuk JSON untuk API
         "foto_url"
     ];
 
-    public function getFotoUrlAttribute()
+    public function getFotoUrlAttribute()                   //membuat link lengkap ke gambar bukunya
     {
         return url(Storage::url("buku/" . $this->foto));
     }

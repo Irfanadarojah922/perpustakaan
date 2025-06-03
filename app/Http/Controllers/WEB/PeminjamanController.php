@@ -113,10 +113,12 @@ class PeminjamanController extends Controller
     {
         $query = $request->input('q');
         $anggota = Anggota::query();
+        
         if ($query) {
-            $anggota = $anggota->where('nik', 'LIKE', "%{$query}%");
+            $anggota = $anggota->where('nik', 'LIKE', "%{$query}%")
+                             ->orWhere('nama', 'LIKE', "%{$query}%");
         }
-        $anggota = $anggota->limit(10)->get(['id', 'nik']);
+        $anggota = $anggota->limit(10)->get(['id', 'nik', 'nama']);
 
         return response()->json(['anggota' => $anggota]);
     }
@@ -127,9 +129,11 @@ class PeminjamanController extends Controller
         $buku = Buku::query();
 
         if ($query) {
-            $buku = $buku->where('kode_buku', 'LIKE', "%{$query}%");
+            $buku = $buku->where('kode_buku', 'LIKE', "%{$query}%")
+                        ->orWhere('judul', 'LIKE', "%{$query}%");
         }
-        $buku = $buku->limit(10)->get(['id', 'kode_buku']);
+        $buku = $buku->limit(10)->get(['id', 'kode_buku', 'judul']);
+
 
         return response()->json(['buku' => $buku]);
     }

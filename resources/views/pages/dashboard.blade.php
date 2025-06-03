@@ -22,74 +22,7 @@
     </div>
 </div>  
 
-{{-- <div class="flex">
-    <div class="card">
-        <div class="card-header">
-            <h5>Judul Buku</h5>
-        </div>
-        <div class="card-body">
-            <div class="card-body">
-                <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt=""
-                width="270px" height="350px">
-            </div> 
-        </div> 
-        
-        <div class="card-footer text-end">
-            <button class="btn-primary" style="margin-right: 10px">Take Now</button>
-            <button class="btn-success">Details</button>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            <h5>Judul Buku</h5>
-        </div>
-        <div class="card-body">
-            <div class="card-body">
-                <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt=""
-                width="270px" height="350px">
-            </div> 
-        </div> 
-        
-        <div class="card-footer text-end">
-            <button class="btn-primary" style="margin-right: 10px">Take Now</button>
-            <button class="btn-success">Details</button>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            <h5>Judul Buku</h5>
-        </div>
-        <div class="card-body">
-            <div class="card-body">
-                <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt=""
-                width="270px" height="350px">
-            </div> 
-        </div> 
-        
-        <div class="card-footer text-end">
-            <button class="btn-primary" style="margin-right: 10px">Take Now</button>
-            <button class="btn-success">Details</button>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header">
-            <h5>Judul Buku</h5>
-        </div>
-        <div class="card-body">
-            <div class="card-body">
-                <img src="https://bukukita.com/babacms/displaybuku/117226_f.jpg" alt=""
-                width="270px" height="350px">
-            </div> 
-        </div> 
-        
-        <div class="card-footer text-end">
-            <button class="btn-primary" style="margin-right: 10px">Take Now</button>
-            <button class="btn-success">Details</button>
-        </div>
-    </div>
-</div> --}}
 
- 
 <!-- Insights -->
     <ul class="insights">
         <li>

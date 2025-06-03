@@ -14,28 +14,28 @@
           <input type="hidden" id="edit_id" name="id">
 
           <div class="mb-3">
-             <label>No NIK</label>
-            <select name="anggota_id" id="edit_anggota_nik" class="form-control" required> 
+             <label>No NIK - Nama Lengkap</label>
+            <select name="anggota_id" id="edit_anggota" class="form-control" required> 
             </select>
           </div>
 
-          <div class="mb-3">
+          {{-- <div class="mb-3">
              <label>Nama Anggota</label>
             <select name="anggota_id" id="edit_nama" class="form-control" required> 
             </select>
-          </div>
+          </div> --}}
 
           <div class="mb-3">
-            <label>Kode Buku</label>
-            <select name="buku_id" id="edit_kode_buku" class="form-control" required>
+            <label>Kode Buku - Judul Buku</label>
+            <select name="buku_id" id="edit_buku" class="form-control" required>
             </select>
           </div>
 
-          <div class="mb-3">
+          {{-- <div class="mb-3">
             <label>Judul Buku</label>
             <select name="buku_id" id="edit_judul" class="form-control" required>
             </select>
-          </div>
+          </div> --}}
 
           <div class="mb-3">
             <label>Tanggal Pinjam</label>
