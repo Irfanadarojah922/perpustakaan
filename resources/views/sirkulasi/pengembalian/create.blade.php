@@ -1,6 +1,7 @@
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+
             <form action="" method="POST" action="{{route('pengembalian.store')}}">
                 @csrf
                 <div class="modal-header">
@@ -8,6 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 
+                {{-- kode buku --}}
                 <div class="modal-body">
                     <div class="mb-3">
                         <label>Kode Buku</label>
@@ -15,6 +17,7 @@
                         </select>
                     </div>
 
+                    {{-- tanggal lahir --}}
                     <div class="mb-3">
                         <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
                         <input type="date" class="form-control @error('tanggal_kembali') is-invalid
@@ -24,6 +27,7 @@
                         @enderror
                     </div>
 
+                    {{-- denda --}}
                     <div class="mb-3">
                         <label for="denda" class="form-label">Denda</label>
                         <select class="form-control @error('denda') is-invalid
@@ -39,6 +43,7 @@
                         </select>
                     </div>
 
+                    {{-- keterangan --}}
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <select class="form-control @error('keterangan') is-invalid

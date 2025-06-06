@@ -105,7 +105,6 @@
     @include('keanggotaan.create')
     @include('keanggotaan.edit')
     @include('keanggotaan.delete')
-    {{-- @include('keanggotaan.show') --}}
    
 
 @endsection
@@ -120,84 +119,11 @@
 
 @push("scripts")
     <script>
+        var anggotaDataTable; 
         $(document).ready(function () {
 
-
-            //  Select2 Initialize
-
-            function initSelect2AddModal(select, url, callback) {
-                $(select).select2({
-                theme: 'bootstrap-5',
-                dropdownParent: $('#addModal'),
-                ajax: {
-                url: url,
-                dataType: 'json',
-                delay: 250,
-                method: 'GET',
-                data: function (params) {
-                var query = {
-                    q: params.term
-                };
-                return query;
-                },
-                processResults: callback
-                },
-                caches: true
-                });
-            }   
-
-            
-            //add
-            initSelect2AddModal('#add_anggota_nik', '{{ route('search.keanggotaan.anggota') }}', function (data) {
-                result = $.map(data.anggota, (item) => {
-                return {
-                id: item.id,
-                text: item.nik
-                }
-                })
-                return {
-                results: result
-                };
-            });
-
-            initSelect2AddModal('#add_anggota_nama', '{{ route('search.keanggotaan.anggota') }}', function (data) {
-                result = $.map(data.buku, (item) => {
-                return {
-                id: item.id,
-                text: item.nama
-                }
-                })
-                return {
-                results: result
-                };
-            });
-
-            initSelect2AddModal('#add_anggota_tempat_lahir', '{{ route('search.keanggotaan.anggota') }}', function (data) {
-                result = $.map(data.buku, (item) => {
-                return {
-                id: item.id,
-                text: item.tempat_lahir
-                }
-                })
-                return {
-                results: result
-                };            
-            });
-
-
-
-            //edit
-            $(document).on('click', '.editBtn', function () {
-                let id = $(this).data('id');
-
-                $.get(`/peminjaman/${id}/edit`, function (res) {
-                let data = res.data;
-
-
-
-
             //yang ditampilkan di list tabel
-            $('#table_anggota').DataTable({
+            anggotaDataTable = $('#table_anggota').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
@@ -221,48 +147,139 @@
             });
 
 
-            //untuk validasi nomor telepon harus diawali +62
-            $(document).on('input', '#no_telepon', function () {
-                let value = $(this).val();
-                if (!value.startsWith('+62')) {
-                    $('#no_telp_error').text('Nomor telepon harus diawali dengan +62').show();
-                } else {
-                    $('#no_telp_error').hide();
-                }
-            });
 
-           
-            //delete
-            $(document).on('click', '.deleteBtn', function () {
-                let id = $(this).data('id');
-                $('#delete_id').val(id);
-                $('#deleteModal').modal('show');
-            });
+            // mengosongkan semua input di dalam form modal 'addModal'
+            function resetAddAnggotaForm() {
+                // Reset form HTML secara keseluruhan
+                $('#formAddAnggota')[0].reset();
 
-            $('#deleteForm').submit(function (e) {
-                e.preventDefault();
-                let id = $('#delete_id').val();
+                // Hapus kelas is-invalid dan pesan feedback error sebelumnya
+                $('#formAddAnggota .is-invalid').removeClass('is-invalid');
+                $('#formAddAnggota .invalid-feedback').remove();
 
-                $.ajax({
-                url: `/keanggotaan/${id}`,
-                type: 'POST',
-                data: {
-                _method: 'DELETE',
-                _token: '{{ csrf_token() }}'
-                },
-                success: function (res) {
-                    $('#deleteModal').modal('hide');
-                    $('#table_anggota').DataTable().ajax.reload();
-                    alert(res.message);
-                    },
-                    error: function (err) {
-                    alert('Terjadi kesalahan saat menghapus.');
-                    console.log(err.responseText);
+                // Khusus untuk select elements, pastikan kembali ke option default jika ada
+                $('#add_jenis_kelamin').val('');
+                $('#add_pendidikan').val('');
+                $('#add_status').val('');
+                $('#no_telp_error').val(); 
+            }
+
+                $('#addModal').on('show.bs.modal', function() {
+                    resetAddAnggotaForm(); // reset setiap kali modal dibuka
+                });
+
+                // Validasi nomor telepon harus diawali +62
+                $(document).on('input', '#add_no_telepon', function () {
+                    let value = $(this).val();
+                    let errorElement = $('#no_telp_error'); 
+
+                    if (!value.startsWith('+62')) {
+                        errorElement.text('Nomor telepon harus diawali dengan +62').show();
+                        $(this).addClass('is-invalid'); 
+                    } else {
+                        errorElement.hide();
+                        $(this).removeClass('is-invalid'); 
                     }
                 });
-            });
 
-        });
+
+                // --- Add ---
+                $('#formAddAnggota').on('submit', function(e) {
+                    e.preventDefault();
+
+                    let token = $('meta[name="csrf-token"]').attr('content');
+                    let formData = new FormData(this); //
+
+                    let storeUrl = '{{ route('keanggotaan.store') }}';
+
+                    $.ajax({
+                        url: storeUrl,
+                        type: 'POST',
+                        data: formData,
+                        processData: false, 
+                        contentType: false, 
+                        headers: {
+                            'X-CSRF-TOKEN': token 
+                        },
+                        success: function(response) {
+                            alert(response.message);
+                            $('#addModal').modal('hide');
+                            anggotaDataTable.ajax.reload();
+                            console.log('Anggota berhasil ditambahkan:', response.anggota);
+                        },
+                        error: function(xhr) {
+                            $('#formAddAnggota .is-invalid').removeClass('is-invalid');
+                            $('#formAddAnggota .invalid-feedback').remove();
+                            $('#no_telp_error').remove(); 
+
+                            if (xhr.status === 422) {
+                                let errors = xhr.responseJSON.errors;
+                                let errorMessages = '';
+                                for (let field in errors) {
+                                    let inputElement = $('#add_' + field); 
+                                    if (inputElement.length === 0) {
+                                        inputElement = $('#' + field); 
+                                    }
+
+                                    if (inputElement.length > 0) {
+                                        inputElement.addClass('is-invalid'); 
+                                        let errorDiv = `<div class="invalid-feedback">${errors[field][0]}</div>`;
+                                        if (inputElement.attr('type') === 'file') {
+                                            inputElement.closest('.mb-3').append(errorDiv);
+                                        } else if (inputElement.is('select') || inputElement.is('textarea')) {
+                                            inputElement.after(errorDiv);
+                                        }
+                                        else {
+                                            inputElement.after(errorDiv); 
+                                        }
+                                    }
+                                    errorMessages += errors[field][0] + '\n';
+                                }
+                                alert('Terjadi kesalahan validasi:\n' + errorMessages);
+                            } else {
+                                alert('Terjadi kesalahan server: ' + (xhr.responseJSON.message || 'Unknown error'));
+                                console.error('Server Error:', xhr.responseText);
+                            }
+                        }
+                    });
+                });
+
+
+                //edit
+
+                
+
+                //delete
+                $(document).on('click', '.deleteBtn', function () {
+                    let id = $(this).data('id');
+                    $('#delete_id').val(id);
+                    $('#deleteModal').modal('show');
+                });
+
+                $('#deleteForm').submit(function (e) {
+                    e.preventDefault();
+                    let id = $('#delete_id').val();
+
+                    $.ajax({
+                    url: `/keanggotaan/${id}`,
+                    type: 'POST',
+                    data: {
+                    _method: 'DELETE',
+                    _token: '{{ csrf_token() }}'
+                    },
+                    success: function (res) {
+                        $('#deleteModal').modal('hide');
+                        $('#table_anggota').DataTable().ajax.reload();
+                        alert(res.message);
+                        },
+                        error: function (err) {
+                        alert('Terjadi kesalahan saat menghapus.');
+                        console.log(err.responseText);
+                        }
+                    });
+                });
+
+            });
 
 
         //show kartu anggota

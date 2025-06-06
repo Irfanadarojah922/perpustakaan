@@ -177,48 +177,48 @@
       });
 
 
-      // edit
+      // select2 edit
       $(document).on('click', '.editBtn', function () {
         let id = $(this).data('id');
 
         $.get(`/peminjaman/${id}/edit`, function (res) {
-          let data = res.data;
+        let data = res.data;
 
-          // Isi field input biasa
-          $('#edit_id').val(data.id);
-          $('#edit_tanggal_pinjam').val(data.tanggal_pinjam);
-          $('#edit_tanggal_harus_kembali').val(data.tanggal_pengembalian);
+        // Isi field input biasa
+        $('#edit_id').val(data.id);
+        $('#edit_tanggal_pinjam').val(data.tanggal_pinjam);
+        $('#edit_tanggal_harus_kembali').val(data.tanggal_pengembalian);
 
-          // Select2 Anggota (#edit_anggota)
-          $('#edit_anggota').empty();
+        // Select2 Anggota (#edit_anggota)
+        $('#edit_anggota').empty();
 
-          $('#edit_anggota').select2({
-            theme: 'bootstrap-5',
-            dropdownParent: $('#editModal'), // Ini mengarahkan Select2 ke modal edit
-            placeholder: 'Cari NIK atau Nama Anggota...',
-            ajax: {
-            url: '{{ route('search.peminjaman.anggota') }}', // Route untuk mencari anggota
-            dataType: 'json',
-            delay: 250,
-            method: 'GET',
-            data: function (params) {
-              return { q: params.term };
-            },
+        $('#edit_anggota').select2({
+          theme: 'bootstrap-5',
+          dropdownParent: $('#editModal'), // Ini mengarahkan Select2 ke modal edit
+          placeholder: 'Cari NIK atau Nama Anggota...',
+          ajax: {
+          url: '{{ route('search.peminjaman.anggota') }}', // Route untuk mencari anggota
+          dataType: 'json',
+          delay: 250,
+          method: 'GET',
+          data: function (params) {
+            return { q: params.term };
+          },
 
-            processResults: function (data) {
+          processResults: function (data) {
+            return {
+            results: $.map(data.anggota, function (item) {
+              console.log(item);
+              
               return {
-              results: $.map(data.anggota, function (item) {
-                console.log(item);
-                
-                return {
-                id: item.id,
-                // Gabungkan NIK dan Nama di tampilan Select2
-                text: item.nik + ' - ' + item.nama
-                }
-              })
-              };
-            }
-            }
+              id: item.id,
+              // Gabungkan NIK dan Nama di tampilan Select2
+              text: item.nik + ' - ' + item.nama
+              }
+            })
+            };
+          }
+          }
         });
 
         //  data 'id' dan 'text' (NIK - Nama) dari anggota yang sudah dipilih
@@ -298,7 +298,6 @@
         $('#delete_id').val(id);
         $('#deleteModal').modal('show');
       });
-
 
       $('#deleteForm').submit(function (e) {
         e.preventDefault();

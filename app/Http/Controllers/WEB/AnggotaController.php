@@ -33,6 +33,14 @@ class AnggotaController extends Controller
 
         return view("keanggotaan.index", compact('anggota'));
     }
+
+    public function create()
+    {
+        return view('keanggotaan.create');
+        
+    }
+
+    
     public function store(Request $request)
     {
         // Simpan hasil validasi ke variabel
@@ -112,26 +120,26 @@ class AnggotaController extends Controller
     }
 
 
-    public function searchAnggota(Request $request)
-    {
-        $query = $request->input('q');
-            $searchColumn = $request->input('column'); 
-            $anggota = Anggota::query();
+    // public function searchAnggota(Request $request)
+    // {
+    //     $query = $request->input('q');
+    //         $searchColumn = $request->input('column'); 
+    //         $anggota = Anggota::query();
 
-            if ($query && $searchColumn) {
-                $allowedColumns = ['nik', 'nama', 'tempat_lahir'];
-                if (in_array($searchColumn, $allowedColumns)) {
-                    $anggota->where($searchColumn, 'LIKE', "%{$query}%");
-                }
-            } elseif ($query) {
-                $anggota->where('nik', 'LIKE', "%{$query}%")
-                        ->orWhere('nama', 'LIKE', "%{$query}%");
-            }
+    //         if ($query && $searchColumn) {
+    //             $allowedColumns = ['nik', 'nama', 'tempat_lahir'];
+    //             if (in_array($searchColumn, $allowedColumns)) {
+    //                 $anggota->where($searchColumn, 'LIKE', "%{$query}%");
+    //             }
+    //         } elseif ($query) {
+    //             $anggota->where('nik', 'LIKE', "%{$query}%")
+    //                     ->orWhere('nama', 'LIKE', "%{$query}%");
+    //         }
 
-            $anggota = $anggota->limit(10)->get(['id', 'nik', 'nama', 'tempat_lahir']);
+    //         $anggota = $anggota->limit(10)->get(['id', 'nik', 'nama', 'tempat_lahir']);
 
-            return response()->json(['anggota' => $anggota]);
-    }
+    //         return response()->json(['anggota' => $anggota]);
+    // }
 
     
 }
