@@ -76,3 +76,5 @@ Route::get('search/peminjaman/buku', [PeminjamanController::class, 'searchBukuBy
 Route::get('search/pengembalian/buku', [PengembalianController::class, 'searchBukuByKodeBuku'])->name('search.pengembalian.buku');
 
 Route::get('search/keanggotaan/anggota', [AnggotaController::class, 'searchAnggota'])->name('search.keanggotaan.anggota');
+
+Route::get('search/buku/dipinjam', [PengembalianController::class, 'searchBukuByKodeBukuInBorrowed'])->name('search.buku.dipinjam');

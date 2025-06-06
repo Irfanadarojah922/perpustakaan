@@ -12,15 +12,15 @@ use Yajra\DataTables\DataTables;
 class PengembalianController extends Controller
 {
     public function index()
-    {   
-            $kembali = Kembali::all();
-            // maksudku bukan bikin relasi tapi gunain relasi di controller
-            if (\request()->ajax()) {
+    {
+        $kembali = Kembali::all();
+        // maksudku bukan bikin relasi tapi gunain relasi di controller
+        if (\request()->ajax()) {
 
             // misal $kembali= Kembali::all() artinya ambil semua data dari tabel kembali tanpa relasi atau tanpa tabel pinjam dan buku atau juga tanpa tabel yang berkaitan
             $kembali = Kembali::with(['pinjam:id', 'bukus:judul,kode_buku', 'anggota:nama,nik'])->get(); // ambil semua data dari tabel kembali dengan relasi tabel pinjam dan buku, data yang diambil dari Pinjam cuma id, dari buku cuma id, judul dan kode_buku
 
-            return DataTables::of($kembali)->addColumn("action", function($row){
+            return DataTables::of($kembali)->addColumn("action", function ($row) {
                 $action =
                     '<td class="text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -46,9 +46,9 @@ class PengembalianController extends Controller
         return response()->json([
             'bukus' => $bukus,
             'pinjams' => $pinjams
-            
+
         ]);
-    }    
+    }
     public function store(Request $request)
     {
         $data = Kembali::create($request->validate([
@@ -99,21 +99,23 @@ class PengembalianController extends Controller
         $kembali = Kembali::findOrFail($id);
         $kembali->forceDelete(); // Hapus permanen dari database
 
-    return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
+        return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
     }
 
-    public function searchBukuByKodeBuku(Request $request)
+    public function searchBukuByKodeBukuInBorrowed(Request $request)
     {
         $query = $request->input('q');
-        $buku = Buku::query();
+        $buku = Pinjam::query();
 
         if ($query) {
-            $buku = $buku->where('kode_buku', 'LIKE', "%{$query}%")
-                ->orWhere('judul', 'LIKE', "%{$query}%");
+            $buku = $buku->with(['bukus'], function ($params) use ($query) {
+                return $params->where('kode_buku', 'LIKE', "%{$query}%")
+                ->where('status', 'Dipinjam');
+            })->get();
         }
-        $buku = $buku->limit(10)->get(['id', 'kode_buku', 'judul']);
 
+        $buku = $buku->with(['bukus'])->limit(10)->where('status', 'Dipinjam')->get();
 
-        return response()->json(['buku' => $buku]);
+        return response()->json(['data' => $buku]);
     }
 }

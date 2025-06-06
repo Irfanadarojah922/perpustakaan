@@ -20,7 +20,7 @@
                         <input type="date" class="form-control @error('tanggal_kembali') is-invalid
                         @enderror" id="tanggal_kembali" name="tanggal_kembali" value="{{ old('tanggal_kembali') }}">
                         @error('tanggal_kembali')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -28,9 +28,9 @@
                         <label for="denda" class="form-label">Denda</label>
                         <select class="form-control @error('denda') is-invalid
                         @enderror" name="denda" id="denda" value="{{ old('denda') }}">
-                        @error('denda')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                            @error('denda')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
 
                             <option value="">- Pilih -</option>
                             <option value="Ganti Buku"> Ganti Buku </option>
@@ -43,9 +43,9 @@
                         <label for="keterangan" class="form-label">Keterangan</label>
                         <select class="form-control @error('keterangan') is-invalid
                         @enderror" name="keterangan" id="keterangan" value="{{ old('keterangan') }}">
-                        @error('keterangan')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                            @error('keterangan')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
 
                             <option value="">- Pilih -</option>
                             <option value="buku hilang"> Buku hilang </option>
