@@ -7,6 +7,9 @@
     <meta name="csrf_token" content="{{csrf_token()}}" />
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
 @endpush
 
 @section("content")
@@ -30,7 +33,7 @@
                 <h4 class="card-title  mb-0 flex-grow-1">Tabel Pengembalian</h4>
                 <div class="flex-shrink-0 mx-2">
                 <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                    data-bs-target="#addModal">
                     <i class="bx bx-plus" style="font-size:1rem;"></i>
                     Add
                 </a>
@@ -80,14 +83,53 @@
 
 @push('script-libs')
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endpush
 
 @push("scripts")
     <script>
-        $(document).ready(function () {             //yang ditampilkan di list tabel
+        $(document).ready(function () {             
+            
+
+            //Select2 initialize
+
+            function initSelect2AddModal(select, url, callback) {
+                $(select).select2({
+                theme: 'bootstrap-5',
+                dropdownParent: $('#addModal'),
+                ajax: {
+                url: url,
+                dataType: 'json',
+                delay: 250,
+                method: 'GET',
+                data: function (params) {
+                var query = {
+                    q: params.term
+                };
+                return query;
+                },
+                processResults: callback
+                },
+                caches: true
+                });
+            }
+
+            initSelect2AddModal('#add_kode_buku', '{{ route('search.pengembalian.buku') }}', function (data) {
+                result = $.map(data.buku, (item) => {
+                return {
+                id: item.id,
+                text: item.kode_buku
+                }
+                })
+                return {
+                results: result
+                };
+            })
+            
+            //yang ditampilkan di list tabel
             $('#table_pengembalian').DataTable({
                 responsive: true,
                 processing: true,
@@ -107,20 +149,6 @@
                 columnDefs: [
                     { targets: [0, 3], className: 'dt-left'}
                 ]
-            });
-
-            // utk form input
-            $.get(`/pengembalian/add`, function(res) {
-                let data = res.data;
-
-                // console.log(kode buku);
-                let bukuOptions = ``;
-                res.bukus.forEach(function(buku) {
-
-                    bukuOptions += `<option value="${buku.id}">${buku.kode_buku}</option>`;
-                });
-                $('#add_kode_buku').html(bukuOptions);
-                            
             });
             
             

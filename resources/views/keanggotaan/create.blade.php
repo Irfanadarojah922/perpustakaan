@@ -1,42 +1,39 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <form method="POST" action="{{ route('keanggotaan.store') }}">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Input Anggota</h1>
+                    <h1 class="modal-title fs-5" id="addModalLabel">Input Anggota</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body">
+
+                    {{-- nik --}}
                     <div class="mb-3">
-                        <label for="anggota_nik" class="form-label">NIK</label>
-                        <input type="char" class="form-control @error('nik') is-invalid
-                        @enderror" id="nik" name="nik" value="{{ old('nik') }}">
-                        @error('nik')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label>No NIK</label>
+                        <select name="anggota_id" id="add_anggota_nik" class="form-control" required>
+                        </select>
                     </div>
 
 
+                    {{-- nama --}}
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control @error('nama') is-invalid
-                        @enderror" id="nama" name="nama" value="{{ old('nama') }}">
-                        @error('nama')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label>Nama Lengkap</label>
+                        <select name="anggota_id" id="add_anggota_nama" class="form-control" required>
+                        </select>
                     </div>
 
+                    
+                    {{-- tempat lahir --}}
                     <div class="mb-3">
-                        <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                        <input type="text" class="form-control @error('tempat_lahir') is-invalid
-                        @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
-                        @error('tempat_lahir')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label>Tempat Lahir</label>
+                        <select name="anggota_id" id="add_anggota_tempat_lahir" class="form-control" required>
+                        </select>
                     </div>
+
 
                     <div class="mb-3">
                         <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>

@@ -4,9 +4,11 @@
 
 {{-- Css Styling --}}
 @push ("css-libs")
-    <meta name="csrf_token" content="{{csrf_token()}}" />
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endpush
 
 @section("content")
@@ -65,7 +67,7 @@
                 <h4 class="card-title  mb-0 flex-grow-1">Tabel Keanggotaan</h4>
                 <div class="flex-shrink-0 mx-2">
                     <a href="" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
+                        data-bs-target="#addModal">
                         <i class="bx bx-plus" style="font-size:1rem;"></i>
                         Add
                     </a>
@@ -109,15 +111,92 @@
 @endsection
 
 @push('script-libs')
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
-    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endpush
 
 @push("scripts")
     <script>
         $(document).ready(function () {
+
+
+            //  Select2 Initialize
+
+            function initSelect2AddModal(select, url, callback) {
+                $(select).select2({
+                theme: 'bootstrap-5',
+                dropdownParent: $('#addModal'),
+                ajax: {
+                url: url,
+                dataType: 'json',
+                delay: 250,
+                method: 'GET',
+                data: function (params) {
+                var query = {
+                    q: params.term
+                };
+                return query;
+                },
+                processResults: callback
+                },
+                caches: true
+                });
+            }   
+
+            
+            //add
+            initSelect2AddModal('#add_anggota_nik', '{{ route('search.keanggotaan.anggota') }}', function (data) {
+                result = $.map(data.anggota, (item) => {
+                return {
+                id: item.id,
+                text: item.nik
+                }
+                })
+                return {
+                results: result
+                };
+            });
+
+            initSelect2AddModal('#add_anggota_nama', '{{ route('search.keanggotaan.anggota') }}', function (data) {
+                result = $.map(data.buku, (item) => {
+                return {
+                id: item.id,
+                text: item.nama
+                }
+                })
+                return {
+                results: result
+                };
+            });
+
+            initSelect2AddModal('#add_anggota_tempat_lahir', '{{ route('search.keanggotaan.anggota') }}', function (data) {
+                result = $.map(data.buku, (item) => {
+                return {
+                id: item.id,
+                text: item.tempat_lahir
+                }
+                })
+                return {
+                results: result
+                };            
+            });
+
+
+
+            //edit
+            $(document).on('click', '.editBtn', function () {
+                let id = $(this).data('id');
+
+                $.get(`/peminjaman/${id}/edit`, function (res) {
+                let data = res.data;
+
+
+
+
+            //yang ditampilkan di list tabel
             $('#table_anggota').DataTable({
                 responsive: true,
                 processing: true,
@@ -152,26 +231,7 @@
                 }
             });
 
-
-            // utk input pengembalian
-            $.get(`/keanggotaan/add`, function(res) {
-                let data = res.data;
-
-                    $('#nik').val(data.nik);
-                    $('#nama').val(data.nama);
-                    $('#tempat_lahir').val(data.tempat_lahir);
-                    $('#tanggal_lahir').val(data.tanggal_lahir);
-                    $('#jenis_kelamin').val(data.jenis_kelamin);
-                    $('#pendidikan').val(data.pendidikan);
-                    $('#alamat').val(data.alamat);
-                    $('#no_telepon').val(data.no_telepon);
-                    $('#status').val(data.status);
-                    $('#tanggal_daftar').val(data.tanggal_daftar);
-            });
-
-
-
-
+           
             //delete
             $(document).on('click', '.deleteBtn', function () {
                 let id = $(this).data('id');
@@ -206,11 +266,11 @@
 
 
         //show kartu anggota
-            function detail_anggota(id) {
-                let url = '{{ route("keanggotaan.show", ":id") }}';
-                url = url.replace(':id', id);
-                window.open(url);
-            }
+        function detail_anggota(id) {
+            let url = '{{ route("keanggotaan.show", ":id") }}';
+            url = url.replace(':id', id);
+            window.open(url);
+        }
 
 
     </script>

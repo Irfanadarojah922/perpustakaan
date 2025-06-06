@@ -102,4 +102,18 @@ class PengembalianController extends Controller
     return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
     }
 
+    public function searchBukuByKodeBuku(Request $request)
+    {
+        $query = $request->input('q');
+        $buku = Buku::query();
+
+        if ($query) {
+            $buku = $buku->where('kode_buku', 'LIKE', "%{$query}%")
+                ->orWhere('judul', 'LIKE', "%{$query}%");
+        }
+        $buku = $buku->limit(10)->get(['id', 'kode_buku', 'judul']);
+
+
+        return response()->json(['buku' => $buku]);
+    }
 }

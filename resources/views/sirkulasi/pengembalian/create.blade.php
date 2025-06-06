@@ -1,15 +1,16 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <form action="" method="POST" action="{{route('pengembalian.store')}}">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Input Pengembalian</h1>
+                    <h1 class="modal-title fs-5" id="addModalLabel">Input Pengembalian</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="add_kode_buku" class="form-label">Kode Buku</label>
+                        <label>Kode Buku</label>
                         <select name="buku_id" id="add_kode_buku" class="form-control" required>
                         </select>
                     </div>

@@ -70,5 +70,9 @@ Route::delete('/pengembalian/{id}', [PengembalianController::class, 'destroy']);
 
 Route::resource('buku', BookController::class)->only(["store", "create"]);
 
-Route::get('search/anggota', [PeminjamanController::class, 'searchAnggotaByNIK'])->name('search.anggota');
-Route::get('search/buku', [PeminjamanController::class, 'searchBukuByKodeBuku'])->name('search.buku');
+Route::get('search/peminjaman/anggota', [PeminjamanController::class, 'searchAnggotaByNIK'])->name('search.peminjaman.anggota');
+Route::get('search/peminjaman/buku', [PeminjamanController::class, 'searchBukuByKodeBuku'])->name('search.peminjaman.buku');
+
+Route::get('search/pengembalian/buku', [PengembalianController::class, 'searchBukuByKodeBuku'])->name('search.pengembalian.buku');
+
+Route::get('search/keanggotaan/anggota', [AnggotaController::class, 'searchAnggota'])->name('search.keanggotaan.anggota');

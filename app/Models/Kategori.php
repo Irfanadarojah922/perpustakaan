@@ -17,5 +17,10 @@ class Kategori extends Model
     {
         return $this->hasMany(Buku::class, 'kategori_id', 'nama_kategori');
     }
+
+    public function pinjam()
+    {
+        return $this->hasMany(Pinjam::class);
+    }
 }
 
