@@ -11,9 +11,12 @@
                 
                 {{-- kode buku --}}
                 <div class="modal-body">
+                    <div>
+                        <input type="hidden" id="pinjam_id" name="pinjam_id" value="" required>
+                    </div>
                     <div class="mb-3">
                         <label>Kode Buku</label>
-                        <select name="buku_id" id="add_kode_buku" class="form-control" required>
+                        <select id="add_kode_buku" class="form-control" required>
                         </select>
                     </div>
 

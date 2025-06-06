@@ -60,6 +60,9 @@ class PeminjamanController extends Controller
             "anggota_id" => "required|string|exists:anggotas,id|max:255",
             "buku_id" => "required|string|exists:bukus,id|max:255", // Removed extra pipe
         ]);
+        $buku = Buku::findOrFail($validated['buku_id']);
+        $buku->update(['jumlah_tersedia' => $buku->jumlah_tersedia - 1]);
+
         $data = Pinjam::create(array_merge($validated, [
             'tanggal_pengembalian' => Carbon::createFromDate($validated['tanggal_pinjam'])->addDays(10) // Consider adding ->addDays(X) here
         ]));
@@ -87,6 +90,13 @@ class PeminjamanController extends Controller
         ]);
 
         $data = Pinjam::findOrFail($id);
+        if ($data->buku_id != $validated['buku_id']) {
+            $bukuLama = Buku::findOrFail($data->buku_id);
+            $bukuBaru = Buku::findOrFail($validated['buku_id']);
+            
+            $bukuLama->update(['jumlah_tersedia' => $bukuLama->jumlah_tersedia + 1]);
+            $bukuBaru->update(['jumlah_tersedia' => $bukuBaru->jumlah_tersedia - 1]);
+        }
         $data->update($validated);
 
         return response()->json(['message' => 'Data berhasil diupdate']);
@@ -120,10 +130,12 @@ class PeminjamanController extends Controller
         $buku = Buku::query();
 
         if ($query) {
-            $buku = $buku->where('kode_buku', 'LIKE', "%{$query}%")
+            $buku = $buku
+                ->where('jumlah_tersedia', '>', 0)
+                ->where('kode_buku', 'LIKE', "%{$query}%")
                 ->orWhere('judul', 'LIKE', "%{$query}%");
         }
-        $buku = $buku->limit(10)->get(['id', 'kode_buku', 'judul']);
+        $buku = $buku->where('jumlah_tersedia', '>', 0)->limit(10)->get(['id', 'kode_buku', 'judul']);
 
 
         return response()->json(['buku' => $buku]);

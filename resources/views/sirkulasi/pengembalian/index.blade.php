@@ -113,7 +113,7 @@
                         return {
                             results: $.map(data.data, function (item) {
                                 return {
-                                    id: item.bukus.id,
+                                    id: item.id,
                                     text: item.bukus.kode_buku
                                 }
                             })
@@ -121,6 +121,10 @@
                     }
                 }
             });
+
+            $(document).on('select2:select', function (e) {
+                $("#pinjam_id").val(e.params.data.id);
+            })
 
 
             $('#table_pengembalian').DataTable({
@@ -143,21 +147,6 @@
                     { targets: [0, 3], className: 'dt-left' }
                 ]
             });
-
-            // utk form input
-            $.get(`/pengembalian/add`, function (res) {
-                let data = res.data;
-
-                // console.log(kode buku);
-                let bukuOptions = ``;
-                res.bukus.forEach(function (buku) {
-
-                    bukuOptions += `<option value="${buku.id}">${buku.kode_buku}</option>`;
-                });
-                $('#add_kode_buku').html(bukuOptions);
-
-            });
-
 
             //edit
             $(document).on('click', '.editBtn', function () {

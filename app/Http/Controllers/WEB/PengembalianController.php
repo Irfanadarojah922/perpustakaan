@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Kembali;
 use App\Models\Pinjam;
 use App\Models\Buku;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Yajra\DataTables\DataTables;
 
 class PengembalianController extends Controller
@@ -51,15 +53,25 @@ class PengembalianController extends Controller
     }
     public function store(Request $request)
     {
-        $data = Kembali::create($request->validate([
+        $requestData = $request->validate([
             "pinjam_id" => "required|exists:pinjams,id",
-            "buku_id" => "required|exists:bukus,id",
             "tanggal_kembali" => "required|date",
-            "denda" => "required|string|max:255",
-            "keterangan" => "required|string|max:255",
-        ]));
+            "denda" => ["required", Rule::in(['Ganti Buku', 'Perbaikan', 'Tepat Waktu'])],
+            "keterangan" => ["required", Rule::in(['buku hilang', 'rusak', 'tepat waktu'])],
+        ]);
 
-        return $data ? redirect("/sirkulasi/pengembalian")->with("success", "Pengembalian
+        $kembali = Kembali::create($requestData);
+        $pinjam = Pinjam::findOrFail($requestData["pinjam_id"]);
+        $tanggalPengembalian = Carbon::parse($requestData["tanggal_kembali"]);
+        $tanggalJatuhTempo = Carbon::parse($pinjam->tanggal_pinjam);
+
+        $status = "Dikembalikan";
+        if ($tanggalPengembalian > $tanggalJatuhTempo) {
+            $status = "Terlambat";
+        }
+        $pinjam->update(["status" => $status]);
+
+        return $kembali ? redirect("/sirkulasi/pengembalian")->with("success", "Pengembalian
         Created Successfully!") : back()->with("error", "Something Error!");
     }
 
@@ -82,7 +94,6 @@ class PengembalianController extends Controller
     {
         $validated = $request->validate([
             "pinjam_id" => "required|exists:pinjams,id",
-            "buku_id" => "required|exists:bukus,id",
             "tanggal_kembali" => "required|date",
             "denda" => "required|string|max:255",
             "keterangan" => "required|string|max:255",
@@ -110,7 +121,7 @@ class PengembalianController extends Controller
         if ($query) {
             $buku = $buku->with(['bukus'], function ($params) use ($query) {
                 return $params->where('kode_buku', 'LIKE', "%{$query}%")
-                ->where('status', 'Dipinjam');
+                    ->where('status', 'Dipinjam');
             })->get();
         }
 

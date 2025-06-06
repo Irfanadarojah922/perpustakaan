@@ -8,7 +8,8 @@
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endpush
 
 @section("content")
@@ -75,30 +76,31 @@
             </div>
 
             <div class="card-body">
-               <div class="table-responsive">
-                 <table id="table_anggota" class="table table-sm table-bordered table-striped" style="width:100%; white-space: nowrap;">
-                    <thead>
-                        <tr class="text-center">
-                            <th scope="col">NIK</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Tempat Lahir</th>
-                            <th scope="col">Tanggal Lahir</th>
-                            <th scope="col">Jenis Kelamin</th>
-                            <th scope="col">Pendidikan</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">No Telepon</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Tanggal Daftar</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="9" class="text-center">No Data Display</td>
-                        </tr>
-                    </tbody>
-                </table>
-               </div>
+                <div class="table-responsive">
+                    <table id="table_anggota" class="table table-sm table-bordered table-striped"
+                        style="width:100%; white-space: nowrap;">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Tempat Lahir</th>
+                                <th scope="col">Tanggal Lahir</th>
+                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Pendidikan</th>
+                                <th scope="col">Alamat</th>
+                                <th scope="col">No Telepon</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Tanggal Daftar</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="9" class="text-center">No Data Display</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -110,11 +112,11 @@
 @endsection
 
 @push('script-libs')
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endpush
 
 @push("scripts")
@@ -282,13 +284,14 @@
             });
 
 
-        //show kartu anggota
-        function detail_anggota(id) {
-            let url = '{{ route("keanggotaan.show", ":id") }}';
-            url = url.replace(':id', id);
-            window.open(url);
-        }
+                //show kartu anggota
+                function detail_anggota(id) {
+                    let url = '{{ route("keanggotaan.show", ":id") }}';
+                    url = url.replace(':id', id);
+                    window.open(url);
+                }
 
-
+            });
+        });
     </script>
 @endpush
