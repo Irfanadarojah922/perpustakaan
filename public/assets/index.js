@@ -16,9 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuBar = document.querySelector('.content nav .bx.bx-menu');
     const sideBar = document.querySelector('.sidebar');
 
-    menuBar.addEventListener('click', () => {
-        sideBar.classList.toggle('close');
-    });
+    if(menuBar !== null) {
+        menuBar.addEventListener('click', () => {
+            sideBar.classList.toggle('close');
+        });
+    }
 
     // --- Search Form Toggle (Mobile) ---
     const searchBtn = document.querySelector('.content nav form .form-input button');

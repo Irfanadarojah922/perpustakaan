@@ -6,10 +6,8 @@
 @push ("css-libs")
     <meta name="csrf_token" content="{{ csrf_token() }}" />
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
+    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endpush
 
 @section("content")
@@ -113,19 +111,16 @@
 
 @push('script-libs')
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endpush
 
 @push("scripts")
     <script>
-        var anggotaDataTable; 
         $(document).ready(function () {
 
             //yang ditampilkan di list tabel
-            anggotaDataTable = $('#table_anggota').DataTable({
+             $('#table_anggota').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
@@ -150,21 +145,21 @@
 
 
 
-            // mengosongkan semua input di dalam form modal 'addModal'
-            function resetAddAnggotaForm() {
-                // Reset form HTML secara keseluruhan
-                $('#formAddAnggota')[0].reset();
+                // mengosongkan semua input di dalam form modal 'addModal'
+                function resetAddAnggotaForm() {
+                    // Reset form HTML secara keseluruhan
+                    $('#formAddAnggota')[0].reset();
 
-                // Hapus kelas is-invalid dan pesan feedback error sebelumnya
-                $('#formAddAnggota .is-invalid').removeClass('is-invalid');
-                $('#formAddAnggota .invalid-feedback').remove();
+                    // Hapus kelas is-invalid dan pesan feedback error sebelumnya
+                    $('#formAddAnggota .is-invalid').removeClass('is-invalid');
+                    $('#formAddAnggota .invalid-feedback').remove();
 
-                // Khusus untuk select elements, pastikan kembali ke option default jika ada
-                $('#add_jenis_kelamin').val('');
-                $('#add_pendidikan').val('');
-                $('#add_status').val('');
-                $('#no_telp_error').val(); 
-            }
+                    // Khusus untuk select elements, pastikan kembali ke option default jika ada
+                    $('#add_jenis_kelamin').val('');
+                    $('#add_pendidikan').val('');
+                    $('#add_status').val('');
+                    $('#no_telp_error').val(); 
+                }
 
                 $('#addModal').on('show.bs.modal', function() {
                     resetAddAnggotaForm(); // reset setiap kali modal dibuka
@@ -291,7 +286,6 @@
                     window.open(url);
                 }
 
-            });
         });
     </script>
 @endpush
