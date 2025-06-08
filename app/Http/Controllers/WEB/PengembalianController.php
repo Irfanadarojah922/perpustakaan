@@ -26,9 +26,8 @@ class PengembalianController extends Controller
                 $action =
                     '<td class="text-center">
                             <div class="btn-group" role="group" aria-label="Basic example">
-
-                            <button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '"><i class="bx bx-edit" style="font-size:1rem;"></i></button>
-                                <button type="button" class="btn btn-danger deleteBtn" data-id="' . $row->id . '"> <i class="bx bx-trash" style="font-size:1rem;"></i></button>
+                                <button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '" data-bs-toggle="modal" data-bs-target="#editModal" title="Edit"><i class="bx bx-edit" style="font-size:1rem;"></i></button>
+                                <button type="button" class="btn btn-danger deleteBtn" data-id="' . $row->id . '"> <i class="bx bx-trash" style="font-size:1rem;" title="Delete"></i></button>
                             </div>
                         </td>';
                 return $action;
@@ -54,10 +53,10 @@ class PengembalianController extends Controller
     public function store(Request $request)
     {
         $requestData = $request->validate([
-            "pinjam_id" => "required|exists:pinjams,id",
-            "tanggal_kembali" => "required|date",
-            "denda" => ["required", Rule::in(['Ganti Buku', 'Perbaikan', 'Tepat Waktu'])],
-            "keterangan" => ["required", Rule::in(['buku hilang', 'rusak', 'tepat waktu'])],
+            "pinjam_id" => "nullable|exists:pinjams,id",
+            "tanggal_kembali" => "nullable|date",
+            "denda" => ["nullable", Rule::in(['Ganti Buku', 'Perbaikan', 'Tepat Waktu'])],
+            "keterangan" => ["nullable", Rule::in(['buku hilang', 'rusak', 'tepat waktu'])],
         ]);
 
         $kembali = Kembali::create($requestData);
@@ -77,29 +76,34 @@ class PengembalianController extends Controller
 
     public function edit($id)
     {
-        $data = Kembali::with(['buku', 'pinjam'])->findOrFail($id);
-
-        $bukus = Buku::all();
-        $pinjams = Pinjam::all();
+        $data = Kembali::findOrFail($id);
 
         return response()->json([
             'data' => $data,
-            'bukus' => $bukus,
-            'pinjams' => $pinjams,
-
         ]);
     }
 
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            "pinjam_id" => "required|exists:pinjams,id",
-            "tanggal_kembali" => "required|date",
-            "denda" => "required|string|max:255",
-            "keterangan" => "required|string|max:255",
+            "pinjam_id" => "nullable|exists:pinjams,id",
+            "tanggal_kembali" => "nullable|date",
+            "denda" => "nullable|string|max:255",
+            "keterangan" => "nullable|string|max:255",
         ]);
 
         $data = Kembali::findOrFail($id);
+
+        $pinjam = Pinjam::findOrFail($validated['pinjam_id']);
+        $tanggalPengembalian = Carbon::parse($validated['tanggal_kembali']);
+        $tanggalJatuhTempo = Carbon::parse($pinjam->tanggal_pinjam);
+        $status = "Dikembalikan";
+
+        if ($tanggalPengembalian > $tanggalJatuhTempo) {
+            $status = "Terlambat";
+        }
+        $pinjam->update(["status" => $status]);
+
         $data->update($validated);
 
         return response()->json(['message' => 'Data berhasil diupdate']);

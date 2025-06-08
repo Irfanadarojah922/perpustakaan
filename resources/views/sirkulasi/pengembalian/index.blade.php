@@ -122,6 +122,7 @@
                 }
             });
 
+
             $(document).on('select2:select', function (e) {
                 $("#pinjam_id").val(e.params.data.id);
             })
@@ -148,63 +149,40 @@
                 ]
             });
 
-            //edit
-            $(document).on('click', '.editBtn', function () {
-                let id = $(this).data('id');
+            $('#editModal').on('show.bs.modal', function (e) {
+                let id = $(e.relatedTarget).data('id');
+                $.get(`pengembalian/${id}/edit`, (res) => {
+                    const {
+                        tanggal_kembali,
+                        denda,
+                        keterangan
+                    } = res.data;
 
-                $.get(`/pengembalian/${id}/edit`, function (res) {
-                    let data = res.data;
-
-                    $('#edit_tanggal_kembali').val(data.tanggal_kembali);
-                    $('#edit_denda').val(data.denda);
-                    $('#edit_keterangan').val(data.keterangan);
-
-
-                    // Populate anggota
-                    let anggotaOptions = ``;
-                    res.anggotas.forEach(function (anggota) {
-                        // console.log(anggota.id);
-                        anggotaOptions += `<option value="${anggota.id}" ${anggota.id == data.anggota_id ? 'selected' : ''}>${anggota.nama}</option>`;
-                    });
-                    $('#edit_nama_anggota').html(anggotaOptions);
-
-                    // Populate buku
-                    let bukuOptions = '';
-                    res.bukus.forEach(function (buku) {
-                        bukuOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.kode_buku}</option>`;
-                    });
-                    $('#edit_kode_buku').html(bukuOptions);
-
-                    let judulOptions = '';
-                    res.bukus.forEach(function (buku) {
-                        judulOptions += `<option value="${buku.id}" ${buku.id == data.buku_id ? 'selected' : ''}>${buku.judul}</option>`;
-                    });
-                    $('#edit_judul_buku').html(judulOptions);
-
-                    $('#editModal').modal('show');
-                });
-
-
-                $('#editForm').submit(function (e) {
+                    $('#editModal #tanggal_kembali').val(tanggal_kembali);
+                    $('#editModal #denda').val(denda);
+                    $('#editModal #keterangan').val(keterangan);
+                    $('#editModal #edit_id').val(id);
+                })
+                $('#editForm').on('submit', (e) => {
                     e.preventDefault();
-                    let id = $('#edit_id').val();
+                    let id = $('#editModal #edit_id').val();
+                    let data = $('#editForm').serialize();
                     $.ajax({
-
                         url: `/pengembalian/${id}`,
-                        method: 'PUT',
-                        data: $(this).serialize(),
-                        success: function (res) {
+                        type: 'PUT',
+                        data: data,
+                        success: (res) => {
+                            $("#table_pengembalian").DataTable().ajax.reload();
                             $('#editModal').modal('hide');
-                            $('#table_pengembalian').DataTable().ajax.reload();
-                            alert('Data berhasil diupdate!');
+                            $('.modal-backdrop').remove();
                         },
-                        error: function (err) {
-                            alert('Terjadi kesalahan saat mengupdate.');
-                            console.log(err.responseJSON);
+                        error: (err) => {
+                            console.log(err.responseText);
                         }
-                    });
-                });
+                    })
+                })
             });
+
 
             $(document).on('click', '.deleteBtn', function () {
                 let id = $(this).data('id');

@@ -11,49 +11,63 @@
                 </div>
 
                 <div class="modal-body">
-                    <input type="hidden" id="edit_id" name="id">
-
-                    <div class="mb-3">
-                        <label>Nama Anggota</label>
-                        <select name="pinjam_id" id="edit_nama_anggota" class="form-control" required>
-                        </select>
+                    <div>
+                        <input type="hidden" id="edit_id" name="pinjam_id" value="" required>
                     </div>
-
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <label>Kode Buku</label>
-                        <select name="buku_id" id="edit_kode_buku" class="form-control" required>
+                        <select id="edit_kode_buku" class="form-control" required>
+                        </select>
+                    </div> -->
+
+                    {{-- tanggal lahir --}}
+                    <div class="mb-3">
+                        <label for="tanggal_kembali" class="form-label">Tanggal Kembali</label>
+                        <input type="date" class="form-control @error('tanggal_kembali') is-invalid
+                        @enderror" id="tanggal_kembali" name="tanggal_kembali" value="{{ old('tanggal_kembali') }}">
+                        @error('tanggal_kembali')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    {{-- denda --}}
+                    <div class="mb-3">
+                        <label for="denda" class="form-label">Denda</label>
+                        <select class="form-control @error('denda') is-invalid
+                        @enderror" name="denda" id="denda" value="{{ old('denda') }}">
+                            @error('denda')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
+                            <option value="">- Pilih -</option>
+                            <option value="Ganti Buku"> Ganti Buku </option>
+                            <option value="Perbaikan"> Perbaikan </option>
+                            <option value="Tepat Waktu"> Tepat Waktu </option>
                         </select>
                     </div>
 
+                    {{-- keterangan --}}
                     <div class="mb-3">
-                        <label>Judul Buku</label>
-                        <select name="buku_id" id="edit_judul_buku" class="form-control" required>
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <select class="form-control @error('keterangan') is-invalid
+                        @enderror" name="keterangan" id="keterangan" value="{{ old('keterangan') }}">
+                            @error('keterangan')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+
+                            <option value="">- Pilih -</option>
+                            <option value="buku hilang"> Buku hilang </option>
+                            <option value="rusak"> Rusak </option>
+                            <option value="tepat waktu"> Tepat Waktu </option>
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label>Tanggal Kembali</label>
-                        <input type="date" name="tanggal_kembali" id="edit_tanggal_kembali" class="form-control">
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Denda</label>
-                        <select name="denda" id="edit_denda" class="form-control" required>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Keterangan</label>
-                        <select name="keterangan" id="edit_keterangan" class="form-control" required>
-                        </select>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
                     </div>
                 </div>
-
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Simpan</button>
-                </div>
-
             </div>
-        </form>      
+        </form>
     </div>
 </div>
