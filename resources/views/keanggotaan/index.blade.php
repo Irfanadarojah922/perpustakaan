@@ -117,10 +117,11 @@
 
 @push("scripts")
     <script>
+        let anggotaDataTable; 
         $(document).ready(function () {
 
             //yang ditampilkan di list tabel
-             $('#table_anggota').DataTable({
+            anggotaDataTable = $('#table_anggota').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
@@ -145,147 +146,247 @@
 
 
 
-                // mengosongkan semua input di dalam form modal 'addModal'
-                function resetAddAnggotaForm() {
-                    // Reset form HTML secara keseluruhan
-                    $('#formAddAnggota')[0].reset();
+            // mengosongkan semua input di dalam form modal 'addModal'
+            function resetAddAnggotaForm() {
+                // Reset form HTML secara keseluruhan
+                $('#formAddAnggota')[0].reset();
 
-                    // Hapus kelas is-invalid dan pesan feedback error sebelumnya
-                    $('#formAddAnggota .is-invalid').removeClass('is-invalid');
-                    $('#formAddAnggota .invalid-feedback').remove();
+                // Hapus kelas is-invalid dan pesan feedback error sebelumnya
+                $('#formAddAnggota .is-invalid').removeClass('is-invalid');
+                $('#formAddAnggota .invalid-feedback').remove();
 
-                    // Khusus untuk select elements, pastikan kembali ke option default jika ada
-                    $('#add_jenis_kelamin').val('');
-                    $('#add_pendidikan').val('');
-                    $('#add_status').val('');
-                    $('#no_telp_error').val(); 
+                // Khusus untuk select elements, pastikan kembali ke option default jika ada
+                $('#add_jenis_kelamin').val('');
+                $('#add_pendidikan').val('');
+                $('#add_status').val('');
+                $('#no_telp_error').val(); 
+            }
+
+            $('#addModal').on('show.bs.modal', function() {
+                resetAddAnggotaForm(); // reset setiap kali modal dibuka
+            });
+
+            // Validasi nomor telepon harus diawali +62
+            $(document).on('input', '#add_no_telepon', function () {
+                let value = $(this).val();
+                let errorElement = $('#no_telp_error'); 
+
+                if (!value.startsWith('+62')) {
+                    errorElement.text('Nomor telepon harus diawali dengan +62').show();
+                    $(this).addClass('is-invalid'); 
+                } else {
+                    errorElement.hide();
+                    $(this).removeClass('is-invalid'); 
                 }
+            });
 
-                $('#addModal').on('show.bs.modal', function() {
-                    resetAddAnggotaForm(); // reset setiap kali modal dibuka
-                });
 
-                // Validasi nomor telepon harus diawali +62
-                $(document).on('input', '#add_no_telepon', function () {
-                    let value = $(this).val();
-                    let errorElement = $('#no_telp_error'); 
+            // --- Add ---
+            $('#formAddAnggota').on('submit', function(e) {
+                e.preventDefault();
 
-                    if (!value.startsWith('+62')) {
-                        errorElement.text('Nomor telepon harus diawali dengan +62').show();
-                        $(this).addClass('is-invalid'); 
-                    } else {
-                        errorElement.hide();
-                        $(this).removeClass('is-invalid'); 
+                let token = $('meta[name="csrf-token"]').attr('content');
+                let formData = new FormData(this); //
+
+                let storeUrl = '{{ route('keanggotaan.store') }}';
+
+                $.ajax({
+                    url: storeUrl,
+                    type: 'POST',
+                    data: formData,
+                    processData: false, 
+                    contentType: false, 
+                    headers: {
+                        'X-CSRF-TOKEN': token 
+                    },
+                    success: function(response) {
+                        alert(response.message);
+                        $('#addModal').modal('hide');
+                        anggotaDataTable.ajax.reload();
+                        console.log('Anggota berhasil ditambahkan:', response.anggota);
+                    },
+                    error: function(xhr) {
+                        $('#formAddAnggota .is-invalid').removeClass('is-invalid');
+                        $('#formAddAnggota .invalid-feedback').remove();
+                        $('#no_telp_error').remove(); 
+
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+                            let errorMessages = '';
+                            for (let field in errors) {
+                                let inputElement = $('#add_' + field); 
+                                if (inputElement.length === 0) {
+                                    inputElement = $('#' + field); 
+                                }
+
+                                if (inputElement.length > 0) {
+                                    inputElement.addClass('is-invalid'); 
+                                    let errorDiv = `<div class="invalid-feedback">${errors[field][0]}</div>`;
+                                    if (inputElement.attr('type') === 'file') {
+                                        inputElement.closest('.mb-3').append(errorDiv);
+                                    } else if (inputElement.is('select') || inputElement.is('textarea')) {
+                                        inputElement.after(errorDiv);
+                                    } else {
+                                        inputElement.after(errorDiv); 
+                                    }
+                                }
+                                errorMessages += errors[field][0] + '\n';
+                            }
+                                alert('Terjadi kesalahan validasi:\n' + errorMessages);
+                        } else {
+                            alert('Terjadi kesalahan server: ' + (xhr.responseJSON.message || 'Unknown error'));
+                             console.error('Server Error:', xhr.responseText);
+                        }
                     }
                 });
+            });
 
 
-                // --- Add ---
-                $('#formAddAnggota').on('submit', function(e) {
-                    e.preventDefault();
+            //edit
 
-                    let token = $('meta[name="csrf-token"]').attr('content');
-                    let formData = new FormData(this); //
+$(document).on('click', '.editBtn', function () {
+                let id = $(this).data('id');
+                let showUrl = '{{ route("keanggotaan.show", ":id") }}';
+                showUrl = showUrl.replace(':id', id);
 
-                    let storeUrl = '{{ route('keanggotaan.store') }}';
+                // Bersihkan feedback validasi sebelumnya
+                $('#formEditAnggota .is-invalid').removeClass('is-invalid');
+                $('#formEditAnggota .invalid-feedback').remove();
+                $('#edit_no_telp_error').hide(); // Sembunyikan error no telepon
 
-                    $.ajax({
-                        url: storeUrl,
-                        type: 'POST',
-                        data: formData,
-                        processData: false, 
-                        contentType: false, 
-                        headers: {
-                            'X-CSRF-TOKEN': token 
-                        },
-                        success: function(response) {
-                            alert(response.message);
-                            $('#addModal').modal('hide');
-                            anggotaDataTable.ajax.reload();
-                            console.log('Anggota berhasil ditambahkan:', response.anggota);
-                        },
-                        error: function(xhr) {
-                            $('#formAddAnggota .is-invalid').removeClass('is-invalid');
-                            $('#formAddAnggota .invalid-feedback').remove();
-                            $('#no_telp_error').remove(); 
+                $.ajax({
+                    url: showUrl,
+                    type: 'GET',
+                    success: function (response) {
+                        // Isi data ke form edit
+                        // $('#edit_id').val(response.data.id);
+                        $('#edit_nik').val(response.data.nik);
+                        $('#edit_nama').val(response.data.nama);
+                        $('#edit_tempat_lahir').val(response.data.tempat_lahir);
+                        $('#edit_tanggal_lahir').val(response.data.tanggal_lahir);
+                        $('#edit_jenis_kelamin').val(response.data.jenis_kelamin);
+                        $('#edit_pendidikan').val(response.data.pendidikan);
+                        $('#edit_alamat').val(response.data.alamat);
+                        $('#edit_no_telepon').val(response.data.no_telepon);
+                        $('#edit_status').val(response.data.status);
+                        // Jika ada field lain, tambahkan di sini
 
-                            if (xhr.status === 422) {
-                                let errors = xhr.responseJSON.errors;
-                                let errorMessages = '';
-                                for (let field in errors) {
-                                    let inputElement = $('#add_' + field); 
-                                    if (inputElement.length === 0) {
-                                        inputElement = $('#' + field); 
-                                    }
-
-                                    if (inputElement.length > 0) {
-                                        inputElement.addClass('is-invalid'); 
-                                        let errorDiv = `<div class="invalid-feedback">${errors[field][0]}</div>`;
-                                        if (inputElement.attr('type') === 'file') {
-                                            inputElement.closest('.mb-3').append(errorDiv);
-                                        } else if (inputElement.is('select') || inputElement.is('textarea')) {
-                                            inputElement.after(errorDiv);
-                                        }
-                                        else {
-                                            inputElement.after(errorDiv); 
-                                        }
-                                    }
-                                    errorMessages += errors[field][0] + '\n';
-                                }
-                                alert('Terjadi kesalahan validasi:\n' + errorMessages);
-                            } else {
-                                alert('Terjadi kesalahan server: ' + (xhr.responseJSON.message || 'Unknown error'));
-                                console.error('Server Error:', xhr.responseText);
-                            }
-                        }
-                    });
+                        $('#editModal').modal('show');
+                    },
+                    error: function (xhr) {
+                        alert('Gagal mengambil data anggota: ' + (xhr.responseJSON.message || 'Unknown error'));
+                        console.error('Error fetching data:', xhr.responseText);
+                    }
                 });
+            });
 
+            $('#formEditAnggota').on('submit', function(e) {
+                e.preventDefault();
 
-                //edit
+                let id = $('#edit_id').val();
+                let token = $('meta[name="csrf-token"]').attr('content');
+                let formData = new FormData(this);
+                formData.append('_method', 'PUT'); // Penting untuk metode PUT/PATCH di Laravel
 
+                let updateUrl = '{{ route('keanggotaan.update', ':id') }}';
+                updateUrl = updateUrl.replace(':id', id);
+
+                $.ajax({
+                    url: updateUrl,
+                    type: 'POST', // Menggunakan POST karena _method: 'PUT'
+                    data: formData,
+                    processData: false, 
+                    contentType: false, 
+                    headers: {
+                        'X-CSRF-TOKEN': token 
+                    },
+                    success: function(response) {
+                        alert(response.message);
+                        $('#editModal').modal('hide');
+                        anggotaDataTable.ajax.reload(); 
+                        // Hapus kelas invalid dan feedback error jika ada
+                        $('#formEditAnggota .is-invalid').removeClass('is-invalid');
+                        $('#formEditAnggota .invalid-feedback').remove();
+                        $('#edit_no_telp_error').hide(); // Sembunyikan error no telepon
+                    },
+                    error: function(xhr) {
+                        $('#formEditAnggota .is-invalid').removeClass('is-invalid');
+                        $('#formEditAnggota .invalid-feedback').remove();
+                        $('#edit_no_telp_error').hide(); // Sembunyikan error no telepon
+
+                        if (xhr.status === 422) {
+                            let errors = xhr.responseJSON.errors;
+                            let errorMessages = '';
+                            for (let field in errors) {
+                                // Sesuaikan selector ID dengan prefix 'edit_'
+                                let inputElement = $('#edit_' + field); 
+                                if (inputElement.length === 0) {
+                                    inputElement = $('#' + field); // Fallback jika tidak ada prefix
+                                }
+
+                                if (inputElement.length > 0) {
+                                    inputElement.addClass('is-invalid'); 
+                                    let errorDiv = `<div class="invalid-feedback">${errors[field][0]}</div>`;
+                                    if (inputElement.attr('type') === 'file') {
+                                        inputElement.closest('.mb-3').append(errorDiv);
+                                    } else if (inputElement.is('select') || inputElement.is('textarea')) {
+                                        inputElement.after(errorDiv);
+                                    } else {
+                                        inputElement.after(errorDiv); 
+                                    }
+                                }
+                                errorMessages += errors[field][0] + '\n';
+                            }
+                                alert('Terjadi kesalahan validasi:\n' + errorMessages);
+                        } else {
+                            alert('Terjadi kesalahan server: ' + (xhr.responseJSON.message || 'Unknown error'));
+                            console.error('Server Error:', xhr.responseText);
+                        }
+                    }
+                });
+            });            
                 
 
-                //delete
-                $(document).on('click', '.deleteBtn', function () {
-                    let id = $(this).data('id');
-                    $('#delete_id').val(id);
-                    $('#deleteModal').modal('show');
-                });
+            //delete
+            $(document).on('click', '.deleteBtn', function () {
+                let id = $(this).data('id');
+                $('#delete_id').val(id);
+                $('#deleteModal').modal('show');
+            });
 
-                $('#deleteForm').submit(function (e) {
-                    e.preventDefault();
-                    let id = $('#delete_id').val();
+            $('#deleteForm').submit(function (e) {
+                e.preventDefault();
+                let id = $('#delete_id').val();
 
-                    $.ajax({
+                $.ajax({
                     url: `/keanggotaan/${id}`,
                     type: 'POST',
                     data: {
-                    _method: 'DELETE',
-                    _token: '{{ csrf_token() }}'
+                        _method: 'DELETE',
+                        _token: '{{ csrf_token() }}'
                     },
                     success: function (res) {
                         $('#deleteModal').modal('hide');
                         $('#table_anggota').DataTable().ajax.reload();
                         alert(res.message);
-                        },
-                        error: function (err) {
+                    },
+                    error: function (err) {
                         alert('Terjadi kesalahan saat menghapus.');
                         console.log(err.responseText);
-                        }
-                    });
+                    }
                 });
-
             });
-
-
-                //show kartu anggota
-                function detail_anggota(id) {
-                    let url = '{{ route("keanggotaan.show", ":id") }}';
-                    url = url.replace(':id', id);
-                    window.open(url);
-                }
-
+        
         });
+
+                
+        //show kartu anggota
+        function detail_anggota(id) {
+            let url = '{{ route("keanggotaan.show", ":id") }}';
+            url = url.replace(':id', id);
+            window.open(url);
+        }
+
+        
     </script>
 @endpush

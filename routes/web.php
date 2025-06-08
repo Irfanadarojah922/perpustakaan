@@ -42,6 +42,8 @@ Route::resource('/katalog', KatalogController::class)->only(["index", "show"]);
 
 
 Route::resource('/keanggotaan', AnggotaController::class);
+Route::get('/keanggotaan/{id}/edit', [AnggotaController::class, 'edit']);
+Route::get('/keanggotaan/create', [AnggotaController::class, 'create']);
 Route::get('/keanggotaan/show/{id}', [AnggotaController::class, 'show'])->name('keanggotaan.show');
 Route::delete('/keanggotaan/{id}', [AnggotaController::class, 'destroy']);
 

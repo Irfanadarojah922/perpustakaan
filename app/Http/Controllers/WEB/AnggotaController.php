@@ -119,27 +119,4 @@ class AnggotaController extends Controller
         return view('keanggotaan.show', compact('anggota'));
     }
 
-
-    // public function searchAnggota(Request $request)
-    // {
-    //     $query = $request->input('q');
-    //         $searchColumn = $request->input('column'); 
-    //         $anggota = Anggota::query();
-
-    //         if ($query && $searchColumn) {
-    //             $allowedColumns = ['nik', 'nama', 'tempat_lahir'];
-    //             if (in_array($searchColumn, $allowedColumns)) {
-    //                 $anggota->where($searchColumn, 'LIKE', "%{$query}%");
-    //             }
-    //         } elseif ($query) {
-    //             $anggota->where('nik', 'LIKE', "%{$query}%")
-    //                     ->orWhere('nama', 'LIKE', "%{$query}%");
-    //         }
-
-    //         $anggota = $anggota->limit(10)->get(['id', 'nik', 'nama', 'tempat_lahir']);
-
-    //         return response()->json(['anggota' => $anggota]);
-    // }
-
-    
 }
