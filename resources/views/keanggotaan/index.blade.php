@@ -148,14 +148,11 @@
 
             // mengosongkan semua input di dalam form modal 'addModal'
             function resetAddAnggotaForm() {
-                // Reset form HTML secara keseluruhan
                 $('#formAddAnggota')[0].reset();
 
-                // Hapus kelas is-invalid dan pesan feedback error sebelumnya
                 $('#formAddAnggota .is-invalid').removeClass('is-invalid');
                 $('#formAddAnggota .invalid-feedback').remove();
 
-                // Khusus untuk select elements, pastikan kembali ke option default jika ada
                 $('#add_jenis_kelamin').val('');
                 $('#add_pendidikan').val('');
                 $('#add_status').val('');
@@ -244,7 +241,7 @@
 
             //edit
 
-$(document).on('click', '.editBtn', function () {
+            $(document).on('click', '.editBtn', function () {
                 let id = $(this).data('id');
                 let showUrl = '{{ route("keanggotaan.show", ":id") }}';
                 showUrl = showUrl.replace(':id', id);
@@ -269,7 +266,6 @@ $(document).on('click', '.editBtn', function () {
                         $('#edit_alamat').val(response.data.alamat);
                         $('#edit_no_telepon').val(response.data.no_telepon);
                         $('#edit_status').val(response.data.status);
-                        // Jika ada field lain, tambahkan di sini
 
                         $('#editModal').modal('show');
                     },
@@ -286,29 +282,30 @@ $(document).on('click', '.editBtn', function () {
                 let id = $('#edit_id').val();
                 let token = $('meta[name="csrf-token"]').attr('content');
                 let formData = new FormData(this);
-                formData.append('_method', 'PUT'); // Penting untuk metode PUT/PATCH di Laravel
+                formData.append('_method', 'PUT'); 
 
                 let updateUrl = '{{ route('keanggotaan.update', ':id') }}';
                 updateUrl = updateUrl.replace(':id', id);
 
                 $.ajax({
                     url: updateUrl,
-                    type: 'POST', // Menggunakan POST karena _method: 'PUT'
+                    type: 'POST',
                     data: formData,
                     processData: false, 
                     contentType: false, 
                     headers: {
                         'X-CSRF-TOKEN': token 
                     },
+
                     success: function(response) {
                         alert(response.message);
                         $('#editModal').modal('hide');
                         anggotaDataTable.ajax.reload(); 
-                        // Hapus kelas invalid dan feedback error jika ada
                         $('#formEditAnggota .is-invalid').removeClass('is-invalid');
                         $('#formEditAnggota .invalid-feedback').remove();
                         $('#edit_no_telp_error').hide(); // Sembunyikan error no telepon
                     },
+                    
                     error: function(xhr) {
                         $('#formEditAnggota .is-invalid').removeClass('is-invalid');
                         $('#formEditAnggota .invalid-feedback').remove();
@@ -318,10 +315,9 @@ $(document).on('click', '.editBtn', function () {
                             let errors = xhr.responseJSON.errors;
                             let errorMessages = '';
                             for (let field in errors) {
-                                // Sesuaikan selector ID dengan prefix 'edit_'
                                 let inputElement = $('#edit_' + field); 
                                 if (inputElement.length === 0) {
-                                    inputElement = $('#' + field); // Fallback jika tidak ada prefix
+                                    inputElement = $('#' + field); 
                                 }
 
                                 if (inputElement.length > 0) {

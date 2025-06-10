@@ -104,6 +104,7 @@ class AnggotaController extends Controller
 
         return response()->json(['message' => 'Data berhasil diupdate']);
     }
+    
     public function destroy($id)
     {
         $anggota = Anggota::findOrFail($id);
