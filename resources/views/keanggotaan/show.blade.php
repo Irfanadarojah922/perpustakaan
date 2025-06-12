@@ -158,7 +158,7 @@
             </div>
             <div class="right">
             <div class="halo">HALO!</div>
-            <h2>{{ $anggota->name }}</h2>
+            <h2>{{ $anggota->nama }}</h2>
             <div class="subtitle"> {{ $anggota->status }} </div>
             <table class="info-table">
                 <tr>

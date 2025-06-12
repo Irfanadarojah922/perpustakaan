@@ -69,7 +69,7 @@ class AnggotaController extends Controller
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $filename = time() . '_' . $foto->getClientOriginalName();
-            $path = $foto->storeAs('foto', $filename, 'public'); // simpan ke storage/app/public/foto
+            $path = $foto->storeAs('anggota', $filename, 'public'); // simpan ke storage/app/public/anggota
 
             // Simpan nama file ke dalam array validated
             $validated['foto'] = $path; // simpan path-nya
@@ -149,7 +149,7 @@ class AnggotaController extends Controller
 
             $foto = $request->file('foto');
             $filename = time() . '_' . $foto->getClientOriginalName();
-            $path = $foto->storeAs('foto', $filename, 'public');
+            $path = $foto->storeAs('anggota', $filename, 'public');
             $validated['foto'] = $path;
         }
 
@@ -184,6 +184,7 @@ class AnggotaController extends Controller
     //     return response()->json(['message' => 'Data berhasil diupdate']);
     // }
 
+   
     public function destroy($id)
     {
         $anggota = Anggota::findOrFail($id);
