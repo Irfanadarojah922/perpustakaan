@@ -50,7 +50,7 @@ class DashboardController extends Controller
             });
 
         // Ambil transaksi pengembalian terakhir
-        $pengembalianTerakhir = Kembali::with(['anggota', 'bukus', 'pinjam']) // Eager load relasi
+        $pengembalianTerakhir = Kembali::with(['anggota', 'bukus', 'pinjam']) 
             ->orderBy('tanggal_kembali', 'desc')
             ->take($limit)
             ->get()
@@ -60,7 +60,7 @@ class DashboardController extends Controller
                     'nama_anggota' => $item->anggota ? $item->anggota->nama : ($item->pinjam && $item->pinjam->anggotas ? $item->pinjam->anggotas->nama : 'N/A'),
                     'judul_buku' => $item->buku ? $item->buku->judul : ($item->pinjam && $item->pinjam->bukus ? $item->pinjam->bukus->judul : 'N/A'),
                     'tanggal_transaksi' => $item->tanggal_kembali,
-                    'objek_transaksi' => $item, // Untuk detail lebih lanjut jika diperlukan
+                    'objek_transaksi' => $item, 
                 ];
             });
 
@@ -75,17 +75,17 @@ class DashboardController extends Controller
 
     public function pengingat()
     {
-        $pengingat = Pinjam::with(['anggotas', 'bukus']) // Gunakan nama relasi yang benar: anggotas, bukus
-            ->where('status', 'Dipinjam') // Sesuaikan dengan nilai ENUM di database ('Dipinjam')
+        $pengingat = Pinjam::with(['anggotas', 'bukus']) 
+            ->where('status', 'Dipinjam') 
             ->orderBy('tanggal_pinjam', 'desc')
             ->take(5)
             ->get()
             ->map(function ($item) {
                 return [
                     'nama_anggota' => $item->anggotas ? $item->anggotas->nama : 'N/A',
-                    // 'judul_buku' => $item->bukus ? $item->bukus->judul : 'N/A',
                     'tanggal_pinjam' => $item->tanggal_pinjam,
-                    'jatuh_tempo' => $item->tanggal_pengembalian, // Gunakan kolom tanggal_jatuh_tempo yang sudah ada
+                    'jatuh_tempo' => $item->tanggal_pengembalian, 
+                    'no_telepon' => $item->anggotas ? $item->anggotas->no_telepon : ''
                 ];
             });
         return $pengingat;

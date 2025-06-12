@@ -7,30 +7,28 @@
     {{-- Memastikan Boxicons dimuat untuk ikon --}}
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        /* Tambahkan styling khusus di sini jika diperlukan */
         .whatsapp-icon-link {
-            display: inline-flex; /* Menggunakan flexbox untuk penataan ikon */
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 24px; /* Ukuran ikon lebih kecil agar pas di samping teks */
+            width: 24px;
             height: 24px;
-            border-radius: 50%; /* Membuat ikon lingkaran */
-            background-color: #25d366; /* Warna latar belakang WhatsApp */
-            color: white; /* Warna ikon */
-            font-size: 14px; /* Ukuran font ikon */
+            border-radius: 50%;
+            background-color: #25d366;
+            color: white; 
+            font-size: 14px;
             text-decoration: none;
-            transition: background-color 0.3s ease; /* Efek transisi saat hover */
-            margin-left: 8px; /* Jarak antara teks dan ikon */
-            vertical-align: middle; /* Pastikan ikon sejajar dengan teks */
-            flex-shrink: 0; /* Mencegah ikon menyusut pada layar kecil */
+            transition: background-color 0.3s ease; 
+            margin-left: 8px;
+            vertical-align: middle;
+            flex-shrink: 0;
         }
         .whatsapp-icon-link:hover {
-            background-color: #1da851; /* Warna saat hover */
+            background-color: #1da851; 
         }
         .whatsapp-icon-link i {
-            line-height: 1; /* Mengatur tinggi baris agar ikon di tengah */
+            line-height: 1;
         }
-        /* Style untuk status */
         .status {
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
@@ -47,7 +45,11 @@
             background-color: #28a745; 
         }
 
-        /* Responsive table styles */
+        .date-text {
+            margin-right: 20px;
+            display: inline-block;
+        }
+        
         @media (max-width: 768px) {
             table {
                 display: block;
@@ -207,12 +209,11 @@
                             <td data-label="Nama">
                                 <p>{{ $data['nama_anggota'] }}</p>
                             </td>
-                            <td data-label="Tgl Pinjam">{{ $data['tanggal_pinjam'] }}</td>
+                            <td data-label="Tanggal Pinjam">{{ $data['tanggal_pinjam'] }}</td>
                             <td data-label="Jatuh Tempo">
-                                <span style="display: inline-flex; align-items: center;">
-                                    {{ $data['jatuh_tempo'] }}
+                                <span class="date-text">{{ $data['jatuh_tempo'] }}</span>                                    
                                     @php
-                                        // menghapus nomor dari +
+                                        // menghapus +
                                         $phoneNumber = preg_replace('/[^0-9]/', '', $data['no_telepon'] ?? '');
 
                                         // mengubah +62 menjadi 62
@@ -232,7 +233,7 @@
                                             <i class='bx bxl-whatsapp'></i>
                                         </a>
                                     @else
-                                        <span class="text-muted" title="Nomor WhatsApp tidak tersedia">- Tidak Tersedia -</span>
+                                        <span class="text-muted" title="Nomor WhatsApp tidak tersedia">Tidak Tersedia</span>
                                     @endif
                             </td>
                         </tr>

@@ -16,6 +16,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap; /* Allow wrapping for responsiveness */
+            gap: 15px; /* Spacing between columns */
         }
 
         .left h1 {
@@ -25,6 +27,7 @@
         .right {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap; /* Allow wrapping for buttons/search */
         }
 
         .add-btn {
@@ -40,6 +43,58 @@
             font-weight: 500;
             text-decoration: none;
         }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 20px; /* Rounded corners for the search bar */
+            overflow: hidden;
+            background-color: #fff;
+            padding: 0 5px;
+            height: 38px; /* Match button height */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            padding: 0 10px;
+            flex-grow: 1;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .search-button {
+            background: none;
+            border: none;
+            padding: 0 10px;
+            cursor: pointer;
+            color: var(--primary); /* Use primary color for icon/text */
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-button:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            .col {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .right {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .search-container {
+                width: 100%; /* Full width on smaller screens */
+            }
+        }
     </style>
 
     <div class="header">
@@ -53,10 +108,14 @@
             </div>
             
             <div class="right">
-                <!-- <a href="#" class="add-btn" >
-                    <i class="bx bx-book-add"></i>
-                    <span>Tambah Buku</span>
-                </a> -->
+                <!-- Search Box -->
+                <form action="{{ route('katalog.index') }}" method="GET" class="search-container">
+                    <input type="search" name="search" class="search-input" placeholder="Cari buku..." value="{{ request('search') }}">
+                    <button type="submit" class="search-button">
+                        <i class='bx bx-search'></i> 
+                    </button>
+                </form>
+
               <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                 Tambah buku
