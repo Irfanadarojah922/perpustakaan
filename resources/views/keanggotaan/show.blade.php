@@ -153,12 +153,12 @@
         <div class="background"></div>
         <div class="container">
             <div class="left">
-            <img src="{{ $anggota->foto }}" alt="Foto Anggota" />
+            <img src="{{ asset('storage/' . $anggota->foto) }}" alt="Foto Anggota" />
 
             </div>
             <div class="right">
             <div class="halo">HALO!</div>
-            <h2>{{ $anggota->nama }}</h2>
+            <h2>{{ $anggota->name }}</h2>
             <div class="subtitle"> {{ $anggota->status }} </div>
             <table class="info-table">
                 <tr>
@@ -207,6 +207,6 @@
             </div>
         </div>
 
-  <div class="footer">&copy; 2025 Perpustakaan Daerah Kabupaten Tegal</div>
+  <div class="footer">&copy; 2025 Tugas Akhir Irfa'na Darojah Politeknik Baja Kab Tegal</div>
 </body>
 </html>

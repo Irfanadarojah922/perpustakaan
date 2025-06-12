@@ -2,8 +2,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-                <form id="formEditAnggota">
-                    @csrf
+            <form id="formEditAnggota">
+                @csrf
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="edit_modalLabel">Edit </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -14,7 +14,7 @@
                         <label for="nama" class="form-label">NIK</label>
                         <input type="text" class="form-control" id="edit_nik" name="nik">
                     </div>
-
+                    <input type="hidden" id="edit_id" name="id">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="edit_nama" name="nama">
@@ -52,7 +52,7 @@
 
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="edit_alamat"></textarea>
+                        <textarea class="form-control" id="edit_alamat" name="edit_alamat"></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -74,7 +74,7 @@
                         <label for="tanggal_lahir" class="form-label">Tanggal Daftar</label>
                         <input type="date" class="form-control" id="edit_tanggal_daftar" name="tanggal_daftar">
                     </div>
-                    
+
                 </div>
 
                 <div class="modal-footer">

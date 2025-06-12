@@ -243,7 +243,7 @@
 
             $(document).on('click', '.editBtn', function () {
                 let id = $(this).data('id');
-                let showUrl = '{{ route("keanggotaan.show", ":id") }}';
+                let showUrl = '{{ route("keanggotaan.edit", ":id") }}';
                 showUrl = showUrl.replace(':id', id);
 
                 // Bersihkan feedback validasi sebelumnya
@@ -255,8 +255,9 @@
                     url: showUrl,
                     type: 'GET',
                     success: function (response) {
+                        
                         // Isi data ke form edit
-                        // $('#edit_id').val(response.data.id);
+                        $('#edit_id').val(response.data.id);
                         $('#edit_nik').val(response.data.nik);
                         $('#edit_nama').val(response.data.nama);
                         $('#edit_tempat_lahir').val(response.data.tempat_lahir);
@@ -266,8 +267,9 @@
                         $('#edit_alamat').val(response.data.alamat);
                         $('#edit_no_telepon').val(response.data.no_telepon);
                         $('#edit_status').val(response.data.status);
+                        $('#edit_tanggal_daftar').val(response.data.tanggal_daftar);
 
-                        $('#editModal').modal('show');
+                        $('#edit_modal').modal('show');
                     },
                     error: function (xhr) {
                         alert('Gagal mengambil data anggota: ' + (xhr.responseJSON.message || 'Unknown error'));
@@ -299,7 +301,7 @@
 
                     success: function(response) {
                         alert(response.message);
-                        $('#editModal').modal('hide');
+                        $('#edit_modal').modal('hide');
                         anggotaDataTable.ajax.reload(); 
                         $('#formEditAnggota .is-invalid').removeClass('is-invalid');
                         $('#formEditAnggota .invalid-feedback').remove();
