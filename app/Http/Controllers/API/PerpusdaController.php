@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class PerpusdaCOntroller extends Controller
+class PerpusdaController extends Controller
 {
    
     /**
