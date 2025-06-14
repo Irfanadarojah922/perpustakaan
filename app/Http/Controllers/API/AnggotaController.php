@@ -105,14 +105,14 @@ class AnggotaController extends Controller
     public function destroy(string $id)
     {
         try {
-            $category = Kategori::find($id);
-            if (!$category) {
+            $anggota = Anggota::find($id);
+            if (!$anggota) {
                 return response()->json([
                     "success" => false,
                     "message" => "Anggota not found"
                 ], 404);
             }
-            $category->delete();
+            $anggota->delete();
             return response()->json([
                 "success" => true,
                 "message" => "Anggota deleted"
@@ -128,10 +128,10 @@ class AnggotaController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
+            $anggota = Anggota::where('nama', 'like', "%$name%")->get();
             return response()->json([
                 "success" => true,
-                "message" => $category
+                "message" => $anggota
             ]);
         } catch (\Exception $e) {
             return response()->json([

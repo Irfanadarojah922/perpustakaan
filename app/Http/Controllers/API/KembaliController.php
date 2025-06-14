@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Kembali\StoreRequest;
 use App\Http\Requests\Kembali\UpdateRequest;
 use App\Models\Kembali;
-use App\Models\Kategoris;
+use App\Models\Kategori;
 
 
 class KembaliController extends Controller
@@ -59,7 +59,7 @@ class KembaliController extends Controller
             if (!$kembali) {
                 return response()->json([
                     "success" => false,
-                    "message" => "Pinjam not found"
+                    "message" => "Kembali not found"
                 ], 404);
             }
             return response()->json([
@@ -84,7 +84,7 @@ class KembaliController extends Controller
             if (!$kembali) {
                 return response()->json([
                     "success" => false,
-                    "message" => "Pinjam not found"
+                    "message" => "Kembali not found"
                 ], 404);
             }
             $kembali->update($request->validated());
@@ -110,13 +110,13 @@ class KembaliController extends Controller
             if (!$kembali) {
                 return response()->json([
                     "success" => false,
-                    "message" => "Pinjam not found"
+                    "message" => "Kembali not found"
                 ], 404);
             }
             $kembali->delete();
             return response()->json([
                 "success" => true,
-                "message" => "Pinjam deleted"
+                "message" => "Kembali deleted"
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -129,10 +129,10 @@ class KembaliController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
+            $kembali = Kembali::where('id_buku', 'like', "%$name%")->get();            
             return response()->json([
                 "success" => true,
-                "message" => $category
+                "message" => $kembali
             ]);
         } catch (\Exception $e) {
             return response()->json([

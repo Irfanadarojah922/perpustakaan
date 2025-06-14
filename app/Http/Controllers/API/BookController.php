@@ -129,10 +129,10 @@ class BookController extends Controller
     public function search(string $name)
     {
         try {
-            $category = Kategori::where('nama_kategori', 'like', "%$name%")->get();
+           $buku = Buku::where('judul', 'like', "%$name%")->get();
             return response()->json([
                 "success" => true,
-                "message" => $category
+                "message" => $buku
             ]);
         } catch (\Exception $e) {
             return response()->json([
