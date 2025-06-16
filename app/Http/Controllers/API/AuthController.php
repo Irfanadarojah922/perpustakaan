@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response(['user' => $user, 'access_Token' => $accessToken], 201);
+        return response(['user' => $user, 'access_Token' => $accessToken], 201);             
     }
 
     public function login(Request $request)
@@ -35,11 +35,15 @@ class AuthController extends Controller
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'User ini tidak terdaftar, silahkan cek kembali !!'], 400);
+            return response()->json([
+                'message' => 'User ini tidak terdaftar, silahkan cek kembali !!'], 400);
         }
+
+        $user = auth()->user();
 
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
 
         return response(['user' => auth()->user(), 'access_token' => $accessToken]);
-    }
+
+    } 
 }

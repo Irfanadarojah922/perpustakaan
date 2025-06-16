@@ -7,6 +7,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\PerpusdaController;
 use App\Http\Controllers\API\PinjamController;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\KembaliController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,6 @@ Route::apiResource('buku', BookController::class)->middleware('auth:api');
 Route::apiResource('anggota', AnggotaController::class)->middleware('auth:api');
 
 Route::apiResource('pinjam', PinjamController::class)->middleware('auth:api');
+
+Route::apiResource('kembali', KembaliController::class)->middleware('auth:api');
+
