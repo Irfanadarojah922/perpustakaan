@@ -4,19 +4,26 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;      //membangun format email.
+// use Illuminate\Notifications\Messages\MailMessage;      //membangun format email.
 use Illuminate\Notifications\Notification;
+use NotificationChannels\fcm\FcmMessage;
 
 class PushNotification extends Notification
 {
     use Queueable;          //antrian (queue) untuk diproses di latar belakang
 
+    protected $title;
+    protected $body;
+    protected $data;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()       //menerima data yang perlu digunakan oleh notifikasi
+    public function __construct($title, $body, $data = [])       //menerima data yang perlu digunakan oleh notifikasi
     {
-        //
+        $this->title = $title;
+        $this->body = $body;
+        $this->data = $data;
     }
 
     /**
@@ -24,20 +31,25 @@ class PushNotification extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array      //saluran pengiriman yang akan digunakan oleh notifikasi.
+    public function via(object $notifiable): array      //saluran pengiriman yang akan digunakan untuk notifikasi
     {
-        return ['mail'];        //dikirim melalui email
+        return ['firebase'];        //dikirim melalui firebase
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage     //harus sama dengan function via
+    public function toFirebase($notifiable)     //harus sama dengan function via
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')         //baris teks ke badan email
-                    ->action('Notification Action', url('/'))       //URL yang akan dituju saat tombol diklik
-                    ->line('Thank you for using our application!');
+        return (new FcmMessage)
+                ->content([
+                    'title' => $this->title,
+                    'body' => $this->body,   
+                ])
+                ->data(array_merge([
+                    'click_action' => 'FLUTTER_NOTIFICATION_CLICK', // Contoh untuk aplikasi mobile
+                    'message' => 'Ini adalah konten pesan tambahan.',
+                ], $this->data));
     }
 
     /**
