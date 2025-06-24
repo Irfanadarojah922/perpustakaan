@@ -36,14 +36,31 @@ class AuthController extends Controller
 
         if (!auth()->attempt($loginData)) {
             return response()->json([
-                'message' => 'User ini tidak terdaftar, silahkan cek kembali !!'], 400);
+                'message' => 'User ini tidak terdaftar, silahkan cek kembali !!'
+            ], 400);
         }
 
         $user = auth()->user();
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        // Cek apakah user punya relasi ke anggota
+        if (!$user->anggota) {
+            return response()->json([
+                'message' => 'Akun ini belum terdaftar sebagai anggota.'
+            ], 403);
+        }
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        // Cek status verifikasi anggota
+        if ($user->anggota->verifikasi !== 'terverifikasi') {
+            return response()->json([
+                'message' => 'Akun Anda belum diverifikasi oleh admin.'
+            ], 403);
+        }
 
-    } 
+        $accessToken = $user->createToken('authToken')->accessToken;
+
+        return response([
+            'user' => $user,
+            'access_token' => $accessToken
+        ]);
+    }
 }

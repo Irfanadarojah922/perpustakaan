@@ -21,20 +21,24 @@ class Anggota extends Model
         'status',
         'foto',
         'tanggal_daftar',
+        'user_id',
+
     ];
 
     protected $cast = [
         "tanggal_lahir" => "date:d/m/Y",
-        "tanggal_daftar" => "date:d/m/Y"
+        "tanggal_daftar" => "date:d/m/Y",
     ];
 
-    // public function pinjams()
+
+    // public function hasUser()
     // {
-    //     return $this->hasMany(Pinjam::class);
+    //     return $this->hasOne(User::class);
     // }
 
-    public function hasUser()
+    public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
+
 }

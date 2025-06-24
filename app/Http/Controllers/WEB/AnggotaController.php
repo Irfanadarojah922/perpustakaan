@@ -4,40 +4,65 @@ namespace App\Http\Controllers\WEB;
 
 use App\Http\Controllers\Controller;
 use App\Models\Anggota;
+use App\Models\User;
 use App\Models\Buku;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use App\Repositories\RegisterRepository;
+use Illuminate\Support\Facades\Hash;
+
 
 class AnggotaController extends Controller
 {
+
+    protected $registerRepository;
+
+    public function __construct(RegisterRepository $registerRepository)
+    {
+        $this->registerRepository = $registerRepository;
+    }
+
     public function index()
     {
-        $anggota = Anggota::all();
         if (\request()->ajax()) {
+            $anggotas = Anggota::with('user');
 
-            $anggota = Anggota::all();
-            return DataTables::of($anggota)->addColumn("action", function ($row) {
-                $action =
-                    '<td class="text-center">
-                            <div class="btn-group" role="group" aria-label="Basic example">
+            return DataTables::of($anggotas)
+                ->addColumn("verifikasi", function ($row) {
+                    if (optional($row->user)->email_verified_at) {
+                        return '<span class="badge bg-success">Terverifikasi</span>';
+                    } else {
+                        return '<span class="badge bg-danger">Belum Verifikasi</span>';
+                    }
+                })
+                ->addColumn("action", function ($row) {
+                    $btnEdit = '<button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '"><i class="bx bx-edit"></i></button>';
+                    $btnShow = '<button class="btn btn-info btn-sm" onclick="detail_anggota(' . $row->id . ')"><i class="bx bx-show"></i></button>';
+                    $btnDelete = '<button type="button" class="btn btn-danger deleteBtn" data-id="' . $row->id . '"><i class="bx bx-trash"></i></button>';
 
-                            <button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '"> <i class="bx bx-edit" style="font-size:1rem;"></i></button>
-                                <button class="btn btn-info btn-sm" onclick="detail_anggota(' . $row->id . ')"> <i class="bx bx-show" style="font-size:1rem;"></i> </button>     
-                                <button type="button" class="btn btn-danger deleteBtn" data-id="' . $row->id . '"> <i class="bx bx-trash" style="font-size:1rem;"></i></button>
-                            </div>
-                        </td>';
-                return $action;
-            })->make(true);
+                    if (!optional($row->user)->email_verified_at) {
+                        $btnVerif = '<button type="button" class="btn btn-primary btn-sm btnVerif" data-id="' . $row->id . '">
+                                        <i class="bx bx-check-circle"></i>
+                                    </button>';
+                    } else {
+                        $btnVerif = '<button class="btn btn-secondary btn-sm" disabled>✔</button>';
+                    }
+
+                    return $btnEdit . ' ' . $btnShow . ' ' . $btnDelete . ' ' . $btnVerif;
+                })
+                ->rawColumns(['verifikasi', 'action']) 
+                ->make(true);
         }
 
-        return view("keanggotaan.index", compact('anggota'));
+        return view("keanggotaan.index");
     }
 
     public function create()
     {
-        return view('keanggotaan.create');
+        $data = $this->registerRepository;
 
+        return response()->json($data);
     }
 
 
@@ -55,7 +80,11 @@ class AnggotaController extends Controller
             "no_telepon" => "required|string|max:20",
             "status" => "required|string|max:255",
             "foto" => "nullable|image|max:2048", // max 2MB
-            "tanggal_daftar" => "required|date"
+            "tanggal_daftar" => "required|date",
+
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+            
         ]);
 
         // Validasi nomor telepon harus diawali dengan +62
@@ -75,13 +104,22 @@ class AnggotaController extends Controller
             $validated['foto'] = $path; // simpan path-nya
         }
 
-        // Simpan data ke database
+        // 1. Buat akun user
+        $user = User::create([
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        // 2. menimpan ke tabel user_id 
+        $validated['user_id'] = $user->id;
+
+        // Simpan data ke anggota
         $data = Anggota::create($validated);
 
         if ($request->ajax()) {
             return response()->json([
                 'status' => 'success',
-                'message' => 'Anggota Created Successfully!'
+                'message' => 'Anggota Berhasil Dibuat!'
             ]);
         }
 
@@ -166,24 +204,6 @@ class AnggotaController extends Controller
         return redirect("/keanggotaan")->with('success', 'Data berhasil diperbarui');
     }
 
-
-    // public function update(Request $request, $id)
-    // {
-    //     $validated = $request->validate([
-    //         "tanggal_pinjam" => "required|string|max:255",
-    //         "tanggal_kembali" => "required|string|max:255",
-    //         "status_pengembalian" => "required|string|max:255",
-    //         "anggota_id" => "required|exists:anggotas,id",
-    //         "buku_id" => "required|exists:bukus,id",
-    //         "kategori_id" => "required|exists:kategoris,id",
-    //     ]);
-
-    //     $data = Anggota::findOrFail($id);
-    //     $data->update($validated);
-
-    //     return response()->json(['message' => 'Data berhasil diupdate']);
-    // }
-
    
     public function destroy($id)
     {
@@ -198,6 +218,26 @@ class AnggotaController extends Controller
         $anggota = Anggota::findOrFail($id);
 
         return view('keanggotaan.show', compact('anggota'));
+    }
+
+
+    public function verifikasi($id)
+    {
+        $anggota = Anggota::find($id);
+
+        if (!$anggota || !$anggota->user_id) {
+            return response()->json([
+                'error' => 'Anggota ini belum terkait dengan akun user.'
+            ], 400);
+        }
+
+        $user = User::find($anggota->user_id);
+        $user->email_verified_at = now();
+        $user->save();
+
+        return response()->json([
+            'message' => 'Anggota berhasil diverifikasi!'
+        ]);
     }
 
 }

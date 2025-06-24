@@ -4,9 +4,9 @@
 
 {{-- Css Styling --}}
 @push ("css-libs")
-    <meta name="csrf_token" content="{{ csrf_token() }}" />
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
-    <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+    {{-- <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">
 @endpush
 
@@ -81,21 +81,24 @@
                             <tr class="text-center">
                                 <th scope="col">NIK</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Tempat Lahir</th>
+                                {{-- <th scope="col">Tempat Lahir</th>
                                 <th scope="col">Tanggal Lahir</th>
-                                <th scope="col">Jenis Kelamin</th>
+                                <th scope="col">Jenis Kelamin</th> --}}
                                 <th scope="col">Pendidikan</th>
-                                <th scope="col">Alamat</th>
+                                {{-- <th scope="col">Alamat</th>  --}}
                                 <th scope="col">No Telepon</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Tanggal Daftar</th>
+                                <th scope="col">Status Verifikasi</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr>
                                 <td colspan="9" class="text-center">No Data Display</td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -127,16 +130,17 @@
                 serverSide: true,
                 ajax: '{{url()->current()}}',
                 columns: [
-                    { data: 'nik', name: 'anggota_nik' }, 
+                    { data: 'nik', name: 'nik' }, 
                     { data: 'nama', name: 'nama' },
-                    { data: 'tempat_lahir', name: 'tempat_lahir' },
-                    { data: 'tanggal_lahir', name: 'tanggal_lahir' },
-                    { data: 'jenis_kelamin', name: 'jenis_kelamin' },
+                    // { data: 'tempat_lahir', name: 'tempat_lahir' },
+                    // { data: 'tanggal_lahir', name: 'tanggal_lahir' },
+                    // { data: 'jenis_kelamin', name: 'jenis_kelamin' },
                     { data: 'pendidikan', name: 'pendidikan' },
-                    { data: 'alamat', name: 'alamat' },
+                    // { data: 'alamat', name: 'alamat' },
                     { data: 'no_telepon', name: 'no_telepon' },
                     { data: 'status', name: 'status' },
                     { data: 'tanggal_daftar', name: 'tanggal_daftar' },
+                    { data: 'verifikasi', name: 'verifikasi', orderable: false, searchable: false },
                     { data: 'action', name: 'action' }
                 ],
                 columnDefs: [
@@ -144,6 +148,32 @@
                 ]
             });
 
+            // Handling verifikasi AJAX 
+            $('#table_anggota').on('click', '.btnVerif', function (e) { 
+                e.preventDefault();
+
+                const id = $(this).data('id'); // Ambil ID dari data-id tombol
+                const url = `{{ url('keanggotaan') }}/${id}/verifikasi`;
+                const token = $('meta[name="csrf_token"]').attr('content'); // TAMBAHKAN INI
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        _method: 'PUT',
+                        _token: token
+                    },
+                    success: function (response) {
+                        alert(response.message || 'Berhasil diverifikasi!');
+                        anggotaDataTable.ajax.reload(null, false);
+                    },
+                    error: function (xhr) {
+                        console.error('AJAX Error:', xhr.responseText);
+                        const msg = xhr.responseJSON?.error || xhr.responseJSON?.message || 'Gagal verifikasi';
+                        alert(msg);
+                    }
+                });
+            });
 
 
             // mengosongkan semua input di dalam form modal 'addModal'
@@ -159,8 +189,9 @@
                 $('#no_telp_error').val(); 
             }
 
+            // reset setiap kali modal dibuka
             $('#addModal').on('show.bs.modal', function() {
-                resetAddAnggotaForm(); // reset setiap kali modal dibuka
+                resetAddAnggotaForm(); 
             });
 
             // Validasi nomor telepon harus diawali +62
@@ -178,7 +209,7 @@
             });
 
 
-            // --- Add ---
+            // Add
             $('#formAddAnggota').on('submit', function(e) {
                 e.preventDefault();
 
@@ -240,7 +271,6 @@
 
 
             //edit
-
             $(document).on('click', '.editBtn', function () {
                 let id = $(this).data('id');
                 let showUrl = '{{ route("keanggotaan.edit", ":id") }}';
@@ -374,6 +404,7 @@
                     }
                 });
             });
+
         
         });
 

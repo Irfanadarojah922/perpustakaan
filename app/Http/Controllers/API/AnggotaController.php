@@ -16,18 +16,18 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-        try {
-            $anggota = Anggota::all();
-            return response()->json([
-                "success" => true,
-                "data" => $anggota
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                "success" => false,
-                "message" => $e->getMessage()
-            ], 500);
-        }
+        // try {
+        //     $anggota = Anggota::all();
+        //     return response()->json([
+        //         "success" => true,
+        //         "data" => $anggota
+        //     ]);
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //         "success" => false,
+        //         "message" => $e->getMessage()
+        //     ], 500);
+        // }
     }
 
     /**
@@ -35,43 +35,43 @@ class AnggotaController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        try {
+        // try {
 
-            $validatedData = $request->validated();
+        //     $validatedData = $request->validated();
 
-            if ($request->hasFile('foto')) {
+        //     if ($request->hasFile('foto')) {
 
-                $fileName = UploadFileHelper::upload(
-                    'anggota',
-                    $validatedData['nama'],
-                    $request->file('foto')
-            );
+        //         $fileName = UploadFileHelper::upload(
+        //             'anggota',
+        //             $validatedData['nama'],
+        //             $request->file('foto')
+        //     );
 
-            if ($fileName) {
-                    $validatedData['foto'] = Storage::url('anggota/' . $fileName); // unutk menghaslkan url 
-                } else {
-                    return response()->json([
-                        "success" => false,
-                        "message" => "Gagal mengunggah foto."
-                    ], 500);
-                }
-            } else {
-                $validatedData['foto'] = null;
-            }
+        //     if ($fileName) {
+        //             $validatedData['foto'] = Storage::url('anggota/' . $fileName); // unutk menghaslkan url 
+        //         } else {
+        //             return response()->json([
+        //                 "success" => false,
+        //                 "message" => "Gagal mengunggah foto."
+        //             ], 500);
+        //         }
+        //     } else {
+        //         $validatedData['foto'] = null;
+        //     }
 
-            $anggota = Anggota::create($validatedData);
+        //     $anggota = Anggota::create($validatedData);
 
-            return response()->json([
-                "success" => true,
-                "data" => $anggota
-            ], 201);
+        //     return response()->json([
+        //         "success" => true,
+        //         "data" => $anggota
+        //     ], 201);
             
-        } catch (\Exception $e) {
-            return response()->json([
-                "success" => false,
-                "message" => $e->getMessage()
-            ], 500);
-        }
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //         "success" => false,
+        //         "message" => $e->getMessage()
+        //     ], 500);
+        // }
     }
 
     /**
@@ -119,14 +119,14 @@ class AnggotaController extends Controller
             if ($request->hasFile('foto')) {
                 // Hapus foto lama jika ada
                 if ($anggota->foto) {
-                    $oldPath = str_replace(Storage::url(''), '', $anggota->foto); // Dapatkan path relatif dari URL
-                    UploadFileHelper::delete($oldPath, 'public'); // Hapus menggunakan helper
+                    $oldPath = str_replace(Storage::url(''), '', $anggota->foto);
+                    UploadFileHelper::delete($oldPath, 'public');
                 }
 
                 // Upload foto baru
                 $fileName = UploadFileHelper::upload(
                     'anggota',
-                    $anggota->nama, // Gunakan nama anggota yang sudah ada atau yang baru jika diubah
+                    $anggota->nama,
                     $request->file('foto')
                 );
 
@@ -152,7 +152,8 @@ class AnggotaController extends Controller
 
             return response()->json([
                 "success" => true,
-                "data" => $anggota
+                "data" => $anggota,
+                "edit_foto_url" => route('anggota.edit-foto', ['id' => $anggota->id])
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -161,53 +162,54 @@ class AnggotaController extends Controller
             ], 500);
         }
     }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        try {
-            $anggota = Anggota::find($id);
-            if (!$anggota) {
-                return response()->json([
-                    "success" => false,
-                    "message" => "Anggota not found"
-                ], 404);
-            }
+        // try {
+        //     $anggota = Anggota::find($id);
+        //     if (!$anggota) {
+        //         return response()->json([
+        //             "success" => false,
+        //             "message" => "Anggota not found"
+        //         ], 404);
+        //     }
 
-            // Hapus foto dari storage saat anggota dihapus
-            if ($anggota->foto) {
-                $pathToDelete = str_replace(Storage::url(''), '', $anggota->foto);
-                UploadFileHelper::delete($pathToDelete, 'public');
-            }
+        //     // Hapus foto dari storage saat anggota dihapus
+        //     if ($anggota->foto) {
+        //         $pathToDelete = str_replace(Storage::url(''), '', $anggota->foto);
+        //         UploadFileHelper::delete($pathToDelete, 'public');
+        //     }
             
-            $anggota->delete();
-            return response()->json([
-                "success" => true,
-                "message" => "Anggota deleted"
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                "success" => false,
-                "message" => $e->getMessage()
-            ], 500);
-        }
+        //     $anggota->delete();
+        //     return response()->json([
+        //         "success" => true,
+        //         "message" => "Anggota deleted"
+        //     ]);
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //         "success" => false,
+        //         "message" => $e->getMessage()
+        //     ], 500);
+        // }
     }
 
     public function search(string $name)
     {
-        try {
-            $anggota = Anggota::where('nama', 'like', "%$name%")->get();
-            return response()->json([
-                "success" => true,
-                "message" => $anggota
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                "success" => false,
-                "message" => $e->getMessage()
-            ]);
-        }
+        // try {
+        //     $anggota = Anggota::where('nama', 'like', "%$name%")->get();
+        //     return response()->json([
+        //         "success" => true,
+        //         "message" => $anggota
+        //     ]);
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //         "success" => false,
+        //         "message" => $e->getMessage()
+        //     ]);
+        // }
     }
+    
 }

@@ -7,6 +7,8 @@ use App\Http\Requests\Books\StoreRequest;
 use App\Http\Requests\Books\UpdateRequest;
 use App\Models\Buku;
 use App\Models\Kategori;
+use Illuminate\Http\Request;
+
 
 
 class BookController extends Controller
@@ -14,10 +16,19 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $buku = Buku::all();
+            $query = Buku::query();
+
+            if ($request->has('search') && $request->search != '') {
+                $search = $request->search;
+                $query->where('judul', 'like', "%$search%")
+                    ->orWhere('penulis', 'like', "%$search%");
+            }
+
+            $buku = $query->get();
+            
             return response()->json([
                 "success" => true,
                 "data" => $buku

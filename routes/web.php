@@ -7,36 +7,21 @@ use App\Http\Controllers\WEB\PengembalianController;
 use App\Http\Controllers\WEB\DashboardController;
 use App\Http\Controllers\WEB\KatalogController;
 use App\Http\Controllers\WEB\RegisterController;
+use App\Http\Controllers\WEB\LoginController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});         //->middleware(RedirectIfAuthenticated::redirectUsing('dashboard'));
+});       
 
-// Route::group(['middleware' => ''], function () {
+// Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
+// Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Route::get('/dashboard', function (Request $request) {
-//     // dd(Auth::guard()->user());
-//     return view('pages.dashboard');
-// });
 
 Route::resource('/register', RegisterController::class)->only(['index']);
 
-
 Route::get('/dashboard', [DashboardController::class, 'index']);
-
-// Route::get('/katalog', function () {
-//     return view('katalog.index', [
-//     ]);
-// });
-
-// Route::get('/katalog', [KatalogController::class, 'index'])->name('katalog.index');
-
-// Route::get('/katalog/{id}', [KatalogController::class, 'show'])->name('katalog.show');
-
-// Route::get('/katalog/{id}', [KatalogController::class, 'detail'])->name('katalog.detail');
-
-// Route::post('/katalog', [KatalogController::class, 'store'])->name('katalog.store');
 
 Route::resource('/katalog', KatalogController::class)->only(["index", "show"]);
 
@@ -47,7 +32,7 @@ Route::get('/keanggotaan/create', [AnggotaController::class, 'create']);
 Route::get('/keanggotaan/show/{id}', [AnggotaController::class, 'show'])->name('keanggotaan.show');
 Route::delete('/keanggotaan/{id}', [AnggotaController::class, 'destroy']);
 
-
+Route::put('/keanggotaan/{id}/verifikasi', [AnggotaController::class, 'verifikasi'])->name('keanggotaan.verifikasi');
 
 Route::resource('/sirkulasi/peminjaman', PeminjamanController::class);
 Route::get('/peminjaman/{id}/edit', [PeminjamanController::class, 'edit']);
@@ -62,13 +47,6 @@ Route::get('/pengembalian/add', [PengembalianController::class, 'add']);
 Route::put('/pengembalian/{id}', [PengembalianController::class, 'update'])->name('kembali.update');
 Route::delete('/pengembalian/{id}', [PengembalianController::class, 'destroy']);
 
-
-// });
-
-// Route::get('/getByname', [PeminjamanController::class, 'getByName'])->name('getByName');
-// Route::get('/sirkulasi', [PeminjamanController::class, 'PeminjamanByAnggotaId'])->name('peminjaman.byanggota');
-
-//Buku
 
 Route::resource('buku', BookController::class)->only(["store", "create"]);
 
