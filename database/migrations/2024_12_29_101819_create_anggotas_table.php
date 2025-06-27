@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->enum('status', ['pelajar', 'mahasiswa', 'umum']);
             $table->string('foto')->nullable();
             $table->date('tanggal_daftar');
+            $table->boolean('verifikasi')->default(false);
 
             $table->timestamps();
 

@@ -50,7 +50,7 @@ class AuthController extends Controller
         }
 
         // Cek status verifikasi anggota
-        if ($user->anggota->verifikasi !== 'terverifikasi') {
+        if (!$user->anggota->verifikasi) {
             return response()->json([
                 'message' => 'Akun Anda belum diverifikasi oleh admin.'
             ], 403);

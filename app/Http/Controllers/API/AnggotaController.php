@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Anggotas\StoreRequest;
 use App\Http\Requests\Anggotas\UpdateRequest;
 use App\Models\Anggota;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Helpers\UploadFileHelper;
 
@@ -65,7 +66,7 @@ class AnggotaController extends Controller
         //         "success" => true,
         //         "data" => $anggota
         //     ], 201);
-            
+
         // } catch (\Exception $e) {
         //     return response()->json([
         //         "success" => false,
@@ -102,10 +103,11 @@ class AnggotaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, string $id)
+    public function update(UpdateRequest $request)
     {
         try {
-            $anggota = Anggota::find($id);
+            $anggota = $request->user()->anggota;
+
             if (!$anggota) {
                 return response()->json([
                     "success" => false,
@@ -115,45 +117,11 @@ class AnggotaController extends Controller
 
             $validatedData = $request->validated();
 
-            // Handle file upload for update
-            if ($request->hasFile('foto')) {
-                // Hapus foto lama jika ada
-                if ($anggota->foto) {
-                    $oldPath = str_replace(Storage::url(''), '', $anggota->foto);
-                    UploadFileHelper::delete($oldPath, 'public');
-                }
-
-                // Upload foto baru
-                $fileName = UploadFileHelper::upload(
-                    'anggota',
-                    $anggota->nama,
-                    $request->file('foto')
-                );
-
-                if ($fileName) {
-                    $validatedData['foto'] = Storage::url('anggota/' . $fileName);
-                } else {
-                    return response()->json([
-                        "success" => false,
-                        "message" => "Gagal mengunggah foto baru."
-                    ], 500);
-                }
-            } else if (array_key_exists('foto', $validatedData) && $validatedData['foto'] === null) {
-                if ($anggota->foto) {
-                    $oldPath = str_replace(Storage::url(''), '', $anggota->foto);
-                    UploadFileHelper::delete($oldPath, 'public');
-                    $validatedData['foto'] = null;
-                }
-            } else {
-                unset($validatedData['foto']);
-            }
-
             $anggota->update($validatedData);
 
             return response()->json([
                 "success" => true,
                 "data" => $anggota,
-                "edit_foto_url" => route('anggota.edit-foto', ['id' => $anggota->id])
             ]);
         } catch (\Exception $e) {
             return response()->json([
@@ -162,7 +130,7 @@ class AnggotaController extends Controller
             ], 500);
         }
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */
@@ -182,7 +150,7 @@ class AnggotaController extends Controller
         //         $pathToDelete = str_replace(Storage::url(''), '', $anggota->foto);
         //         UploadFileHelper::delete($pathToDelete, 'public');
         //     }
-            
+
         //     $anggota->delete();
         //     return response()->json([
         //         "success" => true,
@@ -211,5 +179,68 @@ class AnggotaController extends Controller
         //     ]);
         // }
     }
-    
+
+    public function editPhoto(Request $request)
+    {
+        try {
+            $user = $request->user();
+            if (!$user) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Anggota not found"
+                ], 404);
+            }
+            $validatedData = $request->validate([
+                'foto' => "required|image|mimes:jpg,jpeg,png,webp|max:2048"
+            ]);
+
+            $anggota = $user->anggota;
+            $imageData = $request->file('foto');
+
+            if ($imageData) {
+                UploadFileHelper::delete("anggota/{$anggota->foto}");
+                $imageName = UploadFileHelper::upload("anggota", $anggota->nama, $imageData);
+            }
+
+            $anggota->update([
+                'foto' => $imageName
+            ]);
+
+            return response()->json([
+                "success" => true,
+                "message" => "Foto berhasil di perbaharui"
+            ], 200);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function showProfile(Request $request)
+    {
+        try {
+            $user = $request->user();
+
+            if (!$user) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Anggota not found"
+                ], 404);
+            }
+
+            return response()->json([
+                "success" => true,
+                "data" => $user->anggota
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => $e->getMessage()
+            ]);
+        }
+    }
+
 }
