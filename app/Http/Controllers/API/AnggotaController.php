@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Anggotas\StoreRequest;
+use App\Http\Controllers\Controller;        // Namespace untuk controller API
+use App\Http\Requests\Anggotas\StoreRequest;    // Import class-class yang dibutuhkan
 use App\Http\Requests\Anggotas\UpdateRequest;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ use App\Http\Helpers\UploadFileHelper;
 class AnggotaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan semua data anggota (GET /api/anggota).
      */
     public function index()
     {
@@ -32,7 +32,7 @@ class AnggotaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan anggota baru (POST /api/anggota).
      */
     public function store(StoreRequest $request)
     {
@@ -49,7 +49,7 @@ class AnggotaController extends Controller
         //     );
 
         //     if ($fileName) {
-        //             $validatedData['foto'] = Storage::url('anggota/' . $fileName); // unutk menghaslkan url 
+        //             $validated['foto'] = 'anggota/' . $fileName; // unutk menghaslkan url 
         //         } else {
         //             return response()->json([
         //                 "success" => false,
@@ -76,14 +76,14 @@ class AnggotaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan detail anggota (GET /api/anggota/{id}).
      */
     public function show(string $id)
     {
         try {
-            $anggota = Anggota::find($id);
+            $anggota = Anggota::find($id);      // Cari data anggota berdasarkan ID
             if (!$anggota) {
-                return response()->json([
+                return response()->json([       
                     "success" => false,
                     "message" => "Anggota not found"
                 ], 404);
@@ -101,7 +101,7 @@ class AnggotaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Memperbarui data anggota (PUT /api/anggota/{id}).
      */
     public function update(UpdateRequest $request)
     {
@@ -115,6 +115,7 @@ class AnggotaController extends Controller
                 ], 404);
             }
 
+            // Validasi data dari request
             $validatedData = $request->validated();
 
             $anggota->update($validatedData);
@@ -132,7 +133,7 @@ class AnggotaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data anggota (DELETE /api/anggota/{id}).
      */
     public function destroy(string $id)
     {
@@ -164,6 +165,7 @@ class AnggotaController extends Controller
         // }
     }
 
+    //Mencari anggota berdasarkan nama (GET /api/anggota/search/{name}).
     public function search(string $name)
     {
         // try {

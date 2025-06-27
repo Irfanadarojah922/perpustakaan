@@ -4,7 +4,7 @@
 
 {{-- Css Styling --}}
 @push ("css-libs")
-    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta name="csrf_token" content="{{ csrf_token() }}">       // CSRF token untuk keamanan AJAX
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> -->
     {{-- <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css">
@@ -105,9 +105,9 @@
             </div>
         </div>
     </div>
-    @include('keanggotaan.create')
-    @include('keanggotaan.edit')
-    @include('keanggotaan.delete')
+    @include('keanggotaan.create')      // Modal Tambah Anggota
+    @include('keanggotaan.edit')        // Modal Edit Anggota
+    @include('keanggotaan.delete')      // Modal Hapus Anggota
    
 
 @endsection
@@ -124,12 +124,13 @@
         $(document).ready(function () {
 
             //yang ditampilkan di list tabel
+            // Inisialisasi DataTables
             anggotaDataTable = $('#table_anggota').DataTable({
                 responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: '{{url()->current()}}',
-                columns: [
+                ajax: '{{url()->current()}}',       // Panggil route `index()`
+                columns: [          // Mapping kolom dari response server
                     { data: 'nik', name: 'nik' }, 
                     { data: 'nama', name: 'nama' },
                     // { data: 'tempat_lahir', name: 'tempat_lahir' },
@@ -148,7 +149,7 @@
                 ]
             });
 
-            // Handling verifikasi AJAX 
+            // AJAX Verifikasi Anggota
             $('#table_anggota').on('click', '.btnVerif', function (e) { 
                 e.preventDefault();
 
@@ -176,7 +177,7 @@
             });
 
 
-            // mengosongkan semua input di dalam form modal 'addModal'
+            // Reset form setiap buka modal
             function resetAddAnggotaForm() {
                 $('#formAddAnggota')[0].reset();
 
