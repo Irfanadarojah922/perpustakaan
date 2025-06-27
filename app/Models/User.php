@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function anggota()
     {
-        return $this->hasOne(Anggota::class);
+        return $this->hasOne(Anggota::class,'id','anggota_id');
     }
     
 }
