@@ -22,7 +22,8 @@ class Anggota extends Model
         'status',
         'foto',
         'tanggal_daftar',
-        'verifikasi',
+        'user_id',
+        'verifikasi'
     ];
 
     protected $appends = [
@@ -37,7 +38,7 @@ class Anggota extends Model
     protected $casts = [
         "tanggal_lahir" => "date:d/m/Y",
         "tanggal_daftar" => "date:d/m/Y",
-        'verifikasi' => 'boolean',
+        "verifikasi" => "boolean",
     ];
 
 
@@ -46,9 +47,9 @@ class Anggota extends Model
     //     return $this->hasOne(User::class);
     // }
 
-    public function hasUser()
+    public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
 }

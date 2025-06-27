@@ -27,7 +27,7 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            $table->boolean('verifikasi')->default(false);
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 
@@ -36,8 +36,10 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('anggotas');
-
+        Schema::table('anggotas', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
+        }); 
     }
 
 };

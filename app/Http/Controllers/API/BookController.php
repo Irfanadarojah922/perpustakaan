@@ -16,15 +16,11 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-
-    // Menampilkan daftar buku (GET /api/books).
-    // Mendukung pencarian berdasarkan judul atau penulis.
     public function index(Request $request)
     {
         try {
             $query = Buku::query();
 
-            // Jika ada parameter pencarian
             if ($request->has('search') && $request->search != '') {
                 $search = $request->search;
                 $query->where('judul', 'like', "%$search%")
@@ -46,12 +42,11 @@ class BookController extends Controller
     }
 
     /**
-     * Menyimpan buku baru (POST /api/books).
+     * Store a newly created resource in storage.
      */
     public function store(StoreRequest $request)
     {
         try {
-            // Validasi otomatis dari StoreRequest
             $buku = Buku::create($request->validated());
             return response()->json([
                 "success" => true,
@@ -66,7 +61,7 @@ class BookController extends Controller
     }
 
     /**
-     * Menampilkan detail buku berdasarkan ID (GET /api/books/{id}).
+     * Display the specified resource.
      */
     public function show(string $id)
     {
@@ -91,7 +86,7 @@ class BookController extends Controller
     }
 
     /**
-     * Memperbarui data buku berdasarkan ID (PUT /api/books/{id}).
+     * Update the specified resource in storage.
      */
     public function update(UpdateRequest $request, string $id)
     {
@@ -117,7 +112,7 @@ class BookController extends Controller
     }
 
     /**
-     * Menghapus buku berdasarkan ID (DELETE /api/books/{id}).
+     * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
@@ -142,7 +137,6 @@ class BookController extends Controller
         }
     }
 
-    //Mencari buku berdasarkan judul (GET /api/books/search/{name}).
     public function search(string $name)
     {
         try {

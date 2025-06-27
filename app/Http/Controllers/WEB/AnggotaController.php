@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Repositories\RegisterRepository;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Helpers\UploadFileHelper;
-use Illuminate\Support\Facades\Storage;
 
 
 class AnggotaController extends Controller
@@ -20,37 +18,30 @@ class AnggotaController extends Controller
 
     protected $registerRepository;
 
-    // Konstruktor untuk inisialisasi repository
     public function __construct(RegisterRepository $registerRepository)
     {
         $this->registerRepository = $registerRepository;
     }
 
-    // Menampilkan halaman index keanggotaan, dan jika request AJAX, kembalikan data DataTables
     public function index()
     {
         if (\request()->ajax()) {
-            $anggotas = Anggota::query();
+            $anggotas = Anggota::with('user');
 
             return DataTables::of($anggotas)
                 ->addColumn("verifikasi", function ($row) {
-
-                    // Tampilkan status verifikasi anggota
-                    if ($row->verifikasi) {
+                    if (optional($row->user)->email_verified_at) {
                         return '<span class="badge bg-success">Terverifikasi</span>';
                     } else {
                         return '<span class="badge bg-danger">Belum Verifikasi</span>';
                     }
                 })
-
-                // Tambahkan tombol-tombol aksi: Edit, Show, Delete, Verifikasi
                 ->addColumn("action", function ($row) {
                     $btnEdit = '<button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '"><i class="bx bx-edit"></i></button>';
                     $btnShow = '<button class="btn btn-info btn-sm" onclick="detail_anggota(' . $row->id . ')"><i class="bx bx-show"></i></button>';
                     $btnDelete = '<button type="button" class="btn btn-danger deleteBtn" data-id="' . $row->id . '"><i class="bx bx-trash"></i></button>';
 
-                    // Tombol Verifikasi
-                    if (!$row->verifikasi) {
+                    if (!optional($row->user)->email_verified_at) {
                         $btnVerif = '<button type="button" class="btn btn-primary btn-sm btnVerif" data-id="' . $row->id . '">
                                         <i class="bx bx-check-circle"></i>
                                     </button>';
@@ -60,15 +51,13 @@ class AnggotaController extends Controller
 
                     return $btnEdit . ' ' . $btnShow . ' ' . $btnDelete . ' ' . $btnVerif;
                 })
-                ->rawColumns(['verifikasi', 'action'])   // izinkan HTML di kolom
+                ->rawColumns(['verifikasi', 'action']) 
                 ->make(true);
         }
 
-        // Jika bukan request AJAX, kembalikan view index
         return view("keanggotaan.index");
     }
 
-    // Tidak digunakan, tapi Anda mengembalikan $this->registerRepository sebagai JSON
     public function create()
     {
         $data = $this->registerRepository;
@@ -77,7 +66,6 @@ class AnggotaController extends Controller
     }
 
 
-    // Menyimpan data anggota baru
     public function store(Request $request)
     {
         // Validasi input
@@ -106,24 +94,23 @@ class AnggotaController extends Controller
             ]);
         }
 
-        // upload jika foto ada
+        // Cek apakah ada file foto yang diunggah
         if ($request->hasFile('foto')) {
-        $fileName = UploadFileHelper::upload('anggota', $validated['nama'], $request->file('foto'));
+            $foto = $request->file('foto');
+            $filename = time() . '_' . $foto->getClientOriginalName();
+            $path = $foto->storeAs('anggota', $filename, 'public'); // simpan ke storage/app/public/anggota
 
-        if ($fileName) {
-            $validated['foto'] = 'anggota/' . $fileName;
-        } else {
-            return back()->with('error', 'Gagal mengunggah foto.');
+            // Simpan nama file ke dalam array validated
+            $validated['foto'] = $path; // simpan path-nya
         }
-    }
 
-        // Buat akun user
+        // 1. Buat akun user
         $user = User::create([
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
 
-        // Tambahkan user_id ke dalam data anggota
+        // 2. menimpan ke tabel user_id 
         $validated['user_id'] = $user->id;
 
         // Simpan data ke anggota
@@ -137,12 +124,11 @@ class AnggotaController extends Controller
         }
 
         return $data
-            ? redirect("/keanggotaan")->with("success", "Anggota Berhasil Dibuat!")
+            ? redirect("/keanggotaan")->with("success", "Anggota Created Successfully!")
             : back()->with("error", "Something Error!");
     }
 
 
-    // Menampilkan data anggota untuk edit
     public function edit($id)
     {
         $data = Anggota::findOrFail($id);
@@ -192,24 +178,20 @@ class AnggotaController extends Controller
             ]);
         }
 
-        // Jika ada foto baru, hapus yang lama dan upload yang baru
+        // Handle upload foto baru
         if ($request->hasFile('foto')) {
             // Hapus foto lama jika ada
-            if ($anggota->foto) {
-                $oldPath = str_replace(Storage::url(''), '', $anggota->foto); // buang '/storage/'
-                UploadFileHelper::delete($oldPath);
+            if ($anggota->foto && \Storage::disk('public')->exists($anggota->foto)) {
+                \Storage::disk('public')->delete($anggota->foto);
             }
 
-            $fileName = UploadFileHelper::upload('anggota', $validated['nama'], $request->file('foto'));
-
-            if ($fileName) {
-                $validated['foto'] = 'anggota/' . $fileName;
-            } else {
-                return back()->with('error', 'Gagal mengunggah foto.');
-            }
+            $foto = $request->file('foto');
+            $filename = time() . '_' . $foto->getClientOriginalName();
+            $path = $foto->storeAs('anggota', $filename, 'public');
+            $validated['foto'] = $path;
         }
 
-        // Update data di database
+        // Update data
         $anggota->update($validated);
 
         if ($request->ajax()) {
@@ -231,7 +213,6 @@ class AnggotaController extends Controller
         return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
     }
 
-    // Menampilkan halaman detail anggota
     public function show($id)
     {
         $anggota = Anggota::findOrFail($id);
@@ -240,20 +221,23 @@ class AnggotaController extends Controller
     }
 
 
-    // Melakukan verifikasi terhadap anggota
     public function verifikasi($id)
     {
-        $anggota = Anggota::findOrFail($id);
+        $anggota = Anggota::find($id);
 
-        if ($anggota->verifikasi) {
-            return response()->json(['message' => 'Anggota sudah diverifikasi sebelumnya']);
+        if (!$anggota || !$anggota->user_id) {
+            return response()->json([
+                'error' => 'Anggota ini belum terkait dengan akun user.'
+            ], 400);
         }
 
-        $anggota->update([
-            'verifikasi' => true
-        ]);
+        $user = User::find($anggota->user_id);
+        $user->email_verified_at = now();
+        $user->save();
 
-        return response()->json(['message' => 'Berhasil diverifikasi']);
+        return response()->json([
+            'message' => 'Anggota berhasil diverifikasi!'
+        ]);
     }
 
 }
