@@ -36,7 +36,10 @@ Route::name("api.")
                 Route::apiResource('kembali', KembaliController::class);
 
                 //anggota route
-                Route::get('/anggota/profile', [AnggotaController::class, 'showProfile'])->name('anggota.profile');
+                Route::middleware(['UserMustBeVerified'])
+                    ->group(function () {
+                    Route::get('/anggota/profile', [AnggotaController::class, 'showProfile'])->name('anggota.profile');
+                });
                 Route::get('/anggota/search/{name}', [AnggotaController::class, 'search']);
                 Route::put('/anggota/update', [AnggotaController::class, 'update']);
                 Route::put('/anggota/edit-foto', [AnggotaController::class, 'editPhoto'])->name('anggota.edit-foto');

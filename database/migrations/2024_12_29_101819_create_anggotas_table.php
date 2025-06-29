@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('tempat_lahir', 255);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan']);
-            $table->enum('pendidikan', ['SD', 'SMP','SMA','SARJANA']);
+            $table->enum('pendidikan', ['SD', 'SMP', 'SMA', 'SARJANA']);
             $table->string('alamat');
             $table->char('no_telepon', 20);
             $table->enum('status', ['pelajar', 'mahasiswa', 'umum']);
@@ -27,7 +27,7 @@ return new class extends Migration {
 
             $table->timestamps();
 
-            // $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
     }
 
@@ -36,9 +36,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('anggotas', function (Blueprint $table) {
-             $table->dropColumn('verifikasi');
-        }); 
+        Schema::dropIfExists('anggotas');
     }
 
 };

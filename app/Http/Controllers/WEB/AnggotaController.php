@@ -238,6 +238,4 @@ class AnggotaController extends Controller
 
         return response()->json(['message' => 'Berhasil diverifikasi']);
     }
-
-
 }
