@@ -18,7 +18,7 @@ Route::get('/', function () {
 // Route::post('/login', [LoginController::class, 'login']);
 // Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['web'])
+Route::middleware(['web', 'auth'])
     ->group(function () {
         Route::resource('/register', RegisterController::class)->only(['index']);
 
