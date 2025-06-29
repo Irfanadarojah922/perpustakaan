@@ -26,28 +26,31 @@ class AnggotaController extends Controller
     public function index()
     {
         if (\request()->ajax()) {
-            $anggotas = Anggota::with('user');
+            $anggotas = Anggota::all();
 
             return DataTables::of($anggotas)
                 ->addColumn("verifikasi", function ($row) {
-                    if (optional($row->user)->email_verified_at) {
+                    if ($row->verifikasi) {
                         return '<span class="badge bg-success">Terverifikasi</span>';
                     } else {
                         return '<span class="badge bg-danger">Belum Verifikasi</span>';
                     }
                 })
+
+
                 ->addColumn("action", function ($row) {
                     $btnEdit = '<button class="btn btn-sm btn-success editBtn" data-id="' . $row->id . '"><i class="bx bx-edit"></i></button>';
                     $btnShow = '<button class="btn btn-info btn-sm" onclick="detail_anggota(' . $row->id . ')"><i class="bx bx-show"></i></button>';
                     $btnDelete = '<button type="button" class="btn btn-danger deleteBtn" data-id="' . $row->id . '"><i class="bx bx-trash"></i></button>';
 
-                    if (!optional($row->user)->email_verified_at) {
+                    if (!$row->verifikasi) {
                         $btnVerif = '<button type="button" class="btn btn-primary btn-sm btnVerif" data-id="' . $row->id . '">
                                         <i class="bx bx-check-circle"></i>
                                     </button>';
                     } else {
                         $btnVerif = '<button class="btn btn-secondary btn-sm" disabled>✔</button>';
                     }
+
 
                     return $btnEdit . ' ' . $btnShow . ' ' . $btnDelete . ' ' . $btnVerif;
                 })
@@ -223,21 +226,18 @@ class AnggotaController extends Controller
 
     public function verifikasi($id)
     {
-        $anggota = Anggota::find($id);
+        $anggota = Anggota::findOrFail($id);
 
-        if (!$anggota || !$anggota->user_id) {
-            return response()->json([
-                'error' => 'Anggota ini belum terkait dengan akun user.'
-            ], 400);
+        if ($anggota->verifikasi) {
+            return response()->json(['message' => 'Anggota sudah diverifikasi sebelumnya']);
         }
 
-        $user = User::find($anggota->user_id);
-        $user->email_verified_at = now();
-        $user->save();
-
-        return response()->json([
-            'message' => 'Anggota berhasil diverifikasi!'
+        $anggota->update([
+            'verifikasi' => true
         ]);
+
+        return response()->json(['message' => 'Berhasil diverifikasi']);
     }
+
 
 }

@@ -22,7 +22,7 @@ class Anggota extends Model
         'status',
         'foto',
         'tanggal_daftar',
-        'user_id',
+        // 'user_id',
         'verifikasi'
     ];
 
