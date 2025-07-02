@@ -101,11 +101,14 @@ class AnggotaController extends Controller
         if ($request->hasFile('foto')) {
             $foto = $request->file('foto');
             $filename = time() . '_' . $foto->getClientOriginalName();
-            $path = $foto->storeAs('anggota', $filename, 'public'); // simpan ke storage/app/public/anggota
 
-            // Simpan nama file ke dalam array validated
-            $validated['foto'] = $path; // simpan path-nya
+            // Simpan langsung ke storage/'anggota'
+            $foto->storeAs('anggota', $filename, 'public');
+
+            // Simpan hanya nama file ke database
+            $validated['foto'] = $filename;
         }
+
 
         // 1. Buat akun user
         $user = User::create([
@@ -190,9 +193,14 @@ class AnggotaController extends Controller
 
             $foto = $request->file('foto');
             $filename = time() . '_' . $foto->getClientOriginalName();
-            $path = $foto->storeAs('anggota', $filename, 'public');
-            $validated['foto'] = $path;
+
+            // Simpan ke folder storage/anggota
+            $foto->storeAs('anggota', $filename, 'public');
+
+            // Simpan hanya nama file ke database
+            $validated['foto'] = $filename;
         }
+
 
         // Update data
         $anggota->update($validated);

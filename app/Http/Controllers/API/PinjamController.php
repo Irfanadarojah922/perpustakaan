@@ -129,7 +129,8 @@ class PinjamController extends Controller
     public function search(string $name)
     {
         try {
-            $pinjam = Pinjam::where('status_pinjam', 'like', "%$name%")->get();            return response()->json([
+            $pinjam = Pinjam::where('status_pinjam', 'like', "%$name%")->get();           
+             return response()->json([
                 "success" => true,
                 "message" => $pinjam
             ]);

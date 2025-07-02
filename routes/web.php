@@ -19,11 +19,14 @@ Route::resource('/register', RegisterController::class)->only(['index']);
 // Route::post('/login', [LoginController::class, 'login']);
 // Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+// Group route yang hanya bisa diakses oleh user yang sudah login (auth middleware)
 Route::middleware(['web', 'auth'])
     ->group(function () {
 
         Route::get('/dashboard', [DashboardController::class, 'index']);
 
+        // Katalog buku (hanya index dan show detail)
         Route::resource('/katalog', KatalogController::class)->only(["index", "show"]);
 
 

@@ -32,8 +32,11 @@ class Anggota extends Model
 
     public function getFotoUrlAttribute()
     {
-        return url(Storage::url("anggota/" . $this->foto));
+        return $this->foto
+            ? asset('storage/' . $this->foto)
+            : asset('images/default-user.png');
     }
+
 
     protected $casts = [
         "tanggal_lahir" => "date:d/m/Y",

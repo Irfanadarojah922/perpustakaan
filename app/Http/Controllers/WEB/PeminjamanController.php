@@ -89,14 +89,22 @@ class PeminjamanController extends Controller
             "buku_id" => "required|exists:bukus,id",
         ]);
 
+        // Ambil data peminjaman berdasarkan ID
         $data = Pinjam::findOrFail($id);
+
+        // Cek apakah buku yang dipinjam sebelumnya berbeda dengan buku yang sekarang
         if ($data->buku_id != $validated['buku_id']) {
+            // Ambil data buku lama dan buku baru
             $bukuLama = Buku::findOrFail($data->buku_id);
             $bukuBaru = Buku::findOrFail($validated['buku_id']);
-            
+
+            // Kembalikan stok buku lama
             $bukuLama->update(['jumlah_tersedia' => $bukuLama->jumlah_tersedia + 1]);
+            // Kurangi stok buku baru
             $bukuBaru->update(['jumlah_tersedia' => $bukuBaru->jumlah_tersedia - 1]);
         }
+
+        // Perbarui data peminjaman dengan data yang sudah divalidasi
         $data->update($validated);
 
         return response()->json(['message' => 'Data berhasil diupdate']);

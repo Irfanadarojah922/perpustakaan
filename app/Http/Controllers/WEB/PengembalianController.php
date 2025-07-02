@@ -59,12 +59,22 @@ class PengembalianController extends Controller
             "keterangan" => ["nullable", Rule::in(['buku hilang', 'rusak', 'tepat waktu'])],
         ]);
 
+        // Simpan data pengembalian ke tabel 'kembalis'
         $kembali = Kembali::create($requestData);
+
+        // Ambil data peminjaman berdasarkan pinjam_id
         $pinjam = Pinjam::findOrFail($requestData["pinjam_id"]);
+
+        // Ambil tanggal pengembalian dari input
         $tanggalPengembalian = Carbon::parse($requestData["tanggal_kembali"]);
+
+        // Ambil tanggal pinjam dari database (bisa juga diubah menjadi tanggal jatuh tempo tergantung sistem)
         $tanggalJatuhTempo = Carbon::parse($pinjam->tanggal_pinjam);
 
+        // Default status adalah "Dikembalikan"
         $status = "Dikembalikan";
+
+        // Jika tanggal pengembalian melebihi tanggal pinjam, maka status jadi "Terlambat"
         if ($tanggalPengembalian > $tanggalJatuhTempo) {
             $status = "Terlambat";
         }
