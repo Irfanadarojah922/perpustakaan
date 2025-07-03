@@ -32,9 +32,7 @@ class Anggota extends Model
 
     public function getFotoUrlAttribute()
     {
-        return $this->foto
-            ? asset('storage/' . $this->foto)
-            : asset('images/default-user.png');
+        return url(Storage::url("anggota/" . $this->foto));
     }
 
 

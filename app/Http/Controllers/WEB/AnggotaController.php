@@ -219,9 +219,21 @@ class AnggotaController extends Controller
     public function destroy($id)
     {
         $anggota = Anggota::findOrFail($id);
-        $anggota->forceDelete(); // Hapus permanen dari database
 
-        return response()->json(['message' => 'Data berhasil dihapus secara permanen.']);
+        // Hapus foto dari storage jika ada
+        if ($anggota->foto && \Storage::disk('public')->exists('anggota/' . $anggota->foto)) {
+            \Storage::disk('public')->delete('anggota/' . $anggota->foto);
+        }
+
+        // Hapus user terkait jika relasi tersedia
+        if ($anggota->user) {
+            $anggota->user->delete();
+        }
+
+        // Hapus anggota secara permanen
+        $anggota->forceDelete();
+
+        return response()->json(['message' => 'Data berhasil dihapus.']);
     }
 
     public function show($id)
